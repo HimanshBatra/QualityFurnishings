@@ -1,0 +1,204 @@
+package com.example.qualityfurnishings;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
+
+public class AdminAddProducts extends AppCompatActivity {
+
+    Spinner ProductCategory,SubCategory;
+    EditText ProductName,ProductPrice,ProductDescription,ProductQuantity,ProductQuality;
+    String imageValue;
+    Button addProduct;
+    ImageView imageView;
+    TextView selectImg;
+    CheckBox sale;
+    boolean Liquidation;
+    private int Rqststorage=1;
+    private int Rqstfile=2;
+    private Uri uri;
+    //private String uriPath;
+    private Intent intentData;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin_add_products);
+        imageView = (ImageView)findViewById(R.id.imgview);
+        selectImg = (TextView) findViewById(R.id.picUpload);
+        ProductName = (EditText) findViewById(R.id.ProductName);
+        ProductPrice = (EditText) findViewById(R.id.ProductPrice);
+        ProductDescription = (EditText) findViewById(R.id.ProductDescription);
+        ProductQuantity = (EditText) findViewById(R.id.ProducQuantity);
+        ProductQuality = (EditText) findViewById(R.id.ProductQuality);
+        sale = (CheckBox) findViewById(R.id.sale);
+
+
+
+        addProduct = (Button) findViewById(R.id.btAddProduct);
+        selectImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                        != PackageManager.PERMISSION_GRANTED){
+
+                    ActivityCompat.requestPermissions(AdminAddProducts.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},Rqststorage);
+                }
+                else {
+                    selectImage();
+                }
+
+            }
+        });
+
+
+        addProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String stPrice = ProductPrice.getText().toString();
+                final int a = Integer.parseInt(stPrice);
+                if (TextUtils.isEmpty(ProductName.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please Enter Product Name", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(ProductPrice.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Please Enter Product Price", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(ProductDescription.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Please Enter Product Description", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(ProductQuality.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Please Enter Product Quality", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(ProductQuantity.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Please Enter Product Quantity", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(imageValue)){
+                    Toast.makeText(getApplicationContext(), "Please upload the image of the product", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (sale.isChecked()){
+                         Liquidation = true;
+                    }
+                    else{
+                         Liquidation = false;
+                    }
+                    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+                    Map<String, Object> furnitureProduct = new HashMap<>();
+                    furnitureProduct.put("name", ProductName.getText().toString());
+                    furnitureProduct.put("image", imageValue);
+                    furnitureProduct.put("price", a);
+                    furnitureProduct.put("quality", ProductQuality.getText().toString());
+                    furnitureProduct.put("quantity", ProductQuantity.getText().toString());
+                    furnitureProduct.put("description",ProductDescription.getText().toString());
+                    furnitureProduct.put("sale",Liquidation);
+
+
+                    // CREATE Product
+                    DatabaseReference db_ref = database.child("FurnitureCategory").child("BedRoom").child("Chair").push(); // new key is created
+                    db_ref.setValue(furnitureProduct);
+                    Toast.makeText(getApplicationContext(), "Product Added Successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void selectImage() {
+
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(intent,Rqstfile);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Rqstfile && resultCode ==RESULT_OK){
+            if(data != null){
+                uri = data.getData();
+                intentData = data;
+
+                try {
+                    InputStream inputStream = getContentResolver().openInputStream(uri);
+                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                    imageView.setImageBitmap(bitmap);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+
+                // SEND IMAGE TO FIREBASE STORAGE
+
+                final StorageReference riversRef = storageRef.child("images/"+ProductName.getText().toString()+".jpg");
+
+                riversRef.putFile(uri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                //Get a URL to the uploaded content
+                                //Uri downloadUrl = taskSnapshot.getDownloadURL();
+                                riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        final Uri downloadUrl = uri;
+                                        imageValue=uri.toString();
+
+
+
+                                    }
+                                });
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle unsuccessful uploads
+                                // ...
+                            }
+                        });
+
+
+
+
+            }
+
+        }
+    }
+}

@@ -1,5 +1,6 @@
 package com.example.qualityfurnishings;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -43,6 +44,13 @@ public class AdminHomeFragment extends Fragment {
         addProducts = (LinearLayout)view.findViewById(R.id.AddProducts);
         updateProduct = (LinearLayout)view.findViewById(R.id.UpdateProducts);
         orderList = (LinearLayout)view.findViewById(R.id.OrdersList);
+        addProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), AdminAddProducts.class);
+                getActivity().startActivity(i);
+            }
+        });
         return  view;
 
     }

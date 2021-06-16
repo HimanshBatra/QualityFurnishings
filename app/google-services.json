@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "294069971098",
+    "project_id": "qualityfurnishings-64afc",
+    "storage_bucket": "qualityfurnishings-64afc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294069971098:android:ca245e019dc05e62be9723",
+        "android_client_info": {
+          "package_name": "com.example.qualityfurnishings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294069971098-3cbmqoa2vv0gv2g50f3f3s2vkbao4361.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsKBUG15BT6sTg4UL0kKh2DNhyKeN2EWc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294069971098-3cbmqoa2vv0gv2g50f3f3s2vkbao4361.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
