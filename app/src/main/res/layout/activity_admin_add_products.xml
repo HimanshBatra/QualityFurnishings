@@ -10,9 +10,10 @@
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6C7689"
+        android:background="#6C7689"
         android:orientation="vertical"
     tools:context=".AdminAddProducts">
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgview"
@@ -36,19 +37,21 @@
             android:text="Upload Product Picture"/>
 
 
-        <Spinner
+          <Spinner
                 android:id="@+id/ProductCategory"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/spinnerbg" />
+              android:background="@drawable/spinnerbg"
+               />
 
             <Spinner
                 android:id="@+id/ProductsubCategory"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/spinnerbg" />
+                android:background="@drawable/spinnerbg"
+                 />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -80,20 +83,13 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:hint="ProductQuality">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ProductQuality"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+        <Spinner
+            android:id="@+id/ProductQuality"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/spinnerbg"
+            />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -141,6 +137,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="#1F2633"
                 android:text="Add Product"
+                android:layout_marginBottom="10dp"
                 app:icon="@drawable/ic_baseline_add_24" />
 
 </LinearLayout>

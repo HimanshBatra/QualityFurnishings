@@ -19,6 +19,8 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -38,14 +40,17 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class AdminAddProducts extends AppCompatActivity {
 
-    Spinner ProductCategory,SubCategory;
+    Spinner ProductCategory,SubCategory,SpProductQuality;
+    ArrayList list = new ArrayList();
     EditText ProductName,ProductPrice,ProductDescription,ProductQuantity,ProductQuality;
-    String imageValue;
+    String imageValue ="";
+    String   CategoryId,  SubCategoryId , QualityId;
     Button addProduct;
     ImageView imageView;
     TextView selectImg;
@@ -54,10 +59,13 @@ public class AdminAddProducts extends AppCompatActivity {
     private int Rqststorage=1;
     private int Rqstfile=2;
     private Uri uri;
+    String Category[] ={"BedRoom","Kitchen","LivingRoom","Bathroom","Office"};
+    String Quality[] ={"Superior","Well Founded","Cheap","UnWarranted"};
     //private String uriPath;
     private Intent intentData;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +77,129 @@ public class AdminAddProducts extends AppCompatActivity {
         ProductPrice = (EditText) findViewById(R.id.ProductPrice);
         ProductDescription = (EditText) findViewById(R.id.ProductDescription);
         ProductQuantity = (EditText) findViewById(R.id.ProducQuantity);
-        ProductQuality = (EditText) findViewById(R.id.ProductQuality);
+        // ProductQuality = (EditText) findViewById(R.id.ProductQuality);
+        ProductCategory = (Spinner) findViewById(R.id.ProductCategory);
+        SubCategory = (Spinner) findViewById(R.id.ProductsubCategory);
+        SpProductQuality = (Spinner) findViewById(R.id.ProductQuality);
         sale = (CheckBox) findViewById(R.id.sale);
+
+
+
+        ProductCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+
+
+                CategoryId = Category[i].toString();
+                if (CategoryId.equals("BedRoom")) {
+
+                    list.clear();
+                    list.add("Bed");
+                    list.add("Makeup Vanities");
+                    list.add("Vanity Stool");
+                    list.add("Vegetarian");
+                    list.add("Dressers");
+
+
+                    ArrayAdapter aa = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    SubCategory.setAdapter(aa);
+                } else if (CategoryId.equals("Kitchen")) {
+
+                    list.clear();
+                    list.add("Kitchen Islands");
+                    list.add("Bakers Racks");
+                    list.add("Food Pantries");
+                    list.add("Wine Racks");
+
+
+
+                    ArrayAdapter aa = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    SubCategory.setAdapter(aa);
+
+                } else if (CategoryId.equals("LivingRoom")) {
+
+                    list.clear();
+                    list.add("Sofas");
+                    list.add("Coffee Tables");
+                    list.add("Book Cases");
+                    list.add("Cabinets & Chests");
+                    ArrayAdapter aa = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    SubCategory.setAdapter(aa);
+                }
+
+                    else if (CategoryId.equals("Bathroom")) {
+
+                    list.clear();
+                    list.add("Bathroom Vanities");
+                    list.add("Bathroom Cabinets");
+                    list.add("Medicine Cabinets");
+                    ArrayAdapter aa = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    SubCategory.setAdapter(aa);
+                }
+                else if (CategoryId.equals("Office")) {
+
+                    list.clear();
+                    list.add("Office Chairs");
+                    list.add("Printer Stands");
+                    list.add("Office Stools");
+                    list.add("Laptop Carts & Stands");
+
+                    ArrayAdapter aa = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, list);
+                    aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    SubCategory.setAdapter(aa);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//Setting the ArrayAdapter data on the Spinner
+        ProductCategory.setAdapter(aa);
+
+
+        SubCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                SubCategoryId=list.get(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+
+      SpProductQuality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+              QualityId = Quality[position].toString();
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+      });
+        //Creating the ArrayAdapter instance having the country list
+        ArrayAdapter productQuality = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Quality);
+        productQuality.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//Setting the ArrayAdapter data on the Spinner
+        SpProductQuality.setAdapter(productQuality);
 
 
 
@@ -94,8 +223,9 @@ public class AdminAddProducts extends AppCompatActivity {
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String stPrice = ProductPrice.getText().toString();
-                final int a = Integer.parseInt(stPrice);
+
+
+
                 if (TextUtils.isEmpty(ProductName.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Please Enter Product Name", Toast.LENGTH_SHORT).show();
                 }
@@ -105,13 +235,11 @@ public class AdminAddProducts extends AppCompatActivity {
                 else if(TextUtils.isEmpty(ProductDescription.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please Enter Product Description", Toast.LENGTH_SHORT).show();
                 }
-                else if(TextUtils.isEmpty(ProductQuality.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "Please Enter Product Quality", Toast.LENGTH_SHORT).show();
-                }
+
                 else if(TextUtils.isEmpty(ProductQuantity.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please Enter Product Quantity", Toast.LENGTH_SHORT).show();
                 }
-                else if(TextUtils.isEmpty(imageValue)){
+                else if(imageValue.equals("")){
                     Toast.makeText(getApplicationContext(), "Please upload the image of the product", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -121,24 +249,41 @@ public class AdminAddProducts extends AppCompatActivity {
                     else{
                          Liquidation = false;
                     }
+                    String stPrice = ProductPrice.getText().toString();
+                    final int a = Integer.parseInt(stPrice);
                     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                     Map<String, Object> furnitureProduct = new HashMap<>();
                     furnitureProduct.put("name", ProductName.getText().toString());
                     furnitureProduct.put("image", imageValue);
                     furnitureProduct.put("price", a);
-                    furnitureProduct.put("quality", ProductQuality.getText().toString());
+                    furnitureProduct.put("quality", QualityId);
                     furnitureProduct.put("quantity", ProductQuantity.getText().toString());
                     furnitureProduct.put("description",ProductDescription.getText().toString());
                     furnitureProduct.put("sale",Liquidation);
 
 
                     // CREATE Product
-                    DatabaseReference db_ref = database.child("FurnitureCategory").child("BedRoom").child("Chair").push(); // new key is created
+                    DatabaseReference db_ref = database.child("FurnitureCategory").child(CategoryId).child(SubCategoryId ).push(); // new key is created
                     db_ref.setValue(furnitureProduct);
                     Toast.makeText(getApplicationContext(), "Product Added Successfully", Toast.LENGTH_SHORT).show();
+                    cleartext();
                 }
             }
         });
+    }
+
+    private void cleartext() {
+        ProductName.setText(null);
+        ProductPrice.setText(null);
+        ProductDescription.setText(null);
+        ProductQuantity.setText(null);
+        imageView.setImageResource(R.drawable.image);
+        imageValue = "";
+
+        if (sale.isChecked()){
+            sale.toggle();
+        }
+
     }
 
     private void selectImage() {
@@ -151,7 +296,7 @@ public class AdminAddProducts extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Rqstfile && resultCode ==RESULT_OK){
-            if(data != null){
+            if(data != null ){
                 uri = data.getData();
                 intentData = data;
 
