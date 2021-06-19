@@ -273,6 +273,10 @@ public class AdminAddProducts extends AppCompatActivity {
     }
 
     private void cleartext() {
+        if (sale.isChecked()){
+            sale.toggle();
+        }
+        //yhytht
         ProductName.setText(null);
         ProductPrice.setText(null);
         ProductDescription.setText(null);
@@ -280,9 +284,7 @@ public class AdminAddProducts extends AppCompatActivity {
         imageView.setImageResource(R.drawable.image);
         imageValue = "";
 
-        if (sale.isChecked()){
-            sale.toggle();
-        }
+
 
     }
 
