@@ -1,4 +1,4 @@
-package com.example.qualityfurnishings;
+package com.example.qualityfurnishings.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,7 +7,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -15,9 +14,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.qualityfurnishings.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +37,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +46,7 @@ public class AdminAddProducts extends AppCompatActivity {
     Spinner ProductCategory,SubCategory,SpProductQuality;
     ArrayList list = new ArrayList();
     EditText ProductName,ProductPrice,ProductDescription,ProductQuantity,ProductQuality;
-    String imageValue ="";
+     public String imageValue ="";
     String   CategoryId,  SubCategoryId , QualityId;
     Button addProduct;
     ImageView imageView;
@@ -97,7 +94,6 @@ public class AdminAddProducts extends AppCompatActivity {
                     list.add("Bed");
                     list.add("Makeup Vanities");
                     list.add("Vanity Stool");
-                    list.add("Vegetarian");
                     list.add("Dressers");
 
 

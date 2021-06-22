@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
         android:background="#6C7689"
         android:orientation="vertical"
-    tools:context=".AdminAddProducts">
+    tools:context=".activity.AdminAddProducts">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
