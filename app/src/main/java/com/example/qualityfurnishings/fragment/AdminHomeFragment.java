@@ -1,4 +1,4 @@
-package com.example.qualityfurnishings;
+package com.example.qualityfurnishings.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import java.util.List;
-
+import com.example.qualityfurnishings.activity.AdminAddProducts;
+import com.example.qualityfurnishings.R;
 
 
 public class AdminHomeFragment extends Fragment {

@@ -1,8 +1,10 @@
-package com.example.qualityfurnishings;
+package com.example.qualityfurnishings.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.qualityfurnishings.R;
 
 public class MainActivity extends AppCompatActivity {
 

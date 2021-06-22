@@ -1,4 +1,4 @@
-package com.example.qualityfurnishings;
+package com.example.qualityfurnishings.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Switch;
 
+import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.fragment.AdminHomeFragment;
+import com.example.qualityfurnishings.fragment.AdminProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminHome extends AppCompatActivity {
