@@ -16,9 +16,9 @@
         android:theme="@style/Theme.QualityFurnishings">
         <activity android:name=".activity.UserHome"></activity>
         <activity android:name=".activity.AdminHome" />
-        <activity android:name=".activity.AdminAddProducts" />
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity">
+        <activity android:name=".activity.AdminAddProducts">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

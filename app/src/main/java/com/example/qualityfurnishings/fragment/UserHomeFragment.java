@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.adapter.salecategoryAdapter;
 import com.example.qualityfurnishings.adapter.subcategory2Adapter;
 import com.example.qualityfurnishings.adapter.subcategory3Adapter;
 import com.example.qualityfurnishings.adapter.subcategory4Adapter;
@@ -33,14 +34,15 @@ import java.util.List;
 
 
 public class UserHomeFragment extends Fragment {
-    private RecyclerView recyclerView,test,recyclerview3,recyclerview4;
+    private RecyclerView recyclerView,test,recyclerview3,recyclerview4,recyclerView5;
     LinearLayout bedroom,livingroom,bathroom,kitchen,office;
-    List<SubCatrgory1Modal> firstCateogyList,secondCategoryList,thirdCategoryList,fourthCategoryList;
+    List<SubCatrgory1Modal> firstCateogyList,secondCategoryList,thirdCategoryList,fourthCategoryList,salecategoryList;
     subcategory1Adapter firstCategoryAdapter;
-    TextView firstCategory,secondCategory,thirdCategory,fourthCategory;
+    TextView firstCategory,secondCategory,thirdCategory,fourthCategory,saleCategory;
     subcategory2Adapter secondCategoryAdapter;
     subcategory3Adapter thirdCategoryAdapter;
     subcategory4Adapter fourrthCategoryAdapter;
+    salecategoryAdapter salecategoryAdapter;
 
     public UserHomeFragment() {
         // Required empty public constructor
@@ -64,8 +66,10 @@ public class UserHomeFragment extends Fragment {
         secondCategory = view.findViewById(R.id.secondCategory);
         thirdCategory = view.findViewById(R.id.thirdCategory);
         fourthCategory = view.findViewById(R.id.fourthCategory);
+        saleCategory = view.findViewById(R.id.salecategory);
         recyclerview3 = view.findViewById(R.id.subcategory3View);
         recyclerview4 = view.findViewById(R.id.subcategory4View);
+        recyclerView5 = view.findViewById(R.id.salecategoryview);
         bedroom = view.findViewById(R.id.bedroom);
         livingroom = view.findViewById(R.id.livingroom);
         bathroom = view.findViewById(R.id.bathroom);
@@ -84,10 +88,14 @@ public class UserHomeFragment extends Fragment {
         LinearLayoutManager layoutManager4 = new LinearLayoutManager(getContext());
         layoutManager4.setOrientation(LinearLayoutManager.HORIZONTAL);
 
+        LinearLayoutManager layoutManager5 = new LinearLayoutManager(getContext());
+        layoutManager5.setOrientation(LinearLayoutManager.HORIZONTAL);
+
         recyclerView.setLayoutManager(layoutManager);
         test.setLayoutManager(testLayoutManager);
         recyclerview3.setLayoutManager(layoutManager3);
         recyclerview4.setLayoutManager(layoutManager4);
+        recyclerView5.setLayoutManager(layoutManager5);
 
         loadData("BedRoom");
         bedroom.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +146,7 @@ public class UserHomeFragment extends Fragment {
                 secondCategoryList = new ArrayList<>();
                 thirdCategoryList = new ArrayList<>();
                 fourthCategoryList = new ArrayList<>();
+                salecategoryList = new ArrayList<>();
 
                 int count=0;
 
@@ -156,21 +165,26 @@ public class UserHomeFragment extends Fragment {
 
                         SubCatrgory1Modal listData = categoryList.getValue(SubCatrgory1Modal.class);
                        // listData.id = categoyList.getKey();
+                        if(listData.isSale()){
+                            salecategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+                        }
                         if(count==1) {
-                            firstCateogyList.add(new SubCatrgory1Modal(listData.getImageView(), listData.getItemName()));
+                            firstCateogyList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+
 
                         }else if(count==2){
-                            secondCategoryList.add(new SubCatrgory1Modal(listData.getImageView(), listData.getItemName()));
+                            secondCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
 
                         }else if(count==3){
-                            thirdCategoryList.add(new SubCatrgory1Modal(listData.getImageView(), listData.getItemName()));
+                            thirdCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
 
                         }else{
-                            fourthCategoryList.add(new SubCatrgory1Modal(listData.getImageView(), listData.getItemName()));
+                            fourthCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
 
                         }
 
                     }
+
                 }
 
                 if(count==1){
@@ -197,6 +211,9 @@ public class UserHomeFragment extends Fragment {
 
                 fourrthCategoryAdapter = new subcategory4Adapter(fourthCategoryList,getActivity());
                 recyclerview4.setAdapter(fourrthCategoryAdapter);
+
+                salecategoryAdapter = new salecategoryAdapter(salecategoryList,getActivity());
+                recyclerView5.setAdapter(salecategoryAdapter);
 
             }
 

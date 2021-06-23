@@ -1,25 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:background="#6C7689"
     tools:context=".fragment.AdminLoginFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USER"
+            android:textSize="30sp"
+            android:layout_marginRight="30dp"/>
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginLeft="80dp"
+            >
+            <TextView
+                android:id="@+id/tvAdmin"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="ADMIN"
+                android:textSize="30sp"
+                android:textColor="#1F2633"
+                />
+            <LinearLayout
+                android:layout_width="85dp"
+                android:layout_height="5dp"
+                android:background="@color/blue">
+
+            </LinearLayout>
+
+        </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/tvAdmin"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ADMIN"-->
+<!--            android:textSize="30sp"-->
+<!--            android:layout_marginLeft="50dp"/>-->
+    </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgview"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        app:civ_border_width="4dp"
+        android:layout_centerInParent="true"
         android:src="@drawable/logo"
-        android:layout_marginTop="30dp"
-        />
+        app:civ_border_color="#FF000000"
+        android:layout_marginTop="25dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
+
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
         android:hint="Enter Your Email"
         >
 
@@ -36,6 +84,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        app:passwordToggleEnabled="true"
         android:hint="Enter Your Password">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -49,11 +98,8 @@
 
     <Button
         android:id="@+id/btAdminLogin"
-        style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="#1F2633"
         android:text="Login"
         android:layout_marginTop="30dp"
         />

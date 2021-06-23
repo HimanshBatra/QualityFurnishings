@@ -1,31 +1,79 @@
 package com.example.qualityfurnishings.model;
 
 public class SubCatrgory1Modal {
-    public SubCatrgory1Modal(String imageView, String itemName) {
-        this.image = imageView;
-        name = itemName;
+
+public SubCatrgory1Modal(){
+
+}
+    public SubCatrgory1Modal(String image, String name, String description, String quality, int quantity, int price, boolean sale) {
+        this.image = image;
+        this.name = name;
+        this.description = description;
+        this.quality = quality;
+        this.quantity = quantity;
+        this.price = price;
+        this.sale = sale;
     }
 
-     public SubCatrgory1Modal(){
+    public String image , name,description,quality;
 
-    }
-
-    public String getImageView() {
+    public String getImage() {
         return image;
     }
 
-    public void setImageView(String imageView) {
-        this.image = imageView;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getItemName() {
+    public String getName() {
         return name;
     }
 
-    public void setItemName(String itemName) {
-        name = itemName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-     public String image , name;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isSale() {
+        return sale;
+    }
+
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+
+    int quantity,price;
+     boolean sale;
 
 }
