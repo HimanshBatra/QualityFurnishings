@@ -5,23 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AdminHome">
+    tools:context=".activity.UserHome">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/AdminHomeFrame"
-        android:layout_above="@+id/adminbottomnav"
-        android:background="#F9F8F6"/>
+        android:id="@+id/UserHomeFrame"
+        android:layout_above="@+id/userbottonnav"
+        android:background="#F9F8F6"
+        />
 
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/adminbottomnav"
+        android:id="@+id/userbottonnav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/admin_navigation_menu"
+        app:menu="@menu/user_navigation_menu"
         app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
         android:background="#1F2633"/>
 </RelativeLayout>

@@ -14,11 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QualityFurnishings">
+
         <activity android:name=".SignUp"></activity>
         <activity android:name=".AdminHome" />
         <activity android:name=".AdminAddProducts" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreen">
+
+        <activity android:name=".activity.UserHome"></activity>
+       
+       
+     
+        <activity android:name=".activity.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
