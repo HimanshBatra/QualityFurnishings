@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     android:id="@+id/scrollView">
 <LinearLayout
     android:layout_width="match_parent"
@@ -19,7 +20,7 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="Find the"
-           android:textColor="#6C7689"
+           android:textColor="#1F2633"
            android:layout_marginLeft="10dp"
            android:textSize="25sp"/>
 
@@ -49,6 +50,7 @@
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:scrollbars="none"
         >
 
         <LinearLayout
@@ -175,11 +177,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+        <TextView
+            android:id="@+id/salecategory"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:text="Products on Sale"
+            android:textColor="#000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/salecategoryview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
 <TextView
     android:id="@+id/firstCategory"
-    android:layout_marginBottom="15dp"
     android:textColor="#000"
     android:textStyle="bold"
+    android:layout_marginLeft="20dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
 
@@ -191,9 +207,9 @@
         <TextView
             android:id="@+id/secondCategory"
             android:layout_width="wrap_content"
-            android:layout_marginBottom="15dp"
             android:textColor="#000"
             android:textStyle="bold"
+            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/test"
@@ -204,8 +220,8 @@
             android:id="@+id/thirdCategory"
             android:layout_width="wrap_content"
             android:textColor="#000"
-            android:layout_marginBottom="15dp"
             android:textStyle="bold"
+            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/subcategory3View"
@@ -215,15 +231,16 @@
         <TextView
             android:id="@+id/fourthCategory"
             android:layout_width="wrap_content"
-            android:layout_marginBottom="15dp"
             android:textStyle="bold"
             android:textColor="#000"
+            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/subcategory4View"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+
 
     </LinearLayout>
 

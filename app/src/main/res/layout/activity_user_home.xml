@@ -22,6 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="selected"
         app:menu="@menu/user_navigation_menu"
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#FFFFFF"

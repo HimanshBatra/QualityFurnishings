@@ -11,27 +11,28 @@ import com.example.qualityfurnishings.fragment.AdminLoginFragment;
 import com.example.qualityfurnishings.fragment.UserLoginFragment;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView user,admin;
+//    TextView user,admin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment() ).commit();
-        user = (TextView)findViewById(R.id.tvUser);
-        admin = (TextView)findViewById(R.id.tvAdmin);
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment() ).commit();
-            }
-        });
-        admin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer,new AdminLoginFragment() ).commit();
-            }
-        });
+        getSupportActionBar().hide();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment()).commit();
+//        user = (TextView)findViewById(R.id.tvUser);
+//        admin = (TextView)findViewById(R.id.tvAdmin);
+//        user.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment()).commit();
+//            }
+//        });
+//        admin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.mainContainer,new AdminLoginFragment()).commit();
+//            }
+//        });
 
     }
 }

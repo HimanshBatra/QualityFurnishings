@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -40,13 +41,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AdminAddProducts extends AppCompatActivity {
 
     Spinner ProductCategory,SubCategory,SpProductQuality;
     ArrayList list = new ArrayList();
-    EditText ProductName,ProductPrice,ProductDescription,ProductQuantity,ProductQuality;
-     public String imageValue ="";
+    EditText ProductName,ProductPrice,ProductDescription,ProductQuantity;
+     public String imageValue;
     String   CategoryId,  SubCategoryId , QualityId;
     Button addProduct;
     ImageView imageView;
@@ -68,13 +70,15 @@ public class AdminAddProducts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_products);
+        getSupportActionBar().hide();
         imageView = (ImageView)findViewById(R.id.imgview);
         selectImg = (TextView) findViewById(R.id.picUpload);
         ProductName = (EditText) findViewById(R.id.ProductName);
         ProductPrice = (EditText) findViewById(R.id.ProductPrice);
         ProductDescription = (EditText) findViewById(R.id.ProductDescription);
         ProductQuantity = (EditText) findViewById(R.id.ProducQuantity);
-        // ProductQuality = (EditText) findViewById(R.id.ProductQuality);
+        addProduct = (Button) findViewById(R.id.btAddProduct);
+        addProduct.setBackgroundColor(Color.parseColor("#1F2633"));
         ProductCategory = (Spinner) findViewById(R.id.ProductCategory);
         SubCategory = (Spinner) findViewById(R.id.ProductsubCategory);
         SpProductQuality = (Spinner) findViewById(R.id.ProductQuality);
@@ -199,7 +203,7 @@ public class AdminAddProducts extends AppCompatActivity {
 
 
 
-        addProduct = (Button) findViewById(R.id.btAddProduct);
+
         selectImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,7 +226,10 @@ public class AdminAddProducts extends AppCompatActivity {
 
 
 
-                if (TextUtils.isEmpty(ProductName.getText().toString())) {
+                if (TextUtils.isEmpty(imageValue)) {
+                    Toast.makeText(getApplicationContext(), "Please Upload the image of the product", Toast.LENGTH_SHORT).show();
+                }
+                else if(TextUtils.isEmpty(ProductName.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please Enter Product Name", Toast.LENGTH_SHORT).show();
                 }
                 else if(TextUtils.isEmpty(ProductPrice.getText().toString())){
@@ -231,12 +238,8 @@ public class AdminAddProducts extends AppCompatActivity {
                 else if(TextUtils.isEmpty(ProductDescription.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please Enter Product Description", Toast.LENGTH_SHORT).show();
                 }
-
                 else if(TextUtils.isEmpty(ProductQuantity.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please Enter Product Quantity", Toast.LENGTH_SHORT).show();
-                }
-                else if(imageValue.equals("")){
-                    Toast.makeText(getApplicationContext(), "Please upload the image of the product", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     if (sale.isChecked()){
@@ -246,14 +249,16 @@ public class AdminAddProducts extends AppCompatActivity {
                          Liquidation = false;
                     }
                     String stPrice = ProductPrice.getText().toString();
-                    final int a = Integer.parseInt(stPrice);
+                    final int price = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stPrice))));
+                    String stQuantity = ProductQuantity.getText().toString();
+                    final int quantity = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stQuantity))));
                     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                     Map<String, Object> furnitureProduct = new HashMap<>();
                     furnitureProduct.put("name", ProductName.getText().toString());
                     furnitureProduct.put("image", imageValue);
-                    furnitureProduct.put("price", a);
+                    furnitureProduct.put("price", price);
                     furnitureProduct.put("quality", QualityId);
-                    furnitureProduct.put("quantity", ProductQuantity.getText().toString());
+                    furnitureProduct.put("quantity",quantity );
                     furnitureProduct.put("description",ProductDescription.getText().toString());
                     furnitureProduct.put("sale",Liquidation);
 
@@ -309,7 +314,7 @@ public class AdminAddProducts extends AppCompatActivity {
 
                 // SEND IMAGE TO FIREBASE STORAGE
 
-                final StorageReference riversRef = storageRef.child("images/"+ProductName.getText().toString()+".jpg");
+                final StorageReference riversRef = storageRef.child("images/"+ UUID.randomUUID().toString());
 
                 riversRef.putFile(uri)
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
