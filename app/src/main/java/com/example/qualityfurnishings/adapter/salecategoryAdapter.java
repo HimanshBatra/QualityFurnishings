@@ -29,7 +29,7 @@ public class salecategoryAdapter extends RecyclerView.Adapter<salecategoryAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.subcategory1view,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.salecategoryview,parent,false);
         return new salecategoryAdapter.ViewHolder(view);
     }
 

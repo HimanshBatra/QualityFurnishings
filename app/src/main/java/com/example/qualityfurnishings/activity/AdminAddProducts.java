@@ -249,9 +249,9 @@ public class AdminAddProducts extends AppCompatActivity {
                          Liquidation = false;
                     }
                     String stPrice = ProductPrice.getText().toString();
-                    final int price = Integer.parseInt(stPrice);
+                    final int price = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stPrice))));
                     String stQuantity = ProductQuantity.getText().toString();
-                    final int quantity = Integer.parseInt(stQuantity);
+                    final int quantity = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stQuantity))));
                     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                     Map<String, Object> furnitureProduct = new HashMap<>();
                     furnitureProduct.put("name", ProductName.getText().toString());
