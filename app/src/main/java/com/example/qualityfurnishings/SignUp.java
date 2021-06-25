@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.qualityfurnishings.activity.AdminHome;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -123,13 +124,13 @@ public class SignUp extends AppCompatActivity {
 
                                     if (task.isSuccessful()) {
 
-                                        Intent intent = new Intent(getApplicationContext(),AdminHome.class);
-                                        startActivity(intent);
+//                                        Intent intent = new Intent(Sig,AdminHome.class);
+//                                        startActivity(intent);
+                                        startActivity(new Intent(SignUp.this, AdminHome.class));
                                         Toast.makeText(SignUp.this, "User is registered successfully!", Toast.LENGTH_LONG).show();
 
                                     } else {
                                         Toast.makeText(SignUp.this, "Failed to register! Please Try again!", Toast.LENGTH_LONG).show();
-
                                     }
 
                                 }
