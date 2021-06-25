@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
-import com.example.qualityfurnishings.activity.MainActivity;
 import com.example.qualityfurnishings.activity.UserHome;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,7 +28,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class UserLoginFragment extends Fragment {
     EditText email,password;
     Button login;
-    TextView user,admin;
+    TextView user,admin,forgotPassword;
     private FirebaseAuth firebaseAuth;
 
 
@@ -50,6 +49,7 @@ public class UserLoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_user_login, container, false);
         email=view.findViewById(R.id.etEmail);
+        forgotPassword = view.findViewById(R.id.tvForgetPassword);
         password=view.findViewById(R.id.etPssword);
         login=view.findViewById(R.id.btUserLogin);
         login.setBackgroundColor(Color.parseColor("#1F2633"));
@@ -65,6 +65,12 @@ public class UserLoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().replace(R.id.mainContainer,new AdminLoginFragment()).commit();
+            }
+        });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.mainContainer,new ForgotPasswordFragment()).commit();
             }
         });
         firebaseAuth = FirebaseAuth.getInstance();
