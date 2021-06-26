@@ -70,7 +70,7 @@ public class AdminAddProducts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_products);
-        getSupportActionBar().hide();
+
         imageView = (ImageView)findViewById(R.id.imgview);
         selectImg = (TextView) findViewById(R.id.picUpload);
         ProductName = (EditText) findViewById(R.id.ProductName);

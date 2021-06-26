@@ -1,6 +1,8 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.SignUp;
 import com.example.qualityfurnishings.activity.UserHome;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,8 +31,11 @@ import com.google.firebase.auth.FirebaseUser;
 public class UserLoginFragment extends Fragment {
     EditText email,password;
     Button login;
-    TextView user,admin,forgotPassword;
+    TextView user,admin,forgotPassword,signup;
     private FirebaseAuth firebaseAuth;
+    public static final String MyPREFERENCES = "LoginPref" ;
+    public static final String UserType = "usertype";
+    SharedPreferences sharedpreferences;
 
 
     public UserLoginFragment() {
@@ -55,6 +61,14 @@ public class UserLoginFragment extends Fragment {
         login.setBackgroundColor(Color.parseColor("#1F2633"));
         user = view.findViewById(R.id.tvUser);
         admin = view.findViewById(R.id.tvAdmin);
+        signup = view.findViewById(R.id.tvSignup);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SignUp.class);
+                startActivity(intent);
+            }
+        });
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,10 +108,14 @@ public class UserLoginFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+                        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString(UserType, "user");
+                        editor.commit();
                         Intent intent = new Intent(getActivity(),UserHome.class);
                         startActivity(intent);
                         Toast.makeText(getContext(),"User Logged In SuccessFully",Toast.LENGTH_SHORT).show();
-                        updateUI();
+
 
                     }
                     else {
@@ -111,21 +129,5 @@ public class UserLoginFragment extends Fragment {
 
     }
 
-    private void updateUI() {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user == null){
-//            Toast.makeText(getContext(),"New User",Toast.LENGTH_SHORT).show();
-            return;
 
-        }else{
-            Intent intent = new Intent(getActivity(),UserHome.class);
-            startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        updateUI();
-    }
 }

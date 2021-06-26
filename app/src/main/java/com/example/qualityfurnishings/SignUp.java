@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.qualityfurnishings.activity.AdminHome;
 
+import com.example.qualityfurnishings.activity.LoginActivity;
 import com.example.qualityfurnishings.activity.UserHome;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
-    private TextView textview1, registerUser;
+    private TextView textview1, registerUser,signin;
     private EditText editTextFullName, editTextEmail, editTextPassword, editTextConfirmPassword,editTextPhoneNumber;
     private FirebaseAuth mAuth;
 
@@ -33,7 +34,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        getSupportActionBar().hide();
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -48,6 +49,15 @@ public class SignUp extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.etPassword);
         editTextConfirmPassword = (EditText) findViewById(R.id.etCPassword);
         editTextPhoneNumber=(EditText)findViewById(R.id.etPhoneNumber);
+        signin=(TextView) findViewById(R.id.tvSignIn);
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         registerUser = (Button) findViewById(R.id.btRegister);
       //  registerUser.setBackgroundColor(Color.parseColor("#1F2633"));
@@ -130,9 +140,9 @@ public class SignUp extends AppCompatActivity {
 
                                      
 
-                                       Intent intent = new Intent(Sig,AdminHome.class);
+                                       Intent intent = new Intent(getApplicationContext(),UserHome.class);
                                        startActivity(intent);
-                                        startActivity(new Intent(SignUp.this, AdminHome.class));
+
 
                                         Toast.makeText(SignUp.this, "User is registered successfully!", Toast.LENGTH_LONG).show();
 

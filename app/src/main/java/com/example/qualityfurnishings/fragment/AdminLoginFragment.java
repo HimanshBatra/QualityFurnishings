@@ -1,6 +1,8 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -19,11 +21,17 @@ import android.widget.Toast;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.activity.AdminHome;
 import com.example.qualityfurnishings.activity.UserHome;
+import com.example.qualityfurnishings.model.AdminModal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class AdminLoginFragment extends Fragment {
@@ -31,6 +39,9 @@ public class AdminLoginFragment extends Fragment {
     Button login;
     TextView user,admin;
     private FirebaseAuth firebaseAuth;
+    public static final String MyPREFERENCES = "LoginPref" ;
+    public static final String UserType = "usertype";
+    SharedPreferences sharedpreferences;
 
 
     public AdminLoginFragment() {
@@ -76,52 +87,64 @@ public class AdminLoginFragment extends Fragment {
         {
             @Override
             public void onClick(View v) {
-                String Email = email.getText().toString().trim();
-                String Password = password.getText().toString().trim();
-                if(TextUtils.isEmpty(Email)){
-                    Toast.makeText(getContext(), "Email Cannot be Empty", Toast.LENGTH_SHORT).show();
-                }
-                else if(TextUtils.isEmpty(Password)){
-                    Toast.makeText(getContext(), "Password Cannot be Empty", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    firebaseAuth.signInWithEmailAndPassword(Email,Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Intent intent = new Intent(getActivity(), AdminHome.class);
+                DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+                String stEmail = email.getText().toString().trim();
+                String stPassword = password.getText().toString().trim();
+
+
+//               AdminModal user = new AdminModal("admin", "123","admin@gmail.com");
+//                DatabaseReference db_ref = database.child("FurnitureCategory").child("Admin").push();
+//                db_ref.setValue(user);
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                databaseReference.child("FurnitureCategory").child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+
+                        for (DataSnapshot adminValue : snapshot.getChildren()) {
+
+                            AdminModal admin = adminValue.getValue(AdminModal.class);
+                            String FrMail=admin.getEmail();
+                            String FrPassword=admin.getPassword();
+                            System.out.println(FrPassword);
+                            System.out.println(FrMail);
+
+                            if((!stEmail.equals(FrMail))){
+                                Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_SHORT).show();
+                            }
+                            if((!stPassword.equals(FrPassword))){
+                                Toast.makeText(getContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+                                editor.putString(UserType, "admin");
+                                editor.commit();
+                                Intent intent = new Intent(getActivity(),AdminHome.class);
                                 startActivity(intent);
-                                Toast.makeText(getContext(),"User Logged In SuccessFully",Toast.LENGTH_SHORT).show();
-                                updateUI();
+                            }
 
-                            }
-                            else {
-                                Toast.makeText(getContext(),"Wrong Password or Email",Toast.LENGTH_SHORT).show();
-                            }
                         }
-                    });
 
-                }
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getActivity(), "Failed to load Products", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
             }
         });
         return view;
     }
 
-    private void updateUI() {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user == null){
-//            Toast.makeText(getContext(),"New User",Toast.LENGTH_SHORT).show();
-            return;
 
-        }else{
-            Intent intent = new Intent(getActivity(),AdminHome.class);
-            startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        updateUI();
-    }
 }
