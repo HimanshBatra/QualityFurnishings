@@ -23,17 +23,6 @@
         <activity android:name=".activity.LoginActivity"/>
         <activity android:name=".SplashScreen">
 
-
-       
-       
-      
-        
-        
-        <activity
-            android:name=".activity.UserHome"
-            tools:ignore="DuplicateActivity" />
-        <activity android:name=".activity.LoginActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
