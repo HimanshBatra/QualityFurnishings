@@ -16,15 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QualityFurnishings">
         <activity android:name=".activity.UserHome" />
-        <activity android:name=".SignUp" />
+         <activity android:name=".SignUp"></activity>
         <activity android:name=".activity.AdminHome" />
         <activity android:name=".activity.AdminAddProducts" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".SplashScreen" />
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".SplashScreen">
+
+
+       
+       
+      
+        
+        
         <activity
             android:name=".activity.UserHome"
             tools:ignore="DuplicateActivity" />
         <activity android:name=".activity.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
