@@ -1,58 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#f1f1f1">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#F8F9F6">
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20dp"
-        app:cardCornerRadius="300dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="80dp">
-
-        <ImageView
-            android:id="@+id/firstImage"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/furniturelogo"
-            android:scaleType="centerCrop" />
-    </androidx.cardview.widget.CardView>
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:textSize="40sp"
         android:text="Welcome To"
         android:textColor="@color/black"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:textSize="40sp"
         android:text="Furniture Store"
         android:textColor="@color/black"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="140dp"/>
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:layout_marginTop="15dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#FF000000"/>
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:layout_width="300dp"-->
+    <!--        android:layout_height="300dp"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_centerVertical="true"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        app:cardCornerRadius="300dp"-->
+    <!--        android:layout_marginLeft="80dp"-->
+    <!--        android:layout_marginStart="80dp">-->
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/firstImage"-->
+    <!--            android:layout_width="300dp"-->
+    <!--            android:layout_height="300dp"-->
+    <!--            android:layout_centerInParent="true"-->
+    <!--            android:src="@drawable/furniturelogo"-->
+    <!--            android:scaleType="centerCrop" />-->
+    <!--    </androidx.cardview.widget.CardView>-->
+
+
+
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginTop="40dp"
+        android:indeterminateTint="@color/blue"/>
 
-</RelativeLayout>
+</LinearLayout>

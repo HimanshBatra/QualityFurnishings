@@ -42,7 +42,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginRight="5dp"
-                android:background="#FFAD33"
+                android:background="@drawable/adminhomebg"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -66,8 +66,8 @@
                 android:id="@+id/UpdateProducts"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:background="#FFAD33"
-                android:layout_marginLeft="5dp"
+                android:background="@drawable/adminhomebg2"
+                android:layout_marginLeft="3dp"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,8 +99,8 @@
             android:id="@+id/OrdersList"
             android:layout_width="310dp"
             android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            android:background="#FFAD33"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/adminhomebg3"
             android:gravity="center"
             android:orientation="horizontal">
             <TextView

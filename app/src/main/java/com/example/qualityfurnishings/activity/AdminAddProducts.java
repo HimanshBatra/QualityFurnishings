@@ -70,7 +70,7 @@ public class AdminAddProducts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_products);
-        getSupportActionBar().hide();
+
         imageView = (ImageView)findViewById(R.id.imgview);
         selectImg = (TextView) findViewById(R.id.picUpload);
         ProductName = (EditText) findViewById(R.id.ProductName);
@@ -161,10 +161,10 @@ public class AdminAddProducts extends AppCompatActivity {
         });
 
 
-        //Creating the ArrayAdapter instance having the country list
+        //Creating the ArrayAdapter instance having the category list
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Category);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//Setting the ArrayAdapter data on the Spinner
+        //Setting the ArrayAdapter data on the Spinner
         ProductCategory.setAdapter(aa);
 
 
@@ -277,7 +277,7 @@ public class AdminAddProducts extends AppCompatActivity {
         if (sale.isChecked()){
             sale.toggle();
         }
-        //yhytht
+
         ProductName.setText(null);
         ProductPrice.setText(null);
         ProductDescription.setText(null);
@@ -298,7 +298,7 @@ public class AdminAddProducts extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == Rqstfile && resultCode ==RESULT_OK){
+        if(requestCode == Rqstfile && resultCode == RESULT_OK){
             if(data != null ){
                 uri = data.getData();
                 intentData = data;

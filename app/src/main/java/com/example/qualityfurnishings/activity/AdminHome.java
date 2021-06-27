@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.fragment.AdminHomeFragment;
+import com.example.qualityfurnishings.fragment.AdminLogout;
 import com.example.qualityfurnishings.fragment.AdminProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -19,7 +20,7 @@ public class AdminHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-        getSupportActionBar().hide();
+
         getSupportFragmentManager().beginTransaction().replace(R.id.AdminHomeFrame, new AdminHomeFragment()).commit();
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.adminbottomnav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,6 +33,8 @@ public class AdminHome extends AppCompatActivity {
                     case R.id.adminHome : temp = new AdminHomeFragment();
                     break;
                     case R.id.adminProfile : temp = new AdminProfileFragment();
+                    break;
+                    case R.id.adminLogout : temp = new AdminLogout();
 
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.AdminHomeFrame,temp).commit();

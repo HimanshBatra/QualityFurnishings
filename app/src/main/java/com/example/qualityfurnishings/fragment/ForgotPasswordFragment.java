@@ -98,7 +98,7 @@ return view;
                             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                                 boolean validation = !task.getResult().getSignInMethods().isEmpty();
                                 if (!validation) {
-
+                                    Toast.makeText(getContext(), "User not exists", Toast.LENGTH_SHORT).show();
                                 } else {
                                     // Log.e(TAG, "Error signing in with email ", task.getException())
 //                                    Toast.makeText(ForgotPassword.this, "Already user exists", Toast.LENGTH_SHORT).show();

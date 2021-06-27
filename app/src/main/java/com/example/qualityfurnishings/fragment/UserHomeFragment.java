@@ -1,5 +1,6 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,6 +44,7 @@ public class UserHomeFragment extends Fragment {
     subcategory3Adapter thirdCategoryAdapter;
     subcategory4Adapter fourrthCategoryAdapter;
     salecategoryAdapter salecategoryAdapter;
+
 
     public UserHomeFragment() {
         // Required empty public constructor
