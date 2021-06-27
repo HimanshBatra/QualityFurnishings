@@ -38,7 +38,7 @@ public class AdminLoginFragment extends Fragment {
     EditText email,password;
     Button login;
     TextView user,admin;
-    private FirebaseAuth firebaseAuth;
+//    private FirebaseAuth firebaseAuth;
     public static final String MyPREFERENCES = "LoginPref" ;
     public static final String UserType = "usertype";
     SharedPreferences sharedpreferences;
@@ -80,7 +80,7 @@ public class AdminLoginFragment extends Fragment {
                 getFragmentManager().beginTransaction().replace(R.id.mainContainer,new AdminLoginFragment()).commit();
             }
         });
-        firebaseAuth = FirebaseAuth.getInstance();
+//        firebaseAuth = FirebaseAuth.getInstance();
 
 
         login.setOnClickListener(new View.OnClickListener()
@@ -95,8 +95,8 @@ public class AdminLoginFragment extends Fragment {
 //               AdminModal user = new AdminModal("admin", "123","admin@gmail.com");
 //                DatabaseReference db_ref = database.child("FurnitureCategory").child("Admin").push();
 //                db_ref.setValue(user);
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("FurnitureCategory").child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+//                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                database.child("FurnitureCategory").child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -107,8 +107,8 @@ public class AdminLoginFragment extends Fragment {
                             AdminModal admin = adminValue.getValue(AdminModal.class);
                             String FrMail=admin.getEmail();
                             String FrPassword=admin.getPassword();
-                            System.out.println(FrPassword);
-                            System.out.println(FrMail);
+//                            System.out.println(FrPassword);
+//                            System.out.println(FrMail);
 
                             if((!stEmail.equals(FrMail))){
                                 Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_SHORT).show();

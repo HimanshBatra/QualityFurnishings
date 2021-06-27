@@ -88,7 +88,13 @@ public class UserLoginFragment extends Fragment {
             }
         });
         firebaseAuth = FirebaseAuth.getInstance();
-        login.setOnClickListener(this :: signinUser);
+//        login.setOnClickListener(this :: signinUser);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signinUser(view);
+            }
+        });
         return view;
     }
 
