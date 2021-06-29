@@ -62,7 +62,7 @@ public class ForgotPasswordFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_forgot_password, container, false);
 
-        email = view.findViewById(R.id.editTextEmailId);
+
         buttonsend = view.findViewById(R.id.buttonSend);
 
         mAuth = FirebaseAuth.getInstance();
@@ -70,8 +70,8 @@ public class ForgotPasswordFragment extends Fragment {
         buttonsend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Semail = email.getText().toString().trim();
+                email = view.findViewById(R.id.editTextEmailId);
+                Semail = email.getText().toString();
 
                 if(Patterns.EMAIL_ADDRESS.matcher(Semail).matches()){
 

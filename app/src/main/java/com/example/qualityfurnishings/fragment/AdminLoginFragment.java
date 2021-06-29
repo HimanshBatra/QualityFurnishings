@@ -110,12 +110,12 @@ public class AdminLoginFragment extends Fragment {
 //                            System.out.println(FrPassword);
 //                            System.out.println(FrMail);
 
-                            if((!stEmail.equals(FrMail))){
-                                Toast.makeText(getContext(), "Wrong email", Toast.LENGTH_SHORT).show();
+                            if((!stEmail.equals(FrMail)) || !stPassword.equals(FrPassword)){
+                                Toast.makeText(getContext(), "Wrong email or password", Toast.LENGTH_SHORT).show();
                             }
-                            if((!stPassword.equals(FrPassword))){
-                                Toast.makeText(getContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
-                            }
+//                            if((!stPassword.equals(FrPassword))){
+//                                Toast.makeText(getContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
+//                            }
                             else{
                                 sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();

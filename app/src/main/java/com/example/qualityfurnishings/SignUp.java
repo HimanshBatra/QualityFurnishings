@@ -3,7 +3,9 @@ package com.example.qualityfurnishings;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -29,6 +31,9 @@ public class SignUp extends AppCompatActivity {
     private TextView textview1, registerUser,signin;
     private EditText editTextFullName, editTextEmail, editTextPassword, editTextConfirmPassword,editTextPhoneNumber;
     private FirebaseAuth mAuth;
+    public static final String MyPREFERENCES = "LoginPref" ;
+    public static final String UserType = "usertype";
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,7 +141,10 @@ public class SignUp extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
 
                                     if (task.isSuccessful()) {
-
+                                        sharedpreferences =getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                                        editor.putString(UserType, "user");
+                                        editor.commit();
 
                                      
 
