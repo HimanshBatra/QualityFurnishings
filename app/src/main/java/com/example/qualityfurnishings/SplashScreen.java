@@ -24,10 +24,10 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 String s1 = sharedPreferences.getString("usertype", "");
-                if(s1=="user"){
+                if(s1.equals("user")){
                     startActivity(new Intent(SplashScreen.this, UserHome.class));
                 }
-                else if(s1 == "admin"){
+                else if(s1.equals("admin")){
                     startActivity(new Intent(SplashScreen.this, AdminHome.class));
                 }
                 else{

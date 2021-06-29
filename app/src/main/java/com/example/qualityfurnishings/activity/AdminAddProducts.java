@@ -43,19 +43,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class AdminAddProducts extends AppCompatActivity {
+public class AdminAddProducts extends AppCompatActivity {7
 
     Spinner ProductCategory,SubCategory,SpProductQuality;
     ArrayList list = new ArrayList();
     EditText ProductName,ProductPrice,ProductDescription,ProductQuantity;
-     public String imageValue;
+    public String imageValue;
     String   CategoryId,  SubCategoryId , QualityId;
     Button addProduct;
     ImageView imageView;
     TextView selectImg;
     CheckBox sale;
     boolean Liquidation;
-    private int Rqststorage=1;
+    private int Rqststorage=100;
     private int Rqstfile=2;
     private Uri uri;
     String Category[] ={"BedRoom","Kitchen","LivingRoom","Bathroom","Office"};
@@ -286,7 +286,6 @@ public class AdminAddProducts extends AppCompatActivity {
         imageValue = "";
 
 
-
     }
 
     private void selectImage() {
@@ -301,7 +300,7 @@ public class AdminAddProducts extends AppCompatActivity {
         if(requestCode == Rqstfile && resultCode == RESULT_OK){
             if(data != null ){
                 uri = data.getData();
-                intentData = data;
+
 
                 try {
                     InputStream inputStream = getContentResolver().openInputStream(uri);
@@ -320,12 +319,11 @@ public class AdminAddProducts extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                //Get a URL to the uploaded content
-                                //Uri downloadUrl = taskSnapshot.getDownloadURL();
+
                                 riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        final Uri downloadUrl = uri;
+
                                         imageValue=uri.toString();
 
 
@@ -337,8 +335,7 @@ public class AdminAddProducts extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
-                                // Handle unsuccessful uploads
-                                // ...
+
                             }
                         });
 

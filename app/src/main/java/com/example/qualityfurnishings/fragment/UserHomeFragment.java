@@ -46,6 +46,7 @@ public class UserHomeFragment extends Fragment {
     salecategoryAdapter salecategoryAdapter;
 
 
+
     public UserHomeFragment() {
         // Required empty public constructor
     }
