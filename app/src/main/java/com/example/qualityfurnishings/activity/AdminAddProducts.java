@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class AdminAddProducts extends AppCompatActivity {7
+public class AdminAddProducts extends AppCompatActivity {
 
     Spinner ProductCategory,SubCategory,SpProductQuality;
     ArrayList list = new ArrayList();
