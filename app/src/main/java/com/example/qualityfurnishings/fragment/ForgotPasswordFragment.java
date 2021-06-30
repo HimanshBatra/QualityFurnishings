@@ -1,5 +1,7 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -102,18 +104,43 @@ return view;
                             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                                 boolean validation = !task.getResult().getSignInMethods().isEmpty();
                                 if (!validation) {
-                                    Toast.makeText(getContext(), "User not exists", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "User not exists", Toast.LENGTH_SHORT).show()
+
+                                    ;
                                 } else {
-                                    // Log.e(TAG, "Error signing in with email ", task.getException())
-//                                    Toast.makeText(ForgotPassword.this, "Already user exists", Toast.LENGTH_SHORT).show();
-//                                    startActivity(new Intent(ForgotPassword.this, ResetPassword.class));
-                                    mAuth.sendPasswordResetEmail(Semail)
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull  Task<Void> task) {
-                                                    getFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment()).commit();
-                                                }
-                                            });
+
+                                    
+                                    AlertDialog.Builder builder
+                                            = new AlertDialog
+                                            .Builder(getContext());
+                                    builder.setMessage("Do you want to send link to your email?");
+
+                                    // Set Alert Title
+                                    builder.setTitle("Alert !");
+                                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            mAuth.sendPasswordResetEmail(Semail)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull  Task<Void> task) {
+
+                                                            getFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment()).commit();
+
+                                                        }
+                                                    });
+                                        }
+                                    });
+                                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            getFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment()).commit();
+                                        }
+                                    });
+                                    builder.show();
+
+                                   
                                 }
                             }
                         });
