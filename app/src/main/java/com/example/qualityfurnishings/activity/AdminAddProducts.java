@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -43,11 +44,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class AdminAddProducts extends AppCompatActivity {7
+public class AdminAddProducts extends AppCompatActivity {
 
     Spinner ProductCategory,SubCategory,SpProductQuality;
     ArrayList list = new ArrayList();
-    EditText ProductName,ProductPrice,ProductDescription,ProductQuantity;
+    EditText ProductName,ProductPrice,ProductDescription,ProductQuantity,Discount;
     public String imageValue;
     String   CategoryId,  SubCategoryId , QualityId;
     Button addProduct;
@@ -83,6 +84,22 @@ public class AdminAddProducts extends AppCompatActivity {7
         SubCategory = (Spinner) findViewById(R.id.ProductsubCategory);
         SpProductQuality = (Spinner) findViewById(R.id.ProductQuality);
         sale = (CheckBox) findViewById(R.id.sale);
+        Discount = (EditText) findViewById(R.id.etDiscount);
+        Discount.setVisibility(View.GONE);
+        sale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(sale.isChecked()){
+                    Discount.setVisibility(View.VISIBLE);
+                    Discount.setHint("Discount");
+
+                }
+                else{
+                    Discount.setVisibility(View.GONE);
+                }
+            }
+        });
+
 
 
 
