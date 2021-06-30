@@ -33,17 +33,18 @@ public class ForgotPasswordFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    /*private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";*/
 
     // TODO: Rename and change types of parameters
-   EditText email;
-   Button buttonsend;
+    //Declaration of Variables
+    EditText email;
+    Button buttonsend;
     String Semail;
 
    FirebaseAuth mAuth;
 
-
+    // Default Constructor
     public ForgotPasswordFragment() {
         // Required empty public constructor
     }
@@ -91,6 +92,9 @@ public class ForgotPasswordFragment extends Fragment {
 
 return view;
     }
+
+    //For Sending link to Email
+
 
     private void CheckingWhetherEmailIsPresentOrNot(View v) {
         mAuth.fetchSignInMethodsForEmail(Semail)
