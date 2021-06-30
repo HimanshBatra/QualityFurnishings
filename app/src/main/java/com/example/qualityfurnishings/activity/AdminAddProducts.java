@@ -55,6 +55,7 @@ public class AdminAddProducts extends AppCompatActivity {
     ImageView imageView;
     TextView selectImg;
     CheckBox sale;
+    int discount;
     boolean Liquidation;
     private int Rqststorage=100;
     private int Rqstfile=2;
@@ -99,6 +100,7 @@ public class AdminAddProducts extends AppCompatActivity {
                 }
             }
         });
+
 
 
 
@@ -258,9 +260,18 @@ public class AdminAddProducts extends AppCompatActivity {
                 else if(TextUtils.isEmpty(ProductQuantity.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please Enter Product Quantity", Toast.LENGTH_SHORT).show();
                 }
+
                 else {
-                    if (sale.isChecked()){
-                         Liquidation = true;
+                     if  (sale.isChecked()){
+                        Liquidation = true;
+                        if(TextUtils.isEmpty(Discount.getText().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please Enter Discount", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        else{
+                            String stDiscount = Discount.getText().toString();
+                            discount = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stDiscount))));
+                        }
                     }
                     else{
                          Liquidation = false;
@@ -269,6 +280,7 @@ public class AdminAddProducts extends AppCompatActivity {
                     final int price = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stPrice))));
                     String stQuantity = ProductQuantity.getText().toString();
                     final int quantity = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stQuantity))));
+
                     DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                     Map<String, Object> furnitureProduct = new HashMap<>();
                     furnitureProduct.put("name", ProductName.getText().toString());
@@ -278,6 +290,7 @@ public class AdminAddProducts extends AppCompatActivity {
                     furnitureProduct.put("quantity",quantity );
                     furnitureProduct.put("description",ProductDescription.getText().toString());
                     furnitureProduct.put("sale",Liquidation);
+                    furnitureProduct.put("discount",discount);
 
 
                     // CREATE Product
@@ -299,6 +312,8 @@ public class AdminAddProducts extends AppCompatActivity {
         ProductPrice.setText(null);
         ProductDescription.setText(null);
         ProductQuantity.setText(null);
+        Discount.setText(null);
+        Discount.setHint("Discount");
         imageView.setImageResource(R.drawable.image);
         imageValue = "";
 
