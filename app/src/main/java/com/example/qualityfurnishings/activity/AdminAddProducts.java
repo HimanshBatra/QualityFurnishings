@@ -275,6 +275,7 @@ public class AdminAddProducts extends AppCompatActivity {
                     }
                     else{
                          Liquidation = false;
+                         discount=0;
                     }
                     String stPrice = ProductPrice.getText().toString();
                     final int price = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stPrice))));
