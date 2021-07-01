@@ -1,11 +1,11 @@
 package com.example.qualityfurnishings.model;
 
-public class SubCatrgory1Modal {
+public class SubCatrgory1Modal  {
 
 public SubCatrgory1Modal(){
 
 }
-    public SubCatrgory1Modal(String image, String name, String description, String quality, int quantity, int price, boolean sale,String discount,String id) {
+    public SubCatrgory1Modal(String image, String name, String description, String quality, int quantity, int price, boolean sale,Integer discount,String id,String category, String subCategory) {
         this.image = image;
         this.name = name;
         this.description = description;
@@ -14,31 +14,57 @@ public SubCatrgory1Modal(){
         this.price = price;
         this.sale = sale;
         this.discount=discount;
-        Id = id;
+        this.id = id;
+        this.category = category;
+        this.subCategory = subCategory;
 
     }
 
     public String image , name,description,quality;
 
     public String getId() {
-        return Id;
+        return id;
     }
 
     public void setId(String id) {
-        Id = id;
+        this.id = id;
     }
 
-    public String getDiscount() {
+    public int getDiscount() {
         return discount;
     }
 
-    public void setDiscount(String discount) {
+    public void setDiscount(Integer discount) {
         this.discount = discount;
     }
 
 
 
-    public  String Id,discount;
+    public  String id;
+    public  int discount;
+    public String category;
+
+
+
+    public String subCategory;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
+
+
 
     public String getImage() {
         return image;

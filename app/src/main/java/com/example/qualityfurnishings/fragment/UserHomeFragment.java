@@ -169,20 +169,20 @@ public class UserHomeFragment extends Fragment {
                         SubCatrgory1Modal listData = categoryList.getValue(SubCatrgory1Modal.class);
                        // listData.id = categoyList.getKey();
                         if(listData.isSale()){
-                            salecategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+                            salecategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
                         }
                         if(count==1) {
-                            firstCateogyList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+                            firstCateogyList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
 
                         }else if(count==2){
-                            secondCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+                            secondCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
                         }else if(count==3){
-                            thirdCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+                            thirdCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
                         }else{
-                            fourthCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+                            fourthCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
                         }
 

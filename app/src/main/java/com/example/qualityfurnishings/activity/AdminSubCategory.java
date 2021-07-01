@@ -46,7 +46,7 @@ public class AdminSubCategory extends AppCompatActivity {
                 adminsubcategorylist = new ArrayList<>();
                 for (DataSnapshot categorylist : snapshot.getChildren()){
                     SubCatrgory1Modal listData = categorylist.getValue(SubCatrgory1Modal.class);
-                    adminsubcategorylist.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale()));
+                    adminsubcategorylist.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categorylist.getKey(),categoryName,subcategoryName));
 
                 }
                 adminSubCatAdapter = new AdminSubCatAdapter(adminsubcategorylist,getApplicationContext());

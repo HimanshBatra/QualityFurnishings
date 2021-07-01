@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.model.SubCatrgory1Modal;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -39,12 +41,19 @@ public class AdminSubCatAdapter extends RecyclerView.Adapter<AdminSubCatAdapter.
         TextView Name = holder.itemName;
         ImageView edit=holder.imageEdit;
         ImageView delete=holder.imageDelete;
-        Name.setText(adminsubcategorylist.get(position).name+"");
+
+        Name.setText(adminsubcategorylist.get(position).getName());
         Glide.with(context).load(adminsubcategorylist.get(position).image).into(img_resource);
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseReference databaseReference =FirebaseDatabase.getInstance().getReference();
+                databaseReference.child("FurnitureCategory").child(adminsubcategorylist.get(position).getCategory()).child(adminsubcategorylist.get(position).getSubCategory()).child(adminsubcategorylist.get(position).getId()).removeValue();
+
+                adminsubcategorylist.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position,adminsubcategorylist.size());
 
             }
         });
@@ -74,6 +83,7 @@ public class AdminSubCatAdapter extends RecyclerView.Adapter<AdminSubCatAdapter.
             imageDelete = (ImageView)itemView.findViewById(R.id.imgDelete);
             imageEdit = (ImageView)itemView.findViewById(R.id.imgEdit);
             itemName = (TextView) itemView.findViewById(R.id.subname);
+
 
         }
     }
