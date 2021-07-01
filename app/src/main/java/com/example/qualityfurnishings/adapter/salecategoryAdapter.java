@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
-import com.example.qualityfurnishings.model.SubCatrgory1Modal;
+import com.example.qualityfurnishings.model.ProductModal;
 
 import java.util.List;
 
 public class salecategoryAdapter extends RecyclerView.Adapter<salecategoryAdapter.ViewHolder> {
-    private List<SubCatrgory1Modal> salecategoryList;
+    private List<ProductModal> salecategoryList;
     Context context;
 
-    public salecategoryAdapter(List<SubCatrgory1Modal> salecategoryList , Context context){
+    public salecategoryAdapter(List<ProductModal> salecategoryList , Context context){
         this.salecategoryList=salecategoryList;
         this.context=context;
 

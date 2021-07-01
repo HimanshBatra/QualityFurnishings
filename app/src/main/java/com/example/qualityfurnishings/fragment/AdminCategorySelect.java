@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.qualityfurnishings.R;
-import com.example.qualityfurnishings.activity.AdminSubCategory;
+import com.example.qualityfurnishings.activity.AdminSubCategorySelection;
 
 
 public class AdminCategorySelect extends Fragment {
@@ -193,7 +193,7 @@ public class AdminCategorySelect extends Fragment {
         return view;
     }
     private void showData( String category ,String subCategory){
-        Intent intent = new Intent(getContext(), AdminSubCategory.class);
+        Intent intent = new Intent(getContext(), AdminSubCategorySelection.class);
         intent.putExtra("main",category);
         intent.putExtra("submain",subCategory);
         startActivity(intent);

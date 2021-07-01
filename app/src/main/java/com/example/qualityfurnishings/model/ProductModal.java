@@ -1,11 +1,11 @@
 package com.example.qualityfurnishings.model;
 
-public class SubCatrgory1Modal  {
+public class ProductModal {
 
-public SubCatrgory1Modal(){
+public ProductModal(){
 
 }
-    public SubCatrgory1Modal(String image, String name, String description, String quality, int quantity, int price, boolean sale,Integer discount,String id,String category, String subCategory) {
+    public ProductModal(String image, String name, String description, String quality, int quantity, int price, boolean sale, Integer discount, String id, String category, String subCategory) {
         this.image = image;
         this.name = name;
         this.description = description;

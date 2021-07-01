@@ -1,6 +1,5 @@
 package com.example.qualityfurnishings.fragment;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,8 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.ContactsContract;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +19,7 @@ import com.example.qualityfurnishings.adapter.salecategoryAdapter;
 import com.example.qualityfurnishings.adapter.subcategory2Adapter;
 import com.example.qualityfurnishings.adapter.subcategory3Adapter;
 import com.example.qualityfurnishings.adapter.subcategory4Adapter;
-import com.example.qualityfurnishings.model.SubCatrgory1Modal;
+import com.example.qualityfurnishings.model.ProductModal;
 import com.example.qualityfurnishings.adapter.subcategory1Adapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +34,7 @@ import java.util.List;
 public class UserHomeFragment extends Fragment {
     private RecyclerView recyclerView,test,recyclerview3,recyclerview4,recyclerView5;
     LinearLayout bedroom,livingroom,bathroom,kitchen,office;
-    List<SubCatrgory1Modal> firstCateogyList,secondCategoryList,thirdCategoryList,fourthCategoryList,salecategoryList;
+    List<ProductModal> firstCateogyList,secondCategoryList,thirdCategoryList,fourthCategoryList,salecategoryList;
     subcategory1Adapter firstCategoryAdapter;
     TextView firstCategory,secondCategory,thirdCategory,fourthCategory,saleCategory;
     subcategory2Adapter secondCategoryAdapter;
@@ -166,23 +163,23 @@ public class UserHomeFragment extends Fragment {
                     }
                     for (DataSnapshot categoryList : dataSnapshot.getChildren()) {
 
-                        SubCatrgory1Modal listData = categoryList.getValue(SubCatrgory1Modal.class);
+                        ProductModal listData = categoryList.getValue(ProductModal.class);
                        // listData.id = categoyList.getKey();
                         if(listData.isSale()){
-                            salecategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
+                            salecategoryList.add(new ProductModal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
                         }
                         if(count==1) {
-                            firstCateogyList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
+                            firstCateogyList.add(new ProductModal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
 
                         }else if(count==2){
-                            secondCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
+                            secondCategoryList.add(new ProductModal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
                         }else if(count==3){
-                            thirdCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
+                            thirdCategoryList.add(new ProductModal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
                         }else{
-                            fourthCategoryList.add(new SubCatrgory1Modal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
+                            fourthCategoryList.add(new ProductModal(listData.getImage(), listData.getName(),listData.getDescription(),listData.getQuality(),listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),categoryList.getKey(),category,dataSnapshot.getKey()));
 
                         }
 

@@ -1,7 +1,6 @@
 package com.example.qualityfurnishings.adapter;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
-import com.example.qualityfurnishings.model.SubCatrgory1Modal;
+import com.example.qualityfurnishings.model.ProductModal;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
 public class AdminSubCatAdapter extends RecyclerView.Adapter<AdminSubCatAdapter.ViewHolder> {
-    private List<SubCatrgory1Modal> adminsubcategorylist;
+    private List<ProductModal> adminsubcategorylist;
     Context context;
 
-    public AdminSubCatAdapter(List<SubCatrgory1Modal> adminsubcategorylist , Context context){
+    public AdminSubCatAdapter(List<ProductModal> adminsubcategorylist , Context context){
         this.adminsubcategorylist=adminsubcategorylist;
         this.context=context;
 

@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AdminSubCategory">
+    tools:context=".activity.AdminSubCategorySelection">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/adminsubcategory"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/listConatiner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/adminbottomnav"
+        android:background="#F9F8F6"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/adminbottomnav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+        android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="selected"
+        app:menu="@menu/admin_navigation_menu"
+        app:itemIconTint="#FFFFFF"
+        app:itemTextColor="#FFFFFF"
+        android:background="#1F2633"/>
 
 
-</LinearLayout>
+</RelativeLayout>
