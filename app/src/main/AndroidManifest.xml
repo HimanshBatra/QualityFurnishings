@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QualityFurnishings">
-        <activity android:name=".activity.UpdateProductCat"></activity>
+        <activity android:name=".activity.AdminSubCategory"></activity>
+        <activity android:name=".activity.UpdateProductCat" />
         <activity android:name=".activity.UserHome" />
         <activity android:name=".SignUp" />
         <activity android:name=".activity.AdminHome" />

@@ -5,7 +5,7 @@ public class SubCatrgory1Modal {
 public SubCatrgory1Modal(){
 
 }
-    public SubCatrgory1Modal(String image, String name, String description, String quality, int quantity, int price, boolean sale) {
+    public SubCatrgory1Modal(String image, String name, String description, String quality, int quantity, int price, boolean sale,String discount,String id) {
         this.image = image;
         this.name = name;
         this.description = description;
@@ -13,9 +13,32 @@ public SubCatrgory1Modal(){
         this.quantity = quantity;
         this.price = price;
         this.sale = sale;
+        this.discount=discount;
+        Id = id;
+
     }
 
     public String image , name,description,quality;
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
+
+
+
+    public  String Id,discount;
 
     public String getImage() {
         return image;
