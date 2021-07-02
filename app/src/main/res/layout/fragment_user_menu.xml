@@ -1,16 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F8F6"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal"
+    android:padding="15dp"
+    android:orientation="vertical"
     tools:context=".fragment.UserMenuFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/myorders"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="40dp"
-        android:text="Hello This is a Logout screen for user" />
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/categorybg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Orders"
+            android:textSize="30sp"
+            android:layout_marginLeft="25dp"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/categorybg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textSize="30sp"
+            android:layout_marginLeft="25dp"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

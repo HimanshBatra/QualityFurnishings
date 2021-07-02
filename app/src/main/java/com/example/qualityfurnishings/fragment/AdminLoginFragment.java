@@ -91,7 +91,7 @@ public class AdminLoginFragment extends Fragment {
                 String stEmail = email.getText().toString().trim();
                 String stPassword = password.getText().toString().trim();
 
-
+//
 //               AdminModal user = new AdminModal("admin", "123","admin@gmail.com");
 //                DatabaseReference db_ref = database.child("FurnitureCategory").child("Admin").push();
 //                db_ref.setValue(user);

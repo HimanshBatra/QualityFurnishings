@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
-import com.example.qualityfurnishings.model.SubCatrgory1Modal;
+import com.example.qualityfurnishings.model.ProductModal;
 
 import java.util.List;
 
 public class subcategory4Adapter extends RecyclerView.Adapter<subcategory4Adapter.ViewHolder> {
-    private List<SubCatrgory1Modal> modellist4;
+    private List<ProductModal> modellist4;
     Context context;
 
-    public subcategory4Adapter(List<SubCatrgory1Modal> modellist4,Context context) {
+    public subcategory4Adapter(List<ProductModal> modellist4, Context context) {
         this.modellist4 = modellist4;
         this.context = context;
     }
