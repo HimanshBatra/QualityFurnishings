@@ -1,5 +1,8 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,11 +10,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.LoginActivity;
+import com.example.qualityfurnishings.activity.UserHome;
 
 
 public class AdminLogout extends Fragment {
+    TextView Cancel,Yes;
+    public static final String MyPREFERENCES = "LoginPref" ;
+    public static final String UserType = "usertype";
+    SharedPreferences sharedpreferences;
 
 
 
@@ -33,6 +43,19 @@ public class AdminLogout extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_admin_logout, container, false);
+        Cancel=(TextView)view.findViewById(R.id.tvCancel);
+        Yes=(TextView)view.findViewById(R.id.tvYes);
+        Yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(UserType, "");
+                editor.commit();
+                startActivity(intent);
+            }
+        });
         return view;
     }
 }

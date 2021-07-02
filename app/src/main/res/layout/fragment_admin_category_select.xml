@@ -7,38 +7,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 <LinearLayout
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
+   android:gravity="center"
     android:background="#6C7689"
+    android:padding="10dp"
     tools:context=".fragment.AdminCategorySelect">
     <TextView
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:text="Please Select a Category"
+        android:text="Please Select a Category !"
         android:textSize="25sp"
-        android:layout_marginTop="50dp"/>
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:layout_marginTop="25dp"/>
 
    <LinearLayout
-       android:layout_width="350dp"
+       android:layout_width="wrap_content"
        android:layout_height="120dp"
        android:layout_marginTop="10dp"
        android:orientation="vertical"
-       android:background="#FFFFFF">
+       android:background="@drawable/categorybackground">
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:text="BedRoom Furniture"
            android:textSize="20sp"
+           android:layout_marginTop="5dp"
+           android:layout_marginLeft="15dp"
            android:textColor="@color/blue"/>
        <HorizontalScrollView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:scrollbars="none">
        <LinearLayout
-           android:layout_width="match_parent"
+           android:layout_width="wrap_content"
            android:layout_height="match_parent"
            android:orientation="horizontal">
            <LinearLayout
@@ -51,12 +55,12 @@
                <ImageView
                    android:layout_width="100dp"
                    android:layout_height="60dp"
-                   android:src="@drawable/ic_baseline_bed_24"/>
+                   android:src="@drawable/bed2"/>
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="15dp"
                    android:text="Bed"/>
-           </LinearLayout>
+           </LinearLayout>[
 
            <LinearLayout
                android:id="@+id/ctdressers"
@@ -68,7 +72,7 @@
                <ImageView
                    android:layout_width="100dp"
                    android:layout_height="60dp"
-                   android:src="@drawable/ic_baseline_bed_24"/>
+                   android:src="@drawable/dresser"/>
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="15dp"
@@ -85,7 +89,7 @@
                <ImageView
                    android:layout_width="100dp"
                    android:layout_height="60dp"
-                   android:src="@drawable/ic_baseline_bed_24"/>
+                   android:src="@drawable/makeup"/>
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="15dp"
@@ -102,7 +106,7 @@
                <ImageView
                    android:layout_width="100dp"
                    android:layout_height="60dp"
-                   android:src="@drawable/ic_baseline_bed_24"/>
+                   android:src="@drawable/vanitystool"/>
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="15dp"
@@ -114,16 +118,18 @@
    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="@drawable/categorybackground">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LivingRoom Furniture"
             android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
             android:textColor="@color/blue"/>
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -143,7 +149,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/sofas"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -160,7 +166,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/coffeetable"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -177,7 +183,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/bookcases"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -194,7 +200,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/cabinet"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -207,16 +213,18 @@
 
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="@drawable/categorybackground">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kitchen Furniture"
             android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
             android:textColor="@color/blue"/>
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -236,7 +244,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/kitchenisland"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -253,7 +261,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/bakersracks"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -270,7 +278,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/foodpantries"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -287,7 +295,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/wineracks"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -300,16 +308,18 @@
 
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="@drawable/categorybackground">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="BathRoom Furniture"
             android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
             android:textColor="@color/blue"/>
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -329,7 +339,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/bathroomvanities"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -346,7 +356,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/bathroomcabinet"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -363,7 +373,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/medicine"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -375,16 +385,18 @@
 
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="120dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
-        android:background="#FFFFFF">
+        android:background="@drawable/categorybackground">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Office Furniture"
             android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="15dp"
             android:textColor="@color/blue"/>
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -404,7 +416,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/chair"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -421,7 +433,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/printer"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -438,7 +450,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/stool"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -455,7 +467,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_baseline_bed_24"/>
+                        android:src="@drawable/laptop"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"

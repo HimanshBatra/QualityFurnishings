@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F8F6"
+    android:background="#6C7689"
+    android:gravity="center"
     tools:context=".fragment.UserMenuFragment">
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="@drawable/categorybg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do You Want to LogOut?"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="50dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:textColor="#FFFFFF"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="25dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="#FFFFFF"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"/>
+        </LinearLayout>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="40dp"
-        android:text="Hello This is a Logout screen for user" />
+    </LinearLayout>
 
-</FrameLayout>
+
+
+</LinearLayout>
