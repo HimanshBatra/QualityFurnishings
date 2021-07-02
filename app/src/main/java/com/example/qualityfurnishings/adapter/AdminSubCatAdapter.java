@@ -1,6 +1,7 @@
 package com.example.qualityfurnishings.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.AdminAddProducts;
+import com.example.qualityfurnishings.activity.EditProducts;
 import com.example.qualityfurnishings.model.ProductModal;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -59,6 +62,10 @@ public class AdminSubCatAdapter extends RecyclerView.Adapter<AdminSubCatAdapter.
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent =new Intent(context, EditProducts.class);
+                intent.putExtra("productdata",  adminsubcategorylist.get(position));
+                context.startActivity(intent);
+
 
             }
         });

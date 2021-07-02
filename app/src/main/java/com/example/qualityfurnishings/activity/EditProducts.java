@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -28,7 +29,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.model.ProductModal;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -40,18 +44,18 @@ import com.google.firebase.storage.UploadTask;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class AdminAddProducts extends AppCompatActivity {
-
+public class EditProducts extends AppCompatActivity {
     Spinner ProductCategory,SubCategory,SpProductQuality;
     ArrayList list = new ArrayList();
     EditText ProductName,ProductPrice,ProductDescription,ProductQuantity,Discount;
     public String imageValue;
     String   CategoryId,  SubCategoryId , QualityId;
-    Button addProduct;
+    Button updateProduct;
     ImageView imageView;
     TextView selectImg;
     CheckBox sale;
@@ -60,6 +64,7 @@ public class AdminAddProducts extends AppCompatActivity {
     private int Rqststorage=100;
     private int Rqstfile=2;
     private Uri uri;
+    String stQuality;
     String Category[] ={"BedRoom","Kitchen","LivingRoom","Bathroom","Office"};
     String Quality[] ={"Superior","Well Founded","Cheap","UnWarranted"};
     //private String uriPath;
@@ -67,26 +72,63 @@ public class AdminAddProducts extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_add_products);
-
-        imageView = (ImageView)findViewById(R.id.imgview);
+        setContentView(R.layout.activity_edit_products);
+        imageView = (ImageView) findViewById(R.id.imgview);
         selectImg = (TextView) findViewById(R.id.picUpload);
         ProductName = (EditText) findViewById(R.id.ProductName);
         ProductPrice = (EditText) findViewById(R.id.ProductPrice);
         ProductDescription = (EditText) findViewById(R.id.ProductDescription);
         ProductQuantity = (EditText) findViewById(R.id.ProducQuantity);
-        addProduct = (Button) findViewById(R.id.btAddProduct);
-        addProduct.setBackgroundColor(Color.parseColor("#1F2633"));
+        updateProduct = (Button) findViewById(R.id.btAddProduct);
+        updateProduct.setBackgroundColor(Color.parseColor("#1F2633"));
         ProductCategory = (Spinner) findViewById(R.id.ProductCategory);
         SubCategory = (Spinner) findViewById(R.id.ProductsubCategory);
         SpProductQuality = (Spinner) findViewById(R.id.ProductQuality);
         sale = (CheckBox) findViewById(R.id.sale);
         Discount = (EditText) findViewById(R.id.etDiscount);
-        Discount.setVisibility(View.GONE);
+
+        //get parcable value from adapter
+        Intent intent = getIntent();
+        ProductModal productModal = intent.getParcelableExtra("productdata");
+        ProductName.setText(productModal.getName());
+        int price = productModal.getPrice();
+        String stPrice = Integer.toString(price);
+        ProductPrice.setText(stPrice);
+        ProductDescription.setText(productModal.getDescription());
+        int quantity = productModal.getQuantity();
+        String stQuantity = Integer.toString(quantity);
+        ProductQuantity.setText(stQuantity);
+        stQuality= productModal.getQuality();
+        imageValue = productModal.getImage();
+//        SpProductQuality.setSelection(((ArrayAdapter<String>)SpProductQuality.getAdapter()).getPosition(productModal.getQuality()));
+//        DrawableCrossFadeFactory factory =
+//                new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
+
+
+      //  SpProductQuality.setSelection(getIndex(Quality, stQuality));
+//        SpProductQuality.setSelection(2);
+
+//        ArrayAdapter pq = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Quality);
+//        pq.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        SpProductQuality.setAdapter(SpProductQuality.getAdapter());
+//        SpProductQuality.setSelection(2,false);
+        Glide.with(this)
+                .load(productModal.getImage())
+                .into(imageView);
+        boolean ss = productModal.isSale();
+        if (ss == true){
+            sale.setChecked(true);
+            discount = productModal.getDiscount();
+            String stDiscount = Integer.toString(discount);
+            Discount.setText(stDiscount);
+        }
+        else{
+            sale.setChecked(false);
+            Discount.setVisibility(View.GONE);
+        }
         sale.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -100,8 +142,6 @@ public class AdminAddProducts extends AppCompatActivity {
                 }
             }
         });
-
-
 
 
 
@@ -149,7 +189,7 @@ public class AdminAddProducts extends AppCompatActivity {
                     SubCategory.setAdapter(aa);
                 }
 
-                    else if (CategoryId.equals("Bathroom")) {
+                else if (CategoryId.equals("Bathroom")) {
 
                     list.clear();
                     list.add("Bathroom Vanities");
@@ -203,25 +243,22 @@ public class AdminAddProducts extends AppCompatActivity {
 
 
 
-      SpProductQuality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-          @Override
-          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-              QualityId = Quality[position].toString();
-          }
+        SpProductQuality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                QualityId = Quality[position].toString();
+            }
 
-          @Override
-          public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-          }
-      });
+            }
+        });
         //Creating the ArrayAdapter instance having the country list
         ArrayAdapter productQuality = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Quality);
         productQuality.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //Setting the ArrayAdapter data on the Spinner
         SpProductQuality.setAdapter(productQuality);
-
-
-
 
         selectImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,7 +266,7 @@ public class AdminAddProducts extends AppCompatActivity {
                 if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
                         != PackageManager.PERMISSION_GRANTED){
 
-                    ActivityCompat.requestPermissions(AdminAddProducts.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},Rqststorage);
+                    ActivityCompat.requestPermissions(EditProducts.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},Rqststorage);
                 }
                 else {
                     selectImage();
@@ -239,7 +276,7 @@ public class AdminAddProducts extends AppCompatActivity {
         });
 
 
-        addProduct.setOnClickListener(new View.OnClickListener() {
+        updateProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -262,7 +299,7 @@ public class AdminAddProducts extends AppCompatActivity {
                 }
 
                 else {
-                     if  (sale.isChecked()){
+                    if  (sale.isChecked()){
                         Liquidation = true;
                         if(TextUtils.isEmpty(Discount.getText().toString())) {
                             Toast.makeText(getApplicationContext(), "Please Enter Discount", Toast.LENGTH_SHORT).show();
@@ -274,35 +311,41 @@ public class AdminAddProducts extends AppCompatActivity {
                         }
                     }
                     else{
-                         Liquidation = false;
-                         discount=0;
+                        Liquidation = false;
+                        discount=0;
                     }
                     String stPrice = ProductPrice.getText().toString();
                     final int price = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stPrice))));
                     String stQuantity = ProductQuantity.getText().toString();
                     final int quantity = Integer.parseInt(String.valueOf(Math.round(Float.parseFloat(stQuantity))));
 
-                    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-                    Map<String, Object> furnitureProduct = new HashMap<>();
-                    furnitureProduct.put("name", ProductName.getText().toString());
-                    furnitureProduct.put("image", imageValue);
-                    furnitureProduct.put("price", price);
-                    furnitureProduct.put("quality", QualityId);
-                    furnitureProduct.put("quantity",quantity );
-                    furnitureProduct.put("description",ProductDescription.getText().toString());
-                    furnitureProduct.put("sale",Liquidation);
-                    furnitureProduct.put("discount",discount);
+
+                    Map<String, Object> updateProduct = new HashMap<>();
+                    updateProduct.put("name", ProductName.getText().toString());
+                    updateProduct.put("image", imageValue);
+                    updateProduct.put("price", price);
+                    updateProduct.put("quality", QualityId);
+                    updateProduct.put("quantity",quantity );
+                    updateProduct.put("description",ProductDescription.getText().toString());
+                    updateProduct.put("sale",Liquidation);
+                    updateProduct.put("discount",discount);
 
 
                     // CREATE Product
-                    DatabaseReference db_ref = database.child("FurnitureCategory").child(CategoryId).child(SubCategoryId ).push(); // new key is created
-                    db_ref.setValue(furnitureProduct);
-                    
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child("FurnitureCategory").child(CategoryId).child(SubCategoryId ).child(productModal.getId()).setValue(updateProduct);
                     cleartext();
                 }
             }
         });
     }
+
+    private int getIndex(String[] spProductQuality, String das) {
+        for (int i = 0; i < spProductQuality.length; i++)
+            if(spProductQuality[i].equals(das)) return i;
+        return -1;
+    }
+
 
     private void cleartext() {
         if (sale.isChecked()){
@@ -317,6 +360,7 @@ public class AdminAddProducts extends AppCompatActivity {
         Discount.setHint("Discount");
         imageView.setImageResource(R.drawable.image);
         imageValue = "";
+        Toast.makeText(getApplicationContext(),"Product Updated",Toast.LENGTH_LONG).show();
 
 
     }
@@ -378,5 +422,11 @@ public class AdminAddProducts extends AppCompatActivity {
             }
 
         }
+
+
+
+
+
+
     }
 }

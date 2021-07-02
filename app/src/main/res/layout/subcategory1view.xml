@@ -15,7 +15,6 @@
             android:layout_width="150dp"
             android:layout_height="115dp"
             android:gravity="center"
-
             android:background="@drawable/imagebg">
             <ImageView
                 android:id="@+id/imgview"

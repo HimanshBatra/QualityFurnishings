@@ -1,6 +1,9 @@
 package com.example.qualityfurnishings.model;
 
-public class ProductModal {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ProductModal implements Parcelable {
 
 public ProductModal(){
 
@@ -21,6 +24,32 @@ public ProductModal(){
     }
 
     public String image , name,description,quality;
+
+    protected ProductModal(Parcel in) {
+        image = in.readString();
+        name = in.readString();
+        description = in.readString();
+        quality = in.readString();
+        id = in.readString();
+        discount = in.readInt();
+        category = in.readString();
+        subCategory = in.readString();
+        quantity = in.readInt();
+        price = in.readInt();
+        sale = in.readByte() != 0;
+    }
+
+    public static final Creator<ProductModal> CREATOR = new Creator<ProductModal>() {
+        @Override
+        public ProductModal createFromParcel(Parcel in) {
+            return new ProductModal(in);
+        }
+
+        @Override
+        public ProductModal[] newArray(int size) {
+            return new ProductModal[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -125,4 +154,23 @@ public ProductModal(){
     int quantity,price;
      boolean sale;
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(image);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(quality);
+        dest.writeString(id);
+        dest.writeInt(discount);
+        dest.writeString(category);
+        dest.writeString(subCategory);
+        dest.writeInt(quantity);
+        dest.writeInt(price);
+        dest.writeByte((byte) (sale ? 1 : 0));
+    }
 }
