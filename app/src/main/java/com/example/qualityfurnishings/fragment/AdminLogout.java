@@ -56,6 +56,12 @@ public class AdminLogout extends Fragment {
                 startActivity(intent);
             }
         });
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction().replace(R.id.AdminHomeFrame,new AdminLoginFragment()).commit();
+            }
+        });
         return view;
     }
 }

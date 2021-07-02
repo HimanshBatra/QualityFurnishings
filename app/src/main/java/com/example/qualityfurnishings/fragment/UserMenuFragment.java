@@ -71,7 +71,7 @@ public class UserMenuFragment extends Fragment {
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserMenuFragment()).commit();
+                        getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame,new UserMenuFragment()).commit();
                     }
                 });
                 builder.show();
