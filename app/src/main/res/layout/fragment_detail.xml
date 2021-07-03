@@ -17,19 +17,47 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="-50dp"
-        app:cardCornerRadius="30dp">
+        app:cardCornerRadius="30dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#ebeef2"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/tvProductName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Product Name"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="30sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Product Name"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/itemavialable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Item Available:"
+                    android:layout_marginTop="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="20sp"
+                    android:layout_marginRight="50dp"
+                    android:layout_alignParentRight="true" />
+                <TextView
+                    android:id="@+id/tvitemcount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="20"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,11 +66,13 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp"/>
             <LinearLayout
+                android:id="@+id/originalpriceview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp">
                 <TextView
+                    android:id="@+id/originaldollar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$"
@@ -55,6 +85,33 @@
                     android:text="Price"
                     android:layout_marginLeft="5dp"
                     android:textSize="30sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/discountview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:id="@+id/discountdollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/tvDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discounted Price"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -78,7 +135,7 @@
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 />
@@ -91,6 +148,7 @@
                     android:id="@+id/btAddtocart"
                     android:layout_width="300dp"
                     android:layout_height="50dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Add To Cart"/>
             </LinearLayout>
 
