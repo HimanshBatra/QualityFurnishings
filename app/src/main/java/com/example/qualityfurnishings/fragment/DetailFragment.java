@@ -20,7 +20,7 @@ import com.example.qualityfurnishings.model.ProductModal;
 
 public class DetailFragment extends Fragment {
     ImageView productimage;
-    TextView productname,price,description;
+    TextView productname,price,description,quantity;
     Button cart;
     ProductModal modal;
 
@@ -51,6 +51,7 @@ public class DetailFragment extends Fragment {
         productname =(TextView)view.findViewById(R.id.tvProductName);
         price=(TextView)view.findViewById(R.id.tvPrice);
         description=(TextView)view.findViewById(R.id.tvDescription);
+        quantity=(TextView)view.findViewById(R.id.tvitemcount);
         cart=(Button)view.findViewById(R.id.btAddtocart);
         Glide.with(getContext())
                 .load(modal.getImage())
@@ -60,6 +61,10 @@ public class DetailFragment extends Fragment {
         String stPrice = Integer.toString(iPrice);
         price.setText(stPrice);
         description.setText(modal.getDescription());
+
+        int itemcount = modal.getQuantity();
+        String stQuantity = Integer.toString(itemcount);
+        quantity.setText(stPrice);
 
 
         return view;
