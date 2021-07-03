@@ -1,6 +1,7 @@
 package com.example.qualityfurnishings.fragment;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -20,9 +22,10 @@ import com.example.qualityfurnishings.model.ProductModal;
 
 public class DetailFragment extends Fragment {
     ImageView productimage;
-    TextView productname,price,description,quantity;
+    TextView productname,price,description,quantity,discount,dollar,originalDollar;
     Button cart;
     ProductModal modal;
+    LinearLayout OriginalPriceview,DiscountPriceview;
 
 
 
@@ -52,7 +55,14 @@ public class DetailFragment extends Fragment {
         price=(TextView)view.findViewById(R.id.tvPrice);
         description=(TextView)view.findViewById(R.id.tvDescription);
         quantity=(TextView)view.findViewById(R.id.tvitemcount);
+        discount=(TextView)view.findViewById(R.id.tvDiscount);
+        dollar=(TextView)view.findViewById(R.id.discountdollar);
+        originalDollar=(TextView)view.findViewById(R.id.originaldollar);
+        OriginalPriceview=(LinearLayout)view.findViewById(R.id.originalpriceview);
+        DiscountPriceview=(LinearLayout)view.findViewById(R.id.discountview);
+
         cart=(Button)view.findViewById(R.id.btAddtocart);
+        DiscountPriceview.setVisibility(View.GONE);
         Glide.with(getContext())
                 .load(modal.getImage())
                 .into(productimage);
@@ -66,6 +76,14 @@ public class DetailFragment extends Fragment {
         String stQuantity = Integer.toString(itemcount);
         quantity.setText(stPrice);
 
+        int saleprice=modal.getDiscount();
+        if (!(saleprice ==0)) {
+            DiscountPriceview.setVisibility(View.VISIBLE);
+            String stdiscount= Integer.toString(saleprice);
+            price.setPaintFlags(price.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            originalDollar.setPaintFlags(originalDollar.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            discount.setText(stdiscount);
+        }
 
         return view;
     }

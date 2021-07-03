@@ -64,11 +64,13 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="20sp"/>
             <LinearLayout
+                android:id="@+id/originalpriceview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp">
                 <TextView
+                    android:id="@+id/originaldollar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$"
@@ -81,6 +83,33 @@
                     android:text="Price"
                     android:layout_marginLeft="5dp"
                     android:textSize="30sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/discountview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:id="@+id/discountdollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/tvDiscount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Discounted Price"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20sp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
