@@ -8,6 +8,7 @@
     tools:context=".fragment.DetailFragment">
 
     <ImageView
+        android:id="@+id/ProductImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:src="@drawable/image"
@@ -30,7 +31,6 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="30sp"/>
             <TextView
-                android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="By Quality Furnishings"
@@ -69,7 +69,6 @@
                     android:src="@drawable/blackcircle"
                     android:textSize="30sp"/>
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ProductDetail"
@@ -79,7 +78,10 @@
             <TextView
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="200dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

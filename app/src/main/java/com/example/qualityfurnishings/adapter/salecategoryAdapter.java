@@ -47,6 +47,7 @@ public class salecategoryAdapter extends RecyclerView.Adapter<salecategoryAdapte
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(context, DetailActivity.class);
+                intent.putExtra("productdata",  salecategoryList.get(position));
                 context.startActivity(intent);
             }
         });
