@@ -85,6 +85,9 @@ public class SignUp extends AppCompatActivity {
         String password = editTextPassword.getText().toString().trim();
         String confirmPassword = editTextConfirmPassword.getText().toString().trim();
         String phoneNumber = editTextPhoneNumber.getText().toString().trim();
+        String address="";
+        String postalcode="";
+        String province="";
 
         if (fullName.isEmpty()){
             editTextFullName.setError("Please enter your full name");
@@ -132,10 +135,9 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()) {
-                            User user = new User(fullName, email,phoneNumber,password);
+                            User user = new User(fullName, email,phoneNumber,password,address,postalcode,province);
 
-                            FirebaseDatabase.getInstance().getReference("users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            FirebaseDatabase.getInstance().getReference("users")                                   .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

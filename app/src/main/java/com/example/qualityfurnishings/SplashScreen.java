@@ -2,22 +2,41 @@ package com.example.qualityfurnishings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.qualityfurnishings.activity.AdminHome;
 import com.example.qualityfurnishings.activity.LoginActivity;
 import com.example.qualityfurnishings.activity.UserHome;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashScreen extends AppCompatActivity {
+    public static final String UserIdPref = "UserPref" ;
+    public static final String Userid = "userid";
+    SharedPreferences sharedpreferences;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        firebaseAuth= FirebaseAuth.getInstance();
+        String firebaseuserid = firebaseAuth.getCurrentUser().getUid();
+        sharedpreferences = getApplicationContext().getSharedPreferences(UserIdPref, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(Userid, firebaseuserid);
+        editor.commit();
+        Log.d("firebase", firebaseuserid);
+
         SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
+
+
+
+//        Log.d("uu", userid);
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
