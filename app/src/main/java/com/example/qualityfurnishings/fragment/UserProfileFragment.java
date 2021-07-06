@@ -1,5 +1,6 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.UserEditProfile;
 import com.example.qualityfurnishings.model.UserTestModal;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,14 +70,14 @@ public class UserProfileFragment extends Fragment {
         database.child("users").child(s1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserTestModal user = snapshot.getValue(UserTestModal.class);
-                stname=user.getFullName();
-                stemail=user.getEmail();
-                staddress=user.getAddress();
-                stpassword=user.getPassword();
-                stpostalcode=user.getPostalcode();
-                stprovince=user.getProvince();
-                stphonenumber=user.getPhoneNumber();
+                UserTestModal usermodel = snapshot.getValue(UserTestModal.class);
+                stname=usermodel.getFullName();
+                stemail=usermodel.getEmail();
+                staddress=usermodel.getAddress();
+                stpassword=usermodel.getPassword();
+                stpostalcode=usermodel.getPostalcode();
+                stprovince=usermodel.getProvince();
+                stphonenumber=usermodel.getPhoneNumber();
 
                 username.setText(stname);
                 useremail.setText(stemail);
@@ -99,12 +101,21 @@ public class UserProfileFragment extends Fragment {
                 else{
                     userprovince.setText(stprovince);
                 }
+                Editprofile.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent= new Intent(getContext(), UserEditProfile.class);
+                        intent.putExtra("userdata",usermodel);
+                        startActivity(intent);
 
+                    }
+                });
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
 
             }
         });
