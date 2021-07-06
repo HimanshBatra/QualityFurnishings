@@ -36,7 +36,7 @@
 
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/tvuserName"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:gravity="center_vertical"
@@ -61,7 +61,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/tvuserEmail"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:textSize="20sp"
@@ -86,7 +86,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/tvPhoneNumber"
+        android:id="@+id/tvuserPhoneNumber"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:textSize="20sp"
@@ -111,7 +111,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/tvPassword"
+        android:id="@+id/tvuserPassword"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:textSize="20sp"
@@ -137,7 +137,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/tvAddress"
+        android:id="@+id/tvuserAddress"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:textSize="20sp"
@@ -145,7 +145,6 @@
         android:padding="10dp"
         android:gravity="center_vertical"
         android:textColor="#000"
-        android:inputType="textPassword"
         android:layout_marginTop="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -163,7 +162,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/tvPostalCode"
+        android:id="@+id/tvuserPostalCode"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:textSize="20sp"
@@ -171,7 +170,6 @@
         android:padding="10dp"
         android:gravity="center_vertical"
         android:textColor="#000"
-        android:inputType="textPassword"
         android:layout_marginTop="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -189,7 +187,7 @@
 
     </LinearLayout>
     <TextView
-        android:id="@+id/tvProvince"
+        android:id="@+id/tvuserProvince"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:textSize="20sp"
@@ -197,10 +195,10 @@
         android:padding="10dp"
         android:gravity="center_vertical"
         android:textColor="#000"
-        android:inputType="textPassword"
+
         android:layout_marginTop="5dp"/>
     <Button
-        android:id="@+id/btEditProfile"
+        android:id="@+id/btuserEditProfile"
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

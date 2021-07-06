@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -15,11 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.qualityfurnishings.activity.AdminHome;
-
 import com.example.qualityfurnishings.activity.LoginActivity;
 import com.example.qualityfurnishings.activity.UserHome;
 
+import com.example.qualityfurnishings.model.UserTestModal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -135,9 +133,9 @@ public class SignUp extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()) {
-                            User user = new User(fullName, email,phoneNumber,password,address,postalcode,province);
+                            UserTestModal user = new UserTestModal(fullName, email,phoneNumber,password,address,postalcode,province);
 
-                            FirebaseDatabase.getInstance().getReference("users")                                   .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                            FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

@@ -1,9 +1,10 @@
-package com.example.qualityfurnishings;
-import com.google.firebase.database.IgnoreExtraProperties;
+package com.example.qualityfurnishings.model;
 
-public class User {
+public class UserTestModal {
+    public UserTestModal(){
 
-    public User(String fullName, String email, String phoneNumber, String password, String address, String postalcode, String province) {
+    }
+    public UserTestModal(String fullName, String email, String phoneNumber, String password, String address, String postalcode, String province) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -70,11 +71,4 @@ public class User {
     }
 
     public String fullName, email,phoneNumber,password,address,postalcode,province;
-
-    public User(){
-
-    }
-
-
-
-    }
+}

@@ -16,21 +16,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashScreen extends AppCompatActivity {
     public static final String UserIdPref = "UserPref" ;
-    public static final String Userid = "userid";
-    SharedPreferences sharedpreferences;
-    FirebaseAuth firebaseAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        firebaseAuth= FirebaseAuth.getInstance();
-        String firebaseuserid = firebaseAuth.getCurrentUser().getUid();
-        sharedpreferences = getApplicationContext().getSharedPreferences(UserIdPref, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(Userid, firebaseuserid);
-        editor.commit();
-        Log.d("firebase", firebaseuserid);
+
+//        Log.d("firebase", firebaseuserid);
 
         SharedPreferences sharedPreferences = getSharedPreferences("LoginPref", MODE_PRIVATE);
 

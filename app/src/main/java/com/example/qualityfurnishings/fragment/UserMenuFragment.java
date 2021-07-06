@@ -17,6 +17,9 @@ import android.widget.LinearLayout;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.activity.LoginActivity;
 
+import static com.example.qualityfurnishings.SplashScreen.UserIdPref;
+import static com.example.qualityfurnishings.activity.UserHome.Userid;
+
 
 public class UserMenuFragment extends Fragment {
     LinearLayout MyOrders,LogOut;
@@ -64,6 +67,11 @@ public class UserMenuFragment extends Fragment {
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putString(UserType, "");
                         editor.commit();
+                        //
+                        sharedpreferences = getActivity().getSharedPreferences(UserIdPref, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor2 = sharedpreferences.edit();
+                        editor2.putString(Userid, "");
+                        editor2.commit();
                         startActivity(intent);
 
                     }
