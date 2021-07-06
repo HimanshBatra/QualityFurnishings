@@ -1,18 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.AdminProfileFragment"
     android:background="#6C7689"
-    android:layout_gravity="center">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+   <TextView
+     android:layout_width="250dp"
+     android:layout_height="80dp"
+     android:text="Admin Profile"
+     android:textSize="40sp"
+     android:textColor="#000"
+     android:layout_marginTop="50dp"/>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="40dp"
-        android:text="Hello This is a admin profile" />
+        android:layout_height="wrap_content"
+        >
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Name"
+            android:layout_marginLeft="80dp"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:background="@drawable/adminprofiletextviewbg"
+        android:textColor="#000"
+        android:layout_marginTop="5dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="E-mail"
+            android:layout_marginLeft="80dp"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+    android:textSize="20sp"
+        android:background="@drawable/adminprofiletextviewbg"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+    android:textColor="#000"
+    android:layout_marginTop="5dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Password"
+            android:layout_marginLeft="80dp"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tvPassword"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+    android:textSize="20sp"
+        android:background="@drawable/adminprofiletextviewbg"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+    android:textColor="#000"
+        android:inputType="textPassword"
+    android:layout_marginTop="5dp"/>
+    <Button
+        android:id="@+id/btEditProfile"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Edit Profile"
+        android:layout_marginTop="50dp"
+        app:icon="@drawable/ic_baseline_edit_24" />
 </LinearLayout>

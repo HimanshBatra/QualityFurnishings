@@ -1,9 +1,13 @@
-package com.example.qualityfurnishings;
-import com.google.firebase.database.IgnoreExtraProperties;
+package com.example.qualityfurnishings.model;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    public User(String fullName, String email, String phoneNumber, String password, String address, String postalcode, String province) {
+public class UserTestModal implements Parcelable {
+    public UserTestModal(){
+
+    }
+    public UserTestModal(String fullName, String email, String phoneNumber, String password, String address, String postalcode, String province) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -12,6 +16,28 @@ public class User {
         this.postalcode = postalcode;
         this.province = province;
     }
+
+    protected UserTestModal(Parcel in) {
+        fullName = in.readString();
+        email = in.readString();
+        phoneNumber = in.readString();
+        password = in.readString();
+        address = in.readString();
+        postalcode = in.readString();
+        province = in.readString();
+    }
+
+    public static final Creator<UserTestModal> CREATOR = new Creator<UserTestModal>() {
+        @Override
+        public UserTestModal createFromParcel(Parcel in) {
+            return new UserTestModal(in);
+        }
+
+        @Override
+        public UserTestModal[] newArray(int size) {
+            return new UserTestModal[size];
+        }
+    };
 
     public String getFullName() {
         return fullName;
@@ -71,10 +97,19 @@ public class User {
 
     public String fullName, email,phoneNumber,password,address,postalcode,province;
 
-    public User(){
-
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-
-
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fullName);
+        dest.writeString(email);
+        dest.writeString(phoneNumber);
+        dest.writeString(password);
+        dest.writeString(address);
+        dest.writeString(postalcode);
+        dest.writeString(province);
     }
+}
