@@ -35,12 +35,12 @@
 
 
     <TextView
+        android:id="@+id/tvName"
         android:layout_width="280dp"
         android:layout_height="60dp"
-        android:text="Name"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:background="@drawable/adminprofiletextviewbg"
         android:textColor="#000"
         android:layout_marginTop="5dp"/>
@@ -60,10 +60,10 @@
 
     </LinearLayout>
     <TextView
+        android:id="@+id/tvEmail"
         android:layout_width="280dp"
         android:layout_height="60dp"
-    android:text="E-mail"
-    android:textSize="30sp"
+    android:textSize="20sp"
         android:background="@drawable/adminprofiletextviewbg"
         android:padding="10dp"
         android:gravity="center_vertical"
@@ -85,10 +85,10 @@
 
     </LinearLayout>
     <TextView
+        android:id="@+id/tvPassword"
         android:layout_width="280dp"
         android:layout_height="60dp"
-    android:text="Password"
-    android:textSize="30sp"
+    android:textSize="20sp"
         android:background="@drawable/adminprofiletextviewbg"
         android:padding="10dp"
         android:gravity="center_vertical"
@@ -96,7 +96,7 @@
         android:inputType="textPassword"
     android:layout_marginTop="5dp"/>
     <Button
-        android:id="@+id/btAddProduct"
+        android:id="@+id/btEditProfile"
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
