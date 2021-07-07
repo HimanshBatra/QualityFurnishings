@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
@@ -126,10 +127,11 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Cart cart =new Cart(ProductName,image,finalPrice,Cartquantity,category,subcategory);
+                Cart cart =new Cart(ProductName,image,category,subcategory,Cartquantity,finalPrice);
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference db_ref = database.child("users").child(user).child("cart").push();
                 db_ref.setValue(cart);
+                Toast.makeText(getContext(), "Product Successfully Added to Cart", Toast.LENGTH_SHORT).show();
 
             }
         });
