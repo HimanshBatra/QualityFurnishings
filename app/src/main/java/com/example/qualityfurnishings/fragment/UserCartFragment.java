@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.adapter.CartAdapter;
@@ -33,7 +34,7 @@ public class UserCartFragment extends Fragment {
     private RecyclerView recyclerView;
     ArrayList<Cart> cartlist;
     CartAdapter cartAdapter;
-
+  TextView total;
 
 
 
@@ -57,6 +58,7 @@ public class UserCartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_user_cart, container, false);
         recyclerView = view.findViewById(R.id.usercartView);
+        total = view.findViewById(R.id.total);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -66,17 +68,21 @@ public class UserCartFragment extends Fragment {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("users").child(s1).child("cart").addValueEventListener(new ValueEventListener() {
+
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 cartlist.clear();
+                int totalPrice=0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
 
                     Cart listData = dataSnapshot.getValue(Cart.class);
                     cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice(),dataSnapshot.getKey(),listData.getUserid(),listData.getProductPrice()));
-
+                    totalPrice=totalPrice+listData.getFinalPrice();
 
                 }
+                total.setText(totalPrice+"");
                 cartAdapter = new CartAdapter(getActivity(), cartlist);
                 recyclerView.setAdapter(cartAdapter);
 
