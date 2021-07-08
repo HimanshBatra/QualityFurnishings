@@ -1,5 +1,7 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -11,12 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.adapter.CartAdapter;
 import com.example.qualityfurnishings.adapter.subcategory1Adapter;
 import com.example.qualityfurnishings.model.Cart;
 import com.example.qualityfurnishings.model.ProductModal;
+import com.example.qualityfurnishings.model.UserTestModal;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +39,9 @@ public class UserCartFragment extends Fragment {
     private RecyclerView recyclerView;
     ArrayList<Cart> cartlist;
     CartAdapter cartAdapter;
-
+    TextView total;
+    Button checkout;
+    String stpostalcode,staddress,stprovince;
 
 
 
@@ -57,6 +65,8 @@ public class UserCartFragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_user_cart, container, false);
         recyclerView = view.findViewById(R.id.usercartView);
+        total = view.findViewById(R.id.total);
+        checkout=view.findViewById(R.id.btCheckout);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
@@ -66,17 +76,21 @@ public class UserCartFragment extends Fragment {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("users").child(s1).child("cart").addValueEventListener(new ValueEventListener() {
+
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                cartlist.clear();
+                int totalPrice=0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
 
                     Cart listData = dataSnapshot.getValue(Cart.class);
-                    cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice()));
-
+                    cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice(),dataSnapshot.getKey(),listData.getUserid(),listData.getProductPrice()));
+                    totalPrice=totalPrice+listData.getFinalPrice();
 
                 }
+                total.setText(totalPrice+"");
                 cartAdapter = new CartAdapter(getActivity(), cartlist);
                 recyclerView.setAdapter(cartAdapter);
 
@@ -86,6 +100,59 @@ public class UserCartFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull  DatabaseError error) {
 
+            }
+        });
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                databaseReference.child("users").child(s1).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        UserTestModal usermodel = snapshot.getValue(UserTestModal.class);
+                        stpostalcode = usermodel.getPostalcode();
+                        staddress =usermodel.getAddress();
+                        stprovince = usermodel.getProvince();
+
+                        if(stpostalcode.equals("") || staddress.equals("") || stprovince.equals("")){
+//                            Toast.makeText(getActivity(), "Please Add your address in your Profile before Checkout", Toast.LENGTH_SHORT).show();
+
+                                // setup the alert builder
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setTitle("ALERT");
+                                builder.setMessage("Please Add your address in your Profile before Checkout");
+
+                                // add a button
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame,new UserProfileFragment()).commit();
+                                    }
+                                });
+                            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame,new UserCartFragment()).commit();
+                                }
+                            });
+
+
+                                // create and show the alert dialog
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+
+                        }
+                        else{
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 

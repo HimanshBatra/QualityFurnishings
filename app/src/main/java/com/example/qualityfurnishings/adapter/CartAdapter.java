@@ -2,6 +2,9 @@
 package com.example.qualityfurnishings.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +20,24 @@ import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.model.Cart;
 import com.example.qualityfurnishings.model.ProductModal;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<Cart> cartlist = new ArrayList<Cart>();
+    String userID;
+    String key;
 
 
 
@@ -33,6 +46,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         this.context = context;
         this.cartlist = cartlist;
         //this.list1 = list1;
+
     }
 
 
@@ -42,6 +56,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.cartlayout,parent,false);
+
         return new MyViewHolder(v);
     }
 
@@ -52,6 +67,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         TextView productPrice=holder.price;
         TextView productquantity= holder.quantity;
         TextView productsubcategory= holder.subcategory;
+        ImageView implus=holder.plus;
+        ImageView imMinus=holder.minus;
+        ImageView imDelete=holder.delete;
+        //        SharedPreferences sharedPreferences = Context.getSharedPreferences("UserPref", MODE_PRIVATE);
+
+
+
 
         Glide.with(context).load(cartlist.get(position).image).into(imgView);
         productName.setText(cartlist.get(position).productName + "");
@@ -59,12 +81,46 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         productquantity.setText(cartlist.get(position).quantity + "");
         productsubcategory.setText(cartlist.get(position).subcategory + "");
 
-//        ImageView img_resource = holder.productImage;
-//        Cart cart = list.get(position);
-//        holder.name.setText(cart.getProductName());
-//        holder.price.setText(cart.getFinalPrice());
-//        holder.quantity.setText("1");
-//        Glide.with(context).load(list.get(position).getImage()).into(img_resource);
+
+        imDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                 databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).removeValue();
+                cartlist.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position,cartlist.size());
+            }
+        });
+
+        implus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int final_price=(cartlist.get(position).getQuantity() +1) * cartlist.get(position).getProductPrice();
+                Cart updateCart =new Cart(cartlist.get(position).getProductName(),cartlist.get(position).getImage(),cartlist.get(position).getCategory(),cartlist.get(position).getSubcategory(),cartlist.get(position).getQuantity()+1,final_price,cartlist.get(position).getId(),cartlist.get(position).getUserid(),cartlist.get(position).getProductPrice());
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).setValue(updateCart);
+               // databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).child("finalPrice").setValue(cartlist.get(position).getQuantity()* cartlist.get(position).getProductPrice());
+            }
+        });
+
+        imMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cartlist.get(position).getQuantity() != 1) {
+                    int final_price = (cartlist.get(position).getQuantity() - 1) * cartlist.get(position).getProductPrice();
+                    Cart updateCart = new Cart(cartlist.get(position).getProductName(), cartlist.get(position).getImage(), cartlist.get(position).getCategory(), cartlist.get(position).getSubcategory(), cartlist.get(position).getQuantity() - 1, final_price, cartlist.get(position).getId(), cartlist.get(position).getUserid(), cartlist.get(position).getProductPrice());
+
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).setValue(updateCart);
+                    // databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).child("finalPrice").setValue(cartlist.get(position).getQuantity()*cartlist.get(position).getProductPrice());
+                }
+            }
+        });
+
+
 
     }
 
@@ -78,8 +134,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView name,price,quantity,subcategory;
-        ImageView productImage;
-        ImageButton plus,minus;
+        ImageView productImage,plus,minus,delete;
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,6 +146,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             quantity = itemView.findViewById(R.id.Quantity);
             subcategory = itemView.findViewById(R.id.subcategory);
             productImage=itemView.findViewById(R.id.productImage);
+            plus=itemView.findViewById(R.id.Plus);
+            minus=itemView.findViewById(R.id.Minus);
+            delete=itemView.findViewById(R.id.delete);
+
 
 
 
