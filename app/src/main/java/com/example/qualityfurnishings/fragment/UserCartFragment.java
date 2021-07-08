@@ -68,12 +68,12 @@ public class UserCartFragment extends Fragment {
         databaseReference.child("users").child(s1).child("cart").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                cartlist.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
 
                     Cart listData = dataSnapshot.getValue(Cart.class);
-                    cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice()));
+                    cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice(),dataSnapshot.getKey(),listData.getUserid(),listData.getProductPrice()));
 
 
                 }

@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".fragment.UserCartFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/usercartView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#F9F8F6"
         android:padding="10dp"
         android:layout_marginBottom="10dp"
         />

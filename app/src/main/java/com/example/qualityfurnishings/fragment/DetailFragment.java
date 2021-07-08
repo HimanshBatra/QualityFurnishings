@@ -1,6 +1,7 @@
 package com.example.qualityfurnishings.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 
@@ -29,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class DetailFragment extends Fragment {
     ImageView productimage;
@@ -39,9 +42,10 @@ public class DetailFragment extends Fragment {
     String category,subcategory;
     String stdiscount;
     int Cartquantity,finalPrice,discountamount;
+    String id;
     FirebaseAuth mAuth;
     String user;
-
+    String s1;
 
 
 
@@ -81,7 +85,8 @@ public class DetailFragment extends Fragment {
         cart=(Button)view.findViewById(R.id.btAddtocart);
         DiscountPriceview.setVisibility(View.GONE);
 
-
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", MODE_PRIVATE);
+         s1 = sharedPreferences.getString("userid","");
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser().getUid();
 
@@ -123,13 +128,15 @@ public class DetailFragment extends Fragment {
         Cartquantity= 1;
 
 
+
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Cart cart =new Cart(ProductName,image,category,subcategory,Cartquantity,finalPrice);
+
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference db_ref = database.child("users").child(user).child("cart").push();
+                Cart cart =new Cart(ProductName,image,category,subcategory,Cartquantity,finalPrice,db_ref.getKey(),s1,finalPrice);
                 db_ref.setValue(cart);
                 Toast.makeText(getContext(), "Product Successfully Added to Cart", Toast.LENGTH_SHORT).show();
 
