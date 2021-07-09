@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.model.Cart;
 import com.example.qualityfurnishings.model.ProductModal;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +39,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     ArrayList<Cart> cartlist = new ArrayList<Cart>();
     String userID;
     String key;
+    FirebaseAuth firebaseAuth;
 
 
 
@@ -70,7 +72,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
         ImageView implus=holder.plus;
         ImageView imMinus=holder.minus;
         ImageView imDelete=holder.delete;
-        //        SharedPreferences sharedPreferences = Context.getSharedPreferences("UserPref", MODE_PRIVATE);
+        firebaseAuth= FirebaseAuth.getInstance();
+        String firebaseuserid = firebaseAuth.getCurrentUser().getUid();
 
 
 
@@ -87,7 +90,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             public void onClick(View v) {
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                 databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).removeValue();
+                databaseReference.child("FurnitureCategory").child("Cart").child(firebaseuserid).child(cartlist.get(position).getId()).removeValue();
                 cartlist.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position,cartlist.size());
@@ -101,7 +104,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                 Cart updateCart =new Cart(cartlist.get(position).getProductName(),cartlist.get(position).getImage(),cartlist.get(position).getCategory(),cartlist.get(position).getSubcategory(),cartlist.get(position).getQuantity()+1,final_price,cartlist.get(position).getId(),cartlist.get(position).getUserid(),cartlist.get(position).getProductPrice());
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).setValue(updateCart);
+                databaseReference.child("FurnitureCategory").child("Cart").child(firebaseuserid).child(cartlist.get(position).getId()).setValue(updateCart);
                // databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).child("finalPrice").setValue(cartlist.get(position).getQuantity()* cartlist.get(position).getProductPrice());
             }
         });
@@ -114,7 +117,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
                     Cart updateCart = new Cart(cartlist.get(position).getProductName(), cartlist.get(position).getImage(), cartlist.get(position).getCategory(), cartlist.get(position).getSubcategory(), cartlist.get(position).getQuantity() - 1, final_price, cartlist.get(position).getId(), cartlist.get(position).getUserid(), cartlist.get(position).getProductPrice());
 
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-                    databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).setValue(updateCart);
+                    databaseReference.child("FurnitureCategory").child("Cart").child(firebaseuserid).child(cartlist.get(position).getId()).setValue(updateCart);
                     // databaseReference.child("users").child(cartlist.get(position).getUserid()).child("cart").child(cartlist.get(position).getId()).child("finalPrice").setValue(cartlist.get(position).getQuantity()*cartlist.get(position).getProductPrice());
                 }
             }
