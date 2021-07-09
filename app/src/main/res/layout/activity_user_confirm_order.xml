@@ -14,17 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_marginTop="50dp">
+        android:gravity="center_horizontal"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Amount :"
+            android:text="Total Amount: $"
             android:textSize="40sp"
             android:textColor="#000"/>
         <TextView
             android:id="@+id/tvTotalAmount"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:textColor="#000"
             android:textSize="40sp"/>
@@ -37,18 +38,20 @@
         android:id="@+id/radioPayment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_centerInParent="true">
         <RadioButton
             android:id="@+id/radioCredit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Credit Card"
-             />
+            android:buttonTint="@color/blue"
+            />
         <RadioButton
             android:id="@+id/radioCash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/blue"
             android:text="Cash on Delivery" />
     </RadioGroup>
 
@@ -57,7 +60,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="Credit Card Number">
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCardNumber"
@@ -71,14 +75,15 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="15dp">
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
-        android:hint="MM">
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etMonth"
@@ -93,7 +98,8 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:hint="Year">
+
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etYear"
@@ -108,8 +114,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="CVV">
+        android:layout_marginTop="15dp"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCvv"
@@ -121,9 +127,9 @@
 
     <Button
         android:id="@+id/btConfirmOrder"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:textColor="#FFFFFF"
         android:text="Confirm Order"
         />

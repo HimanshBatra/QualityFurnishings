@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -39,19 +40,51 @@ public class UserConfirmOrder extends AppCompatActivity {
         radioGroup=(RadioGroup)findViewById(R.id.radioPayment);
         Rcredit=(RadioButton) findViewById(R.id.radioCredit);
         RCash=(RadioButton) findViewById(R.id.radioCash);
+        //
+
+        creditcard.setHint("Credit Card Number");
+        month.setHint("Month");
+        year.setHint("Year");
+        cvv.setHint("CVV");
+
 
         creditcard.setVisibility(View.GONE);
         month.setVisibility(View.GONE);
         year.setVisibility(View.GONE);
         cvv.setVisibility(View.GONE);
 
-        if(Rcredit.isChecked()){
-            creditcard.setVisibility(View.VISIBLE);
-            month.setVisibility(View.VISIBLE);
-            year.setVisibility(View.VISIBLE);
-            cvv.setVisibility(View.VISIBLE);
+        Rcredit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked == true){
+                    creditcard.setVisibility(View.VISIBLE);
+                    month.setVisibility(View.VISIBLE);
+                    year.setVisibility(View.VISIBLE);
+                    cvv.setVisibility(View.VISIBLE);
+                    creditcard.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_credit_card_24, 0, 0, 0);
+                }
+                else{
+                    creditcard.setVisibility(View.GONE);
+                    month.setVisibility(View.GONE);
+                    year.setVisibility(View.GONE);
+                    cvv.setVisibility(View.GONE);
+                }
 
-        }
+            }
+        });
+
+        RCash.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked == true){
+                    creditcard.setVisibility(View.GONE);
+                    month.setVisibility(View.GONE);
+                    year.setVisibility(View.GONE);
+                    cvv.setVisibility(View.GONE);
+                }
+
+            }
+        });
 
         ConfirmOrder.setOnClickListener(new View.OnClickListener() {
             @Override
