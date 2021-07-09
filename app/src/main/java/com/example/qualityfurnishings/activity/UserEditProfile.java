@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.model.AdminModal;
+import com.example.qualityfurnishings.model.Cart;
 import com.example.qualityfurnishings.model.ProductModal;
 import com.example.qualityfurnishings.model.UserTestModal;
 import com.google.firebase.database.DatabaseReference;
@@ -60,7 +61,9 @@ public class UserEditProfile extends AppCompatActivity {
             }
         });
 
+
     }
+
 
     private void updateuserprofile() {
         name=fullname.getText().toString().trim();
