@@ -2,6 +2,7 @@ package com.example.qualityfurnishings.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.UserConfirmOrder;
 import com.example.qualityfurnishings.adapter.CartAdapter;
 import com.example.qualityfurnishings.adapter.subcategory1Adapter;
 import com.example.qualityfurnishings.model.Cart;
@@ -42,6 +44,7 @@ public class UserCartFragment extends Fragment {
     TextView total;
     Button checkout;
     String stpostalcode,staddress,stprovince;
+    int totalPrice;
 
 
 
@@ -81,7 +84,7 @@ public class UserCartFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 cartlist.clear();
-                int totalPrice=0;
+               totalPrice=0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
 
@@ -143,6 +146,11 @@ public class UserCartFragment extends Fragment {
 
                         }
                         else{
+                            Intent intent= new Intent(getContext(), UserConfirmOrder.class);
+                            intent.putExtra("amountValue",totalPrice);
+                            startActivity(intent);
+
+
 
                         }
 
