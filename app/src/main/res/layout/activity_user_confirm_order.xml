@@ -60,14 +60,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCardNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
     <LinearLayout
@@ -77,37 +76,53 @@
         android:gravity="center_horizontal"
         android:layout_marginTop="15dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
             android:id="@+id/etMonth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:hint="MM"
+            android:background="@drawable/confirmordertxtviewbg"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/etYear"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:hint="YYYY"
+            android:background="@drawable/confirmordertxtviewbg"
             android:layout_marginLeft="10dp"
+            android:gravity="center" />
 
-            >
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        >-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etYear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal" />
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/etMonth"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="number" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="200dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            >-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/etYear"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="number" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout

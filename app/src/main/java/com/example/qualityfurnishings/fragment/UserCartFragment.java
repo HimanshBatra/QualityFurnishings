@@ -135,7 +135,7 @@ public class UserCartFragment extends Fragment {
                             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserProfileFragment()).commit();
+                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserHomeFragment()).commit();
                                 }
                             });
                             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -151,9 +151,28 @@ public class UserCartFragment extends Fragment {
                             dialog.show();
 
                         } else {
-                            Intent intent = new Intent(getContext(), UserConfirmOrder.class);
-                            intent.putExtra("amountValue", totalPrice);
-                            startActivity(intent);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Confirm Your Address");
+                            builder.setMessage("House Number: " + staddress + "\n"+"Postal Code: " +stpostalcode +"\n"+ "Province: " +stprovince);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(getContext(), UserConfirmOrder.class);
+                                    intent.putExtra("amountValue", totalPrice);
+                                    intent.putExtra("cartValue", cartlist);
+                                    startActivity(intent);
+
+                                }
+                            });
+                            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserCartFragment()).commit();
+                                }
+                            });
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+
 
 
                         }
