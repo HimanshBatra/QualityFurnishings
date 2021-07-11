@@ -215,7 +215,7 @@ public class UserConfirmOrder extends AppCompatActivity {
                     orderConfirmed();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Please Select a Payment type", Toast.LENGTH_LONG).show(); 
+                    Toast.makeText(getApplicationContext(), "Please Select a Payment type", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -231,10 +231,15 @@ public class UserConfirmOrder extends AppCompatActivity {
             @Override
             public void onComplete(Task<Void> task) {
                 Toast.makeText(UserConfirmOrder.this, "Order Completed Successfully", Toast.LENGTH_LONG).show();
-
+                DatabaseReference df = FirebaseDatabase.getInstance().getReference();
+                df.child("FurnitureCategory").child("Cart").child(FirebaseUserID).removeValue();
             }
+
         });
+
+
     }
+
 
     private void selectDate() {
         final Calendar calendar = Calendar.getInstance();
