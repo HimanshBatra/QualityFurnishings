@@ -27,14 +27,14 @@ public class UserEditProfile extends AppCompatActivity {
     Button UserUpdateProfile;
     TextView Email;
     String userID;
-
+    UserTestModal userTestModal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit_profile);
         Intent intent = getIntent();
-        UserTestModal userTestModal = intent.getParcelableExtra("userdata");
+        userTestModal = intent.getParcelableExtra("userdata");
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);
         userID = sharedPreferences.getString("userid","");
         fullname=(EditText)findViewById(R.id.etuserName);
@@ -72,8 +72,8 @@ public class UserEditProfile extends AppCompatActivity {
         email=Email.getText().toString().trim();
         Log.d("bb", email);
         phonenumber=PhoneNumber.getText().toString().trim();
-        password=Password.getText().toString().trim();
-        confirmpassword=ConfirmPassword.getText().toString().trim();
+        password=userTestModal.getPassword();
+        confirmpassword=userTestModal.getPassword();
         address=Address.getText().toString().trim();
         postalcode=PostalCode.getText().toString().trim();
         province=Province.getText().toString().trim();
@@ -97,22 +97,22 @@ public class UserEditProfile extends AppCompatActivity {
             PhoneNumber.requestFocus();
             return;
         }
-        if (password.isEmpty()){
+//        if (password.isEmpty()){
 //            Password.setError("Please enter your full name");
 //            Password.requestFocus();
-            return;
-        }
-        if (confirmpassword.isEmpty()){
+//            return;
+//        }
+//        if (confirmpassword.isEmpty()){
 //            ConfirmPassword.setError("Please enter your full name");
 //            ConfirmPassword.requestFocus();
-            return;
-        }
-        if(!password.equals(confirmpassword)){
-//            Password.requestFocus();
-//            ConfirmPassword.requestFocus();
-            Toast.makeText(getApplicationContext(), "Password didn't match", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//            return;
+//        }
+//        if(!password.equals(confirmpassword)) {
+//
+//            Toast.makeText(getApplicationContext(), "Password didn't match", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         UserTestModal userModal = new UserTestModal(name, email,phonenumber,password,address,postalcode,province);
         databaseReference.child("users").child(userID).setValue(userModal);

@@ -135,13 +135,14 @@ public class UserCartFragment extends Fragment {
                             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserHomeFragment()).commit();
+                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserProfileFragment()).commit();
                                 }
                             });
                             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserCartFragment()).commit();
+                                    return;
+//                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserCartFragment()).commit();
                                 }
                             });
 
@@ -167,7 +168,8 @@ public class UserCartFragment extends Fragment {
                             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserCartFragment()).commit();
+                                    return;
+//                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserCartFragment()).commit();
                                 }
                             });
                             AlertDialog dialog = builder.create();
