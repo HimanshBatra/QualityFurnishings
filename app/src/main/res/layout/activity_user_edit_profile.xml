@@ -21,6 +21,19 @@ tools:context=".activity.UserEditProfile">
     android:textColor="#000"
     android:layout_marginTop="30dp"/>
 
+        <TextView
+            android:background="@drawable/confirmordertxtviewbg"
+            android:id="@+id/etuserEmail"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="15dp"
+            android:hint="E-mail"/>
+
+
+
 <com.google.android.material.textfield.TextInputLayout
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:layout_width="300dp"
@@ -36,20 +49,6 @@ tools:context=".activity.UserEditProfile">
 
 </com.google.android.material.textfield.TextInputLayout>
 
-<com.google.android.material.textfield.TextInputLayout
-    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-    android:layout_width="300dp"
-    android:layout_height="60dp"
-    android:layout_marginTop="15dp"
-    android:hint="E-mail">
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/etuserEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text" />
-
-</com.google.android.material.textfield.TextInputLayout>
 
 <com.google.android.material.textfield.TextInputLayout
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -65,7 +64,7 @@ tools:context=".activity.UserEditProfile">
         android:inputType="text" />
 
 </com.google.android.material.textfield.TextInputLayout>
-<com.google.android.material.textfield.TextInputLayout
+ <!--<com.google.android.material.textfield.TextInputLayout
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:layout_width="300dp"
     android:layout_height="60dp"
@@ -79,22 +78,22 @@ tools:context=".activity.UserEditProfile">
         android:layout_height="wrap_content"
         android:inputType="textPassword" />
 
-</com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="15dp"
-            app:passwordToggleEnabled="true"
-            android:hint="Confirm Password">
+</com.google.android.material.textfield.TextInputLayout> -->
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            app:passwordToggleEnabled="true"-->
+<!--            android:hint="Confirm Password">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etuserCPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/etuserCPassword"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="textPassword" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
         <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"

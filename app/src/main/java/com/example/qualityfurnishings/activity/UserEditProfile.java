@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
@@ -22,8 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class UserEditProfile extends AppCompatActivity {
     String name,email,phonenumber,password,confirmpassword,address,postalcode,province;
-    EditText fullname,Email,PhoneNumber,Password,ConfirmPassword,Address,PostalCode,Province;
+    EditText fullname,PhoneNumber,Password,ConfirmPassword,Address,PostalCode,Province;
     Button UserUpdateProfile;
+    TextView Email;
     String userID;
 
 
@@ -36,10 +38,10 @@ public class UserEditProfile extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);
         userID = sharedPreferences.getString("userid","");
         fullname=(EditText)findViewById(R.id.etuserName);
-        Email=(EditText)findViewById(R.id.etuserEmail);
+        Email=(TextView)findViewById(R.id.etuserEmail);
         PhoneNumber=(EditText)findViewById(R.id.etuserPhoneNumber);
-        Password=(EditText)findViewById(R.id.etuserPassword);
-        ConfirmPassword=(EditText)findViewById(R.id.etuserCPassword);
+//        Password=(EditText)findViewById(R.id.etuserPassword);
+//        ConfirmPassword=(EditText)findViewById(R.id.etuserCPassword);
         Address=(EditText)findViewById(R.id.etuserAddress);
         PostalCode=(EditText)findViewById(R.id.etuserPostalCode);
         Province=(EditText)findViewById(R.id.etuserProvince);
@@ -49,8 +51,8 @@ public class UserEditProfile extends AppCompatActivity {
         fullname.setText(userTestModal.getFullName());
         Email.setText(userTestModal.getEmail());
         PhoneNumber.setText(userTestModal.getPhoneNumber());
-        Password.setText(userTestModal.getPassword());
-        ConfirmPassword.setText(userTestModal.getPassword());
+//        Password.setText(userTestModal.getPassword());
+//        ConfirmPassword.setText(userTestModal.getPassword());
         Address.setText(userTestModal.getAddress());
         PostalCode.setText(userTestModal.getPostalcode());
         Province.setText(userTestModal.getProvince());
@@ -68,6 +70,7 @@ public class UserEditProfile extends AppCompatActivity {
     private void updateuserprofile() {
         name=fullname.getText().toString().trim();
         email=Email.getText().toString().trim();
+        Log.d("bb", email);
         phonenumber=PhoneNumber.getText().toString().trim();
         password=Password.getText().toString().trim();
         confirmpassword=ConfirmPassword.getText().toString().trim();
@@ -95,18 +98,18 @@ public class UserEditProfile extends AppCompatActivity {
             return;
         }
         if (password.isEmpty()){
-            Password.setError("Please enter your full name");
-            Password.requestFocus();
+//            Password.setError("Please enter your full name");
+//            Password.requestFocus();
             return;
         }
         if (confirmpassword.isEmpty()){
-            ConfirmPassword.setError("Please enter your full name");
-            ConfirmPassword.requestFocus();
+//            ConfirmPassword.setError("Please enter your full name");
+//            ConfirmPassword.requestFocus();
             return;
         }
         if(!password.equals(confirmpassword)){
-            Password.requestFocus();
-            ConfirmPassword.requestFocus();
+//            Password.requestFocus();
+//            ConfirmPassword.requestFocus();
             Toast.makeText(getApplicationContext(), "Password didn't match", Toast.LENGTH_SHORT).show();
             return;
         }
