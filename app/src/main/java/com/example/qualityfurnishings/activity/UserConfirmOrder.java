@@ -23,9 +23,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.SignUp;
 import com.example.qualityfurnishings.model.Cart;
+import com.example.qualityfurnishings.model.OrderModal;
 import com.example.qualityfurnishings.model.ProductModal;
 import com.example.qualityfurnishings.model.UserTestModal;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -51,6 +55,8 @@ public class UserConfirmOrder extends AppCompatActivity {
     String stCategory,stID,stImage,stProductName,stSubcategory,stUserid;
     int stFinalPrice,stProductPrice,stQuantity;
     List<Cart> cartList;
+    String OrderStatus,paymentMethod;
+    String FirebaseUserID;
 
 
     @Override
@@ -60,8 +66,8 @@ public class UserConfirmOrder extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         amount=extras.getInt("amountValue");
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);
-        String s1 = sharedPreferences.getString("userid","");
-
+        FirebaseUserID = sharedPreferences.getString("userid","");
+        OrderStatus ="Pending";
 
 
         totalAmount=(TextView)findViewById(R.id.tvTotalAmount);
@@ -134,7 +140,7 @@ public class UserConfirmOrder extends AppCompatActivity {
                     month.setVisibility(View.GONE);
                     year.setVisibility(View.GONE);
                     cvv.setVisibility(View.GONE);
-                    Toast.makeText(getApplicationContext(), "Order Placed", Toast.LENGTH_LONG).show();
+
 
                 }
                 else {
@@ -145,23 +151,14 @@ public class UserConfirmOrder extends AppCompatActivity {
         });
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-        database.child("FurnitureCategory").child("cart").child("s1").addListenerForSingleValueEvent(new ValueEventListener() {
+        database.child("FurnitureCategory").child("Cart").child(FirebaseUserID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     cartList = new ArrayList<>();
                     Cart cartmodel = dataSnapshot.getValue(Cart.class);
                     cartList.add(new Cart(cartmodel.getProductName(),cartmodel.getImage(),cartmodel.getCategory(),cartmodel.getSubcategory(),cartmodel.getQuantity(),cartmodel.getFinalPrice(),cartmodel.getId(),cartmodel.getUserid(),cartmodel.getProductPrice()));
-                    stProductName=cartmodel.getProductName();
-                    stFinalPrice=cartmodel.getFinalPrice();
-                    stID=cartmodel.getId();
-                    stImage=cartmodel.getImage();
-                    stCategory=cartmodel.getCategory();
-                    stProductPrice=cartmodel.getProductPrice();
-                    stQuantity=cartmodel.getQuantity();
-                    stSubcategory=cartmodel.getSubcategory();
-                    stUserid=cartmodel.getUserid();
-                    Log.d("pp", stProductName);
+
                 }
 
 
@@ -181,14 +178,14 @@ public class UserConfirmOrder extends AppCompatActivity {
                 stYear=year.getText().toString();
                 stCvv=cvv.getText().toString();
 
-                if (!Rcredit.isChecked()) {
-                    if (!RCash.isChecked()) {
-                        Toast.makeText(getApplicationContext(), "Please Select a Payment type", Toast.LENGTH_LONG).show();
-                    }
-                }
+//                if (!Rcredit.isChecked()) {
+//                    if (!RCash.isChecked()) {
+//                        Toast.makeText(getApplicationContext(), "Please Select a Payment type", Toast.LENGTH_LONG).show();
+//                    }
+//                }
 
                 if(Rcredit.isChecked() ) {
-//                    System.out.println("String length"+ stCredit);
+
                     if (stCredit == null) {
                         creditcard.setError("Invalid Card Number");
                     }
@@ -208,18 +205,35 @@ public class UserConfirmOrder extends AppCompatActivity {
                         cvv.setError("Invalid CVV");
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "Order Placed", Toast.LENGTH_LONG).show();
+                        paymentMethod="Credit Card";
+                        orderConfirmed();
                     }
 
-
-
-
-
+                }
+                else if(RCash.isChecked()){
+                    paymentMethod="Cash On Delivery";
+                    orderConfirmed();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Please Select a Payment type", Toast.LENGTH_LONG).show(); 
                 }
             }
         });
 
 
+    }
+
+    private void orderConfirmed() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference db_ref = databaseReference.child("FurnitureCategory").child("Orders").child(FirebaseUserID).push();
+        OrderModal order=new OrderModal(db_ref.getKey(),OrderStatus,paymentMethod,cartList);
+        db_ref.setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(Task<Void> task) {
+                Toast.makeText(UserConfirmOrder.this, "Order Completed Successfully", Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
     private void selectDate() {
