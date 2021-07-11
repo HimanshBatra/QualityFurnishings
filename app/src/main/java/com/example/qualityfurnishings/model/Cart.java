@@ -1,6 +1,9 @@
 package com.example.qualityfurnishings.model;
 
-public class Cart {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Cart implements Parcelable {
 
     public Cart(){
 
@@ -20,6 +23,34 @@ public class Cart {
         this.userid = userid;
         this.productPrice=productPrice;
     }
+
+    protected Cart(Parcel in) {
+        productName = in.readString();
+        image = in.readString();
+        category = in.readString();
+        subcategory = in.readString();
+        if (in.readByte() == 0) {
+            productPrice = null;
+        } else {
+            productPrice = in.readInt();
+        }
+        userid = in.readString();
+        id = in.readString();
+        quantity = in.readInt();
+        finalPrice = in.readInt();
+    }
+
+    public static final Creator<Cart> CREATOR = new Creator<Cart>() {
+        @Override
+        public Cart createFromParcel(Parcel in) {
+            return new Cart(in);
+        }
+
+        @Override
+        public Cart[] newArray(int size) {
+            return new Cart[size];
+        }
+    };
 
     public String getProductName() {
         return productName;
@@ -118,4 +149,26 @@ public class Cart {
     public int quantity,finalPrice;
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(productName);
+        dest.writeString(image);
+        dest.writeString(category);
+        dest.writeString(subcategory);
+        if (productPrice == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(productPrice);
+        }
+        dest.writeString(userid);
+        dest.writeString(id);
+        dest.writeInt(quantity);
+        dest.writeInt(finalPrice);
+    }
 }

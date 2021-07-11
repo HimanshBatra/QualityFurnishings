@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.activity.UserEditProfile;
+import com.example.qualityfurnishings.activity.UserUpdatePassword;
 import com.example.qualityfurnishings.model.UserTestModal;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +31,7 @@ public class UserProfileFragment extends Fragment {
     TextView username,useremail,userphonenumber,userpassword,useraddress,userpostalcode,userprovince;
     Button Editprofile;
     String stname,stemail,stpassword,stpostalcode,staddress,stprovince,stphonenumber;
+    TextView updatePassword;
 
 
 
@@ -64,6 +66,7 @@ public class UserProfileFragment extends Fragment {
         useraddress=(TextView)view.findViewById(R.id.tvuserAddress);
         userpostalcode=(TextView)view.findViewById(R.id.tvuserPostalCode);
         userprovince=(TextView)view.findViewById(R.id.tvuserProvince);
+        updatePassword=(TextView)view.findViewById(R.id.tvUpdatePassword);
         Editprofile=(Button)view.findViewById(R.id.btuserEditProfile);
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -117,6 +120,13 @@ public class UserProfileFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
 
+            }
+        });
+        updatePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UserUpdatePassword.class);
+                startActivity(intent);
             }
         });
         return view;

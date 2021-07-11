@@ -86,9 +86,9 @@ public class DetailFragment extends Fragment {
         DiscountPriceview.setVisibility(View.GONE);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPref", MODE_PRIVATE);
-         s1 = sharedPreferences.getString("userid","");
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser().getUid();
+        s1 = sharedPreferences.getString("userid","");
+//        mAuth = FirebaseAuth.getInstance();
+//        user = mAuth.getCurrentUser().getUid();
 
 
         Glide.with(getContext())
@@ -135,7 +135,7 @@ public class DetailFragment extends Fragment {
 
 
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-                DatabaseReference db_ref = database.child("users").child(user).child("cart").push();
+                DatabaseReference db_ref = database.child("FurnitureCategory").child("Cart").child(s1).push();
                 Cart cart =new Cart(ProductName,image,category,subcategory,Cartquantity,finalPrice,db_ref.getKey(),s1,finalPrice);
                 db_ref.setValue(cart);
                 Toast.makeText(getContext(), "Product Successfully Added to Cart", Toast.LENGTH_SHORT).show();

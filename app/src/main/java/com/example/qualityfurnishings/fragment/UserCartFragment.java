@@ -78,13 +78,13 @@ public class UserCartFragment extends Fragment {
         cartlist = new ArrayList<>();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("users").child(s1).child("cart").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("FurnitureCategory").child("Cart").child(s1).addValueEventListener(new ValueEventListener() {
 
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 cartlist.clear();
-               totalPrice=0;
+                totalPrice=0;
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
 
@@ -105,6 +105,7 @@ public class UserCartFragment extends Fragment {
 
             }
         });
+
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,41 +115,63 @@ public class UserCartFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserTestModal usermodel = snapshot.getValue(UserTestModal.class);
                         stpostalcode = usermodel.getPostalcode();
-                        staddress =usermodel.getAddress();
+                        staddress = usermodel.getAddress();
                         stprovince = usermodel.getProvince();
+                        if (totalPrice == 0) {
+                            Toast.makeText(getContext(), "Please add some products before checkout", Toast.LENGTH_LONG).show();
+                            return;
+                        }
 
-                        if(stpostalcode.equals("") || staddress.equals("") || stprovince.equals("")){
+
+                        else if (stpostalcode.equals("") || staddress.equals("") || stprovince.equals("")) {
 //                            Toast.makeText(getActivity(), "Please Add your address in your Profile before Checkout", Toast.LENGTH_SHORT).show();
 
-                                // setup the alert builder
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setTitle("ALERT");
-                                builder.setMessage("Please Add your address in your Profile before Checkout");
+                            // setup the alert builder
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("ALERT");
+                            builder.setMessage("Please Add your address in your Profile before Checkout");
 
-                                // add a button
-                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame,new UserProfileFragment()).commit();
-                                    }
-                                });
+                            // add a button
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserHomeFragment()).commit();
+                                }
+                            });
                             builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame,new UserCartFragment()).commit();
+                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserCartFragment()).commit();
                                 }
                             });
 
 
-                                // create and show the alert dialog
-                                AlertDialog dialog = builder.create();
-                                dialog.show();
+                            // create and show the alert dialog
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
 
-                        }
-                        else{
-                            Intent intent= new Intent(getContext(), UserConfirmOrder.class);
-                            intent.putExtra("amountValue",totalPrice);
-                            startActivity(intent);
+                        } else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                            builder.setTitle("Confirm Your Address");
+                            builder.setMessage("House Number: " + staddress + "\n"+"Postal Code: " +stpostalcode +"\n"+ "Province: " +stprovince);
+                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(getContext(), UserConfirmOrder.class);
+                                    intent.putExtra("amountValue", totalPrice);
+                                    intent.putExtra("cartValue", cartlist);
+                                    startActivity(intent);
+
+                                }
+                            });
+                            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame, new UserCartFragment()).commit();
+                                }
+                            });
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
 
 
 
