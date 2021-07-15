@@ -56,4 +56,8 @@ public class UserHome extends AppCompatActivity {
             }
         });
     }
+
+    public void showUserProfile() {
+        usernavigation.setSelectedItemId(R.id.userProfile);
+    }
 }

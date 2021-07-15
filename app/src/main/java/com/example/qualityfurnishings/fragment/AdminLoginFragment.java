@@ -102,9 +102,9 @@ public class AdminLoginFragment extends Fragment {
 
 
 
-                        for (DataSnapshot adminValue : snapshot.getChildren()) {
 
-                            AdminModal admin = adminValue.getValue(AdminModal.class);
+
+                            AdminModal admin = snapshot.getValue(AdminModal.class);
                             String FrMail=admin.getEmail();
                             String FrPassword=admin.getPassword();
 //                            System.out.println(FrPassword);
@@ -125,7 +125,7 @@ public class AdminLoginFragment extends Fragment {
                                 startActivity(intent);
                             }
 
-                        }
+
 
 
 

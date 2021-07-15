@@ -63,6 +63,7 @@ public class AdminSubCatAdapter extends RecyclerView.Adapter<AdminSubCatAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(context, EditProducts.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("productdata",  adminsubcategorylist.get(position));
                 context.startActivity(intent);
 

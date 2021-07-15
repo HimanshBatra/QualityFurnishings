@@ -14,7 +14,7 @@ android:gravity="center"
 tools:context=".activity.UserEditProfile">
 
 <TextView
-    android:layout_width="250dp"
+    android:layout_width="wrap_content"
     android:layout_height="80dp"
     android:text="User Profile"
     android:textSize="40sp"
@@ -27,6 +27,7 @@ tools:context=".activity.UserEditProfile">
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:textColor="#000"
+            android:paddingLeft="10dp"
             android:textSize="15sp"
             android:gravity="center_vertical"
             android:layout_marginTop="15dp"

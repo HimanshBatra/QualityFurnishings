@@ -11,12 +11,12 @@
     tools:context=".activity.AdminEditProfile">
 
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="80dp"
             android:text="Admin Profile"
             android:textSize="40sp"
             android:textColor="#000"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="15dp"/>
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
