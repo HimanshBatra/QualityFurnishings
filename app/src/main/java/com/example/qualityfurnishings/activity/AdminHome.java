@@ -43,4 +43,7 @@ public class AdminHome extends AppCompatActivity {
             }
         });
     }
+    public void showAdminHomeFragment() {
+        bottomNavigationView.setSelectedItemId(R.id.adminHome);
+    }
 }

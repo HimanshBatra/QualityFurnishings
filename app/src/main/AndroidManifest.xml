@@ -15,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QualityFurnishings">
-        <activity android:name=".activity.UserUpdatePassword"></activity>
+        <activity android:name=".activity.UserSearchScreen"></activity>
+        <activity android:name=".activity.UserSearchSelectCategory" />
+        <activity android:name=".activity.UserMyOrders" />
+        <activity android:name=".activity.AdminOrderList" />
+        <activity android:name=".activity.UserUpdatePassword" />
         <activity android:name=".activity.UserConfirmOrder" />
         <activity android:name=".activity.UserEditProfile" />
         <activity android:name=".activity.AdminEditProfile" />

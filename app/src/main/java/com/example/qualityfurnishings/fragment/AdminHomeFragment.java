@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.example.qualityfurnishings.activity.AdminAddProducts;
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.AdminOrderList;
 import com.example.qualityfurnishings.activity.UpdateProductCat;
 
 
@@ -59,6 +60,13 @@ public class AdminHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), UpdateProductCat.class);
+                startActivity(intent);
+            }
+        });
+        orderList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AdminOrderList.class);
                 startActivity(intent);
             }
         });

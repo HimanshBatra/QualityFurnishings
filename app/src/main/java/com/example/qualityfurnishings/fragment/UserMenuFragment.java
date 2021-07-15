@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.activity.LoginActivity;
+import com.example.qualityfurnishings.activity.UserMyOrders;
 
 import static com.example.qualityfurnishings.SplashScreen.UserIdPref;
 import static com.example.qualityfurnishings.activity.UserHome.Userid;
@@ -49,6 +50,13 @@ public class UserMenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user_menu, container, false);
         MyOrders = (LinearLayout)view.findViewById(R.id.myorders);
         LogOut = (LinearLayout)view.findViewById(R.id.logout);
+        MyOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UserMyOrders.class);
+                startActivity(intent);
+            }
+        });
         LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +87,8 @@ public class UserMenuFragment extends Fragment {
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame,new UserMenuFragment()).commit();
+                        return;
+//                        getFragmentManager().beginTransaction().replace(R.id.UserHomeFrame,new UserMenuFragment()).commit();
                     }
                 });
                 builder.show();

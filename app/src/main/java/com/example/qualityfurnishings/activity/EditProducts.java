@@ -335,16 +335,18 @@ public class EditProducts extends AppCompatActivity {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                     databaseReference.child("FurnitureCategory").child(CategoryId).child(SubCategoryId ).child(productModal.getId()).setValue(updateProduct);
                     cleartext();
+                    Intent intent = new Intent(getApplicationContext(),UpdateProductCat.class);
+                    startActivity(intent);
                 }
             }
         });
     }
 
-    private int getIndex(String[] spProductQuality, String das) {
-        for (int i = 0; i < spProductQuality.length; i++)
-            if(spProductQuality[i].equals(das)) return i;
-        return -1;
-    }
+//    private int getIndex(String[] spProductQuality, String das) {
+//        for (int i = 0; i < spProductQuality.length; i++)
+//            if(spProductQuality[i].equals(das)) return i;
+//        return -1;
+//    }
 
 
     private void cleartext() {

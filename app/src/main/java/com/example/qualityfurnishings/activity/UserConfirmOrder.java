@@ -233,6 +233,8 @@ public class UserConfirmOrder extends AppCompatActivity {
                 Toast.makeText(UserConfirmOrder.this, "Order Completed Successfully", Toast.LENGTH_LONG).show();
                 DatabaseReference df = FirebaseDatabase.getInstance().getReference();
                 df.child("FurnitureCategory").child("Cart").child(FirebaseUserID).removeValue();
+                Intent intent = new Intent(getApplicationContext(),UserHome.class);
+                startActivity(intent);
             }
 
         });

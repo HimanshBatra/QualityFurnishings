@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -46,7 +48,13 @@ public class UserEditProfile extends AppCompatActivity {
         PostalCode=(EditText)findViewById(R.id.etuserPostalCode);
         Province=(EditText)findViewById(R.id.etuserProvince);
         UserUpdateProfile=(Button)findViewById(R.id.btuserUpdateProfile);
+        Email.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(),"Sorry You cannot change your EmailID",Toast.LENGTH_LONG).show();
 
+    }
+});
 
         fullname.setText(userTestModal.getFullName());
         Email.setText(userTestModal.getEmail());
@@ -116,6 +124,7 @@ public class UserEditProfile extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         UserTestModal userModal = new UserTestModal(name, email,phonenumber,password,address,postalcode,province);
         databaseReference.child("users").child(userID).setValue(userModal);
+
         Toast.makeText(getApplicationContext(), "User Profile Updated", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),UserHome.class);
         startActivity(intent);

@@ -57,9 +57,9 @@ public class AdminProfileFragment extends Fragment {
         database.child("FurnitureCategory").child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot adminValue : snapshot.getChildren()) {
 
-                    AdminModal admin = adminValue.getValue(AdminModal.class);
+
+                    AdminModal admin = snapshot.getValue(AdminModal.class);
                     stName=admin.getName();
                     stEmail=admin.getEmail();
                     stPassword=admin.getPassword();
@@ -70,7 +70,7 @@ public class AdminProfileFragment extends Fragment {
                     email.setText(stEmail);
                     password.setText(stPassword);
 
-                }
+
             }
 
             @Override
@@ -85,7 +85,8 @@ public class AdminProfileFragment extends Fragment {
                 intent.putExtra("name",stName);
                 intent.putExtra("email",stEmail);
                 intent.putExtra("password",stPassword);
-                ((AdminHome) getActivity()).startActivity(intent);
+//                ((AdminHome) getActivity()).startActivity(intent);
+                startActivity(intent);
 
             }
         });

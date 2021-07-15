@@ -33,6 +33,7 @@
            android:textSize="35sp"
            android:layout_marginLeft="9dp" />
        <LinearLayout
+           android:id="@+id/imgSearch"
            android:layout_width="35dp"
            android:layout_height="35dp"
            android:background="#1F2633"

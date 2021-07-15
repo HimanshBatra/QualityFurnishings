@@ -1,5 +1,6 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.AdminHome;
 import com.example.qualityfurnishings.activity.LoginActivity;
 import com.example.qualityfurnishings.activity.UserHome;
 
@@ -59,7 +61,11 @@ public class AdminLogout extends Fragment {
         Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getFragmentManager().beginTransaction().replace(R.id.AdminHomeFrame,new AdminLoginFragment()).commit();
+                Activity activity = getActivity();
+                if (activity instanceof AdminHome) {
+                    ((AdminHome) activity).showAdminHomeFragment();
+                }
+//                getFragmentManager().beginTransaction().replace(R.id.AdminHomeFrame,new AdminLoginFragment()).commit();
             }
         });
         return view;

@@ -1,5 +1,6 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.UserSearchSelectCategory;
 import com.example.qualityfurnishings.adapter.salecategoryAdapter;
 import com.example.qualityfurnishings.adapter.subcategory2Adapter;
 import com.example.qualityfurnishings.adapter.subcategory3Adapter;
@@ -33,7 +35,7 @@ import java.util.List;
 
 public class UserHomeFragment extends Fragment {
     private RecyclerView recyclerView,test,recyclerview3,recyclerview4,recyclerView5;
-    LinearLayout bedroom,livingroom,bathroom,kitchen,office;
+    LinearLayout bedroom,livingroom,bathroom,kitchen,office,SearchProduct;
     List<ProductModal> firstCateogyList,secondCategoryList,thirdCategoryList,fourthCategoryList,salecategoryList;
     subcategory1Adapter firstCategoryAdapter;
     TextView firstCategory,secondCategory,thirdCategory,fourthCategory,saleCategory;
@@ -75,6 +77,14 @@ public class UserHomeFragment extends Fragment {
         bathroom = view.findViewById(R.id.bathroom);
         kitchen = view.findViewById(R.id.kitchen);
         office = view.findViewById(R.id.office);
+         SearchProduct= view.findViewById(R.id.imgSearch);
+         SearchProduct.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(getContext(), UserSearchSelectCategory.class);
+                 startActivity(intent);
+             }
+         });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);

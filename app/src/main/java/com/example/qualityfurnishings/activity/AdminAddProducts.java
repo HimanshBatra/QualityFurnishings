@@ -297,6 +297,7 @@ public class AdminAddProducts extends AppCompatActivity {
                     // CREATE Product
                     DatabaseReference db_ref = database.child("FurnitureCategory").child(CategoryId).child(SubCategoryId ).push(); // new key is created
                     db_ref.setValue(furnitureProduct);
+                    Toast.makeText(getApplicationContext(),"Product Added Successfully",Toast.LENGTH_LONG).show();
                     
                     cleartext();
                 }
