@@ -41,22 +41,25 @@ import java.util.Calendar;
 import java.util.List;
 
 public class UserConfirmOrder extends AppCompatActivity {
-    TextView totalAmount,month, year;
-    EditText creditcard ,cvv;
+    TextView totalAmount, month, year;
+    EditText creditcard, cvv;
     Button ConfirmOrder;
     int amount;
     RadioGroup radioGroup;
-    RadioButton Rcredit,RCash;
-    String stCredit,stMonth,stYear,stCvv;
-    boolean boolCredit,boolCash;
+    RadioButton Rcredit, RCash;
+    String stCredit, stMonth, stYear, stCvv;
+    boolean boolCredit, boolCash;
     int i = 16;
     DatePickerDialog datePickerDialog;
-    int intDate,intMonth,intYear;
-    String stCategory,stID,stImage,stProductName,stSubcategory,stUserid;
-    int stFinalPrice,stProductPrice,stQuantity;
+    int intDate, intMonth, intYear;
+    String stCategory, stID, stImage, stProductName, stSubcategory, stUserid;
+    int stFinalPrice, stProductPrice, stQuantity;
     List<Cart> cartList;
-    String OrderStatus,paymentMethod;
+    String OrderStatus, paymentMethod;
     String FirebaseUserID;
+    int count,OrderId;
+
+
 
 
     @Override
@@ -64,26 +67,26 @@ public class UserConfirmOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_confirm_order);
         Bundle extras = getIntent().getExtras();
-        amount=extras.getInt("amountValue");
+        amount = extras.getInt("amountValue");
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);
-        FirebaseUserID = sharedPreferences.getString("userid","");
-        OrderStatus ="Pending";
+        FirebaseUserID = sharedPreferences.getString("userid", "");
+        OrderStatus = "Pending";
 
 
-        totalAmount=(TextView)findViewById(R.id.tvTotalAmount);
-        creditcard=(EditText)findViewById(R.id.etCardNumber);
-        month=(TextView)findViewById(R.id.etMonth);
-        year=(TextView)findViewById(R.id.etYear);
-        cvv=(EditText)findViewById(R.id.etCvv);
-        ConfirmOrder=(Button)findViewById(R.id.btConfirmOrder);
-        totalAmount.setText(amount+"");
-        radioGroup=(RadioGroup)findViewById(R.id.radioPayment);
-        Rcredit=(RadioButton) findViewById(R.id.radioCredit);
-        RCash=(RadioButton) findViewById(R.id.radioCash);
+        totalAmount = (TextView) findViewById(R.id.tvTotalAmount);
+        creditcard = (EditText) findViewById(R.id.etCardNumber);
+        month = (TextView) findViewById(R.id.etMonth);
+        year = (TextView) findViewById(R.id.etYear);
+        cvv = (EditText) findViewById(R.id.etCvv);
+        ConfirmOrder = (Button) findViewById(R.id.btConfirmOrder);
+        totalAmount.setText(amount + "");
+        radioGroup = (RadioGroup) findViewById(R.id.radioPayment);
+        Rcredit = (RadioButton) findViewById(R.id.radioCredit);
+        RCash = (RadioButton) findViewById(R.id.radioCash);
 
 
         month.setOnClickListener(new View.OnClickListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.N)
+            //            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 selectDate();
@@ -112,16 +115,15 @@ public class UserConfirmOrder extends AppCompatActivity {
         Rcredit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean credit) {
-                if(credit == true){
-                    boolCredit=true;
+                if (credit == true) {
+                    boolCredit = true;
                     creditcard.setVisibility(View.VISIBLE);
                     month.setVisibility(View.VISIBLE);
                     year.setVisibility(View.VISIBLE);
                     cvv.setVisibility(View.VISIBLE);
                     creditcard.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_credit_card_24, 0, 0, 0);
-                }
-                else{
-                    boolCredit=false;
+                } else {
+                    boolCredit = false;
                     creditcard.setVisibility(View.GONE);
                     month.setVisibility(View.GONE);
                     year.setVisibility(View.GONE);
@@ -134,17 +136,16 @@ public class UserConfirmOrder extends AppCompatActivity {
         RCash.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean cash) {
-                if(cash == true){
-                    boolCash=true;
+                if (cash == true) {
+                    boolCash = true;
                     creditcard.setVisibility(View.GONE);
                     month.setVisibility(View.GONE);
                     year.setVisibility(View.GONE);
                     cvv.setVisibility(View.GONE);
 
 
-                }
-                else {
-                    boolCash=false;
+                } else {
+                    boolCash = false;
                 }
 
             }
@@ -154,10 +155,10 @@ public class UserConfirmOrder extends AppCompatActivity {
         database.child("FurnitureCategory").child("Cart").child(FirebaseUserID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     cartList = new ArrayList<>();
                     Cart cartmodel = dataSnapshot.getValue(Cart.class);
-                    cartList.add(new Cart(cartmodel.getProductName(),cartmodel.getImage(),cartmodel.getCategory(),cartmodel.getSubcategory(),cartmodel.getQuantity(),cartmodel.getFinalPrice(),cartmodel.getId(),cartmodel.getUserid(),cartmodel.getProductPrice()));
+                    cartList.add(new Cart(cartmodel.getProductName(), cartmodel.getImage(), cartmodel.getCategory(), cartmodel.getSubcategory(), cartmodel.getQuantity(), cartmodel.getFinalPrice(), cartmodel.getId(), cartmodel.getUserid(), cartmodel.getProductPrice()));
 
                 }
 
@@ -173,10 +174,10 @@ public class UserConfirmOrder extends AppCompatActivity {
         ConfirmOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stCredit=creditcard.getText().toString();
-                stMonth=month.getText().toString();
-                stYear=year.getText().toString();
-                stCvv=cvv.getText().toString();
+                stCredit = creditcard.getText().toString();
+                stMonth = month.getText().toString();
+                stYear = year.getText().toString();
+                stCvv = cvv.getText().toString();
 
 //                if (!Rcredit.isChecked()) {
 //                    if (!RCash.isChecked()) {
@@ -184,37 +185,30 @@ public class UserConfirmOrder extends AppCompatActivity {
 //                    }
 //                }
 
-                if(Rcredit.isChecked() ) {
+                if (Rcredit.isChecked()) {
 
                     if (stCredit == null) {
                         creditcard.setError("Invalid Card Number");
-                    }
-                    else if (stCredit.length() != i) {
+                    } else if (stCredit.length() != i) {
                         Log.d("st", String.valueOf(stCredit.length() + stCredit));
                         creditcard.setError("Invalid Card Number");
-                    }
-                    else if(stMonth == ""){
+                    } else if (stMonth == "") {
 
-                        Toast.makeText(getApplicationContext(),"Please Select a month ",Toast.LENGTH_LONG).show();
-                    }
-                    else if(stYear == ""){
+                        Toast.makeText(getApplicationContext(), "Please Select a month ", Toast.LENGTH_LONG).show();
+                    } else if (stYear == "") {
 
-                        Toast.makeText(getApplicationContext(),"Please Select a year ",Toast.LENGTH_LONG).show();
-                    }
-                    else if(stCvv.length() != 3){
+                        Toast.makeText(getApplicationContext(), "Please Select a year ", Toast.LENGTH_LONG).show();
+                    } else if (stCvv.length() != 3) {
                         cvv.setError("Invalid CVV");
-                    }
-                    else {
-                        paymentMethod="Credit Card";
+                    } else {
+                        paymentMethod = "Credit Card";
                         orderConfirmed();
                     }
 
-                }
-                else if(RCash.isChecked()){
-                    paymentMethod="Cash On Delivery";
+                } else if (RCash.isChecked()) {
+                    paymentMethod = "Cash On Delivery";
                     orderConfirmed();
-                }
-                else{
+                } else {
                     Toast.makeText(getApplicationContext(), "Please Select a Payment type", Toast.LENGTH_LONG).show();
                 }
             }
@@ -224,22 +218,65 @@ public class UserConfirmOrder extends AppCompatActivity {
     }
 
     private void orderConfirmed() {
+
+        final List<OrderModal> OrderList = new ArrayList<>(); // list of groups
+        FirebaseDatabase.getInstance()
+                .getReference()
+                .child("FurnitureCategory")
+                .child("Orders") // this is the id of user - over whose groups you want to iterate
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            for(DataSnapshot orderCount : snapshot.getChildren()){
+                                OrderModal order = orderCount.getValue(OrderModal.class); // this is a group
+                                OrderList.add(order);
+
+
+                            }
+
+                        }
+                        count = OrderList.size();
+                        Log.d("size", String.valueOf(count));
+                        count = count+1;
+                        OrderId=count;
+                        Log.d("size2", String.valueOf(OrderId));
+                        placeOrder();
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
+
+    }
+
+    private void placeOrder() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         DatabaseReference db_ref = databaseReference.child("FurnitureCategory").child("Orders").child(FirebaseUserID).push();
-        OrderModal order=new OrderModal(db_ref.getKey(),OrderStatus,paymentMethod,cartList);
+
+        OrderModal order = new OrderModal(OrderId, OrderStatus, paymentMethod, cartList);
         db_ref.setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(Task<Void> task) {
                 Toast.makeText(UserConfirmOrder.this, "Order Completed Successfully", Toast.LENGTH_LONG).show();
                 DatabaseReference df = FirebaseDatabase.getInstance().getReference();
                 df.child("FurnitureCategory").child("Cart").child(FirebaseUserID).removeValue();
-                Intent intent = new Intent(getApplicationContext(),UserHome.class);
+                Intent intent = new Intent(getApplicationContext(), UserHome.class);
                 startActivity(intent);
             }
 
         });
-
-
     }
 
 

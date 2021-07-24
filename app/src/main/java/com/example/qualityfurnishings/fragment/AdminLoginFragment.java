@@ -136,7 +136,7 @@ public class AdminLoginFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getActivity(), "Failed to load Products", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Login Error", Toast.LENGTH_SHORT).show();
 
                     }
                 });
