@@ -158,7 +158,7 @@ public class UserConfirmOrder extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     cartList = new ArrayList<>();
                     Cart cartmodel = dataSnapshot.getValue(Cart.class);
-                    cartList.add(new Cart(cartmodel.getProductName(), cartmodel.getImage(), cartmodel.getCategory(), cartmodel.getSubcategory(), cartmodel.getQuantity(), cartmodel.getFinalPrice(), cartmodel.getId(), cartmodel.getUserid(), cartmodel.getProductPrice()));
+                    cartList.add(new Cart(cartmodel.getProductName(), cartmodel.getImage(), cartmodel.getCategory(), cartmodel.getSubcategory(), cartmodel.getQuantity(), cartmodel.getFinalPrice(), cartmodel.getId(), cartmodel.getUserid(), cartmodel.getProductPrice(),cartmodel.getItemCount()));
 
                 }
 
@@ -238,10 +238,10 @@ public class UserConfirmOrder extends AppCompatActivity {
 
                         }
                         count = OrderList.size();
-                        Log.d("size", String.valueOf(count));
+//                        Log.d("size", String.valueOf(count));
                         count = count+1;
                         OrderId=count;
-                        Log.d("size2", String.valueOf(OrderId));
+//                        Log.d("size2", String.valueOf(OrderId));
                         placeOrder();
 
 

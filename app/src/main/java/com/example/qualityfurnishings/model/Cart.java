@@ -12,7 +12,7 @@ public class Cart implements Parcelable {
 
 
 
-    public Cart(String productName, String image, String category, String subcategory, int quantity, int finalPrice,String id,String userid,int productPrice) {
+    public Cart(String productName, String image, String category, String subcategory, int quantity, int finalPrice,String id,String userid,int productPrice,int itemCount) {
         this.productName = productName;
         this.image = image;
         this.category = category;
@@ -22,6 +22,7 @@ public class Cart implements Parcelable {
         this.id=id;
         this.userid = userid;
         this.productPrice=productPrice;
+        this.itemCount=itemCount;
     }
 
     protected Cart(Parcel in) {
@@ -147,6 +148,16 @@ public class Cart implements Parcelable {
 
 
     public int quantity,finalPrice;
+
+    public int getItemCount() {
+        return itemCount;
+    }
+
+    public void setItemCount(int itemCount) {
+        this.itemCount = itemCount;
+    }
+
+    public int itemCount;
 
 
     @Override
