@@ -34,7 +34,7 @@ public class UserSearchSelectCategory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),UserSearchScreen.class);
-                intent.putExtra("category","BathRoom");
+                intent.putExtra("category","Bathroom");
                 startActivity(intent);
 
             }
