@@ -114,7 +114,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 DatabaseReference database = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference db_ref = database.child("FurnitureCategory").child("Cart").child(s1).push();
-                Cart cart =new Cart(ProductName,image,category,subcategory,Cartquantity,finalPrice,db_ref.getKey(),s1,finalPrice);
+                Cart cart =new Cart(ProductName,image,category,subcategory,Cartquantity,finalPrice,db_ref.getKey(),s1,finalPrice,itemcount);
                 db_ref.setValue(cart);
                 Toast.makeText(getApplicationContext(), "Product Successfully Added to Cart", Toast.LENGTH_SHORT).show();
 

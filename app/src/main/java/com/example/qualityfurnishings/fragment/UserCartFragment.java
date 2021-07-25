@@ -93,7 +93,7 @@ public class UserCartFragment extends Fragment  {
 
 
                     Cart listData = dataSnapshot.getValue(Cart.class);
-                    cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice(),dataSnapshot.getKey(),listData.getUserid(),listData.getProductPrice()));
+                    cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice(),dataSnapshot.getKey(),listData.getUserid(),listData.getProductPrice(),listData.getItemCount()));
                     totalPrice=totalPrice+listData.getFinalPrice();
 
                 }
