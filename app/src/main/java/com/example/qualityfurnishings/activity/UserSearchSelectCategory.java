@@ -25,6 +25,7 @@ public class UserSearchSelectCategory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),UserSearchScreen.class);
+                intent.putExtra("category","BedRoom");
                 startActivity(intent);
 
             }
@@ -33,6 +34,7 @@ public class UserSearchSelectCategory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),UserSearchScreen.class);
+                intent.putExtra("category","Bathroom");
                 startActivity(intent);
 
             }
@@ -41,6 +43,7 @@ public class UserSearchSelectCategory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),UserSearchScreen.class);
+                intent.putExtra("category","LivingRoom");
                 startActivity(intent);
 
             }
@@ -49,6 +52,7 @@ public class UserSearchSelectCategory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),UserSearchScreen.class);
+                intent.putExtra("category","Kitchen");
                 startActivity(intent);
 
             }
@@ -57,6 +61,7 @@ public class UserSearchSelectCategory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),UserSearchScreen.class);
+                intent.putExtra("category","Office");
                 startActivity(intent);
 
             }
