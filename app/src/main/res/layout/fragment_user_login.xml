@@ -68,7 +68,7 @@
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp"
-    android:hint="Enter Your Email"
+    android:hint="@string/enter_your_email"
     app:startIconDrawable="@drawable/ic_baseline_email_24">
 
     <com.google.android.material.textfield.TextInputEditText
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:passwordToggleEnabled="true"
-        android:hint="Enter Your Password">
+        android:hint="@string/enter_your_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPssword"
@@ -102,13 +102,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="70dp"
         android:textColor="@color/blue"
-        android:text="Forget Password?"/>
+        android:text="@string/forgot_password"/>
 
     <Button
         android:id="@+id/btUserLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:layout_marginTop="30dp"
        />
     <LinearLayout
@@ -120,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Don't have an Account?"/>
+            android:text="@string/dont_have_an_account"/>
         <TextView
             android:id="@+id/tvSignup"
             android:layout_width="wrap_content"
@@ -128,9 +128,19 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="5dp"
             android:textColor="#1F2633"
-            android:text="Sign Up"/>
+            android:text="@string/sign_up"/>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="French" />
 
 
 </LinearLayout>
