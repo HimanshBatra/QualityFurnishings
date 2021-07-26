@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">QualityFurnishings</string>
+    <string name="home" translatable="false">Domicile</string>
+    <string name="profile">Profil</string>
+    <string name="enter_your_email">Entrer votre Email</string>
+    <string name="enter_your_password">Tapez votre mot de passe</string>
+    <string name="forgot_password">Mot de passe oublié?</string>
+    <string name="login">Connexion</string>
+    <string name="dont_have_an_account">Vous n\'avez pas de compte?</string>
+    <string name="sign_up">S\'inscrire</string>
+    <string name="hello_blank_fragment">Bonjour fragment vierge</string>
+    <string name="bedroom">Chambre à coucher</string>
+    <string name="furniture">Un meuble</string>
+    <string name="livingroom">Salon</string>
+</resources>
