@@ -49,7 +49,6 @@ public class UserLoginFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     public static final String MyPREFERENCES = "LoginPref" ;
     public static final String UserType = "usertype";
-    //SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
 
     String english = "English";

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class UserHomeFragment extends Fragment {
     subcategory3Adapter thirdCategoryAdapter;
     subcategory4Adapter fourrthCategoryAdapter;
     salecategoryAdapter salecategoryAdapter;
+    RelativeLayout bottomNavigation;
 
 
 
@@ -91,6 +93,9 @@ public class UserHomeFragment extends Fragment {
         kitchen = view.findViewById(R.id.kitchen);
         office = view.findViewById(R.id.office);
          SearchProduct= view.findViewById(R.id.imgSearch);
+         bottomNavigation = view.findViewById(R.id.bottomFragment);
+
+         
          SearchProduct.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {

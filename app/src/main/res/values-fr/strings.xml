@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">QualityFurnishings</string>
-    <string name="home" translatable="false">Domicile</string>
+    <string name="home">Domicile</string>
     <string name="profile">Profil</string>
     <string name="enter_your_email">Entrer votre Email</string>
     <string name="enter_your_password">Tapez votre mot de passe</string>
@@ -13,4 +13,10 @@
     <string name="bedroom">Chambre à coucher</string>
     <string name="furniture">Un meuble</string>
     <string name="livingroom">Salon</string>
+    <string name="bathroom">Salle de bains</string>
+    <string name="kitchen">Cuisine</string>
+    <string name="office">Bureau</string>
+    <string name="findThe">Trouvez le</string>
+    <string name="bestFurniture">Meilleurs meubles</string>
+    <string name="productsOnSale">Produits en vente</string>
 </resources>
