@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,10 +25,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserSearchScreen extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     String Category;
-    ImageView Imgsearch,Filter;
+    ImageView Imgsearch;
     TextView searchProduct;
     String flag="false";
     List<ProductModal> productList;
@@ -41,28 +39,11 @@ public class UserSearchScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_search_screen);
+        setContentView(R.layout.activity_search);
         context = getApplicationContext();
-        recyclerView = findViewById(R.id.productsView);
+        recyclerView = findViewById(R.id.productsSerachView);
         Imgsearch=(ImageView)findViewById(R.id.search);
-        Filter=(ImageView)findViewById(R.id.imgFilter);
-        Filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
-                intent.putExtra("category",Category);
-                startActivity(intent);
-            }
-        });
         searchProduct=findViewById(R.id.etSearch);
-        searchProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
-                intent.putExtra("category",Category);
-                startActivity(intent);
-            }
-        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 //        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
@@ -83,7 +64,7 @@ public class UserSearchScreen extends AppCompatActivity {
                             searchProductList.add(new ProductModal(productList.get(i).getImage(), productList.get(i).getName(),productList.get(i).getDescription(),
                                     productList.get(i).getQuality(),productList.get(i).getQuantity(),productList.get(i).getPrice(),productList.get(i).isSale(),
                                     productList.get(i).getDiscount(), productList.get(i).getId(),Category,productList.get(i).getSubCategory()));
-                            userSearchAdapter = new UserSearchAdapter(searchProductList, UserSearchScreen.this);
+                            userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
                             recyclerView.setAdapter(userSearchAdapter);
 
 
@@ -93,7 +74,7 @@ public class UserSearchScreen extends AppCompatActivity {
 
                     if(flag.equals("false")){
                         searchProductList.clear();
-                        userSearchAdapter = new UserSearchAdapter(searchProductList, UserSearchScreen.this);
+                        userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
                         recyclerView.setAdapter(userSearchAdapter);
 
                     }
@@ -104,7 +85,6 @@ public class UserSearchScreen extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void loadProducts() {
