@@ -66,9 +66,14 @@ public class UserHomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //SharedPreferences.Editor editor = sharedPreferences.edit();
         String lang = sharedPreferences.getString("code","en");
-        ChangeLanguage(lang);
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        //ChangeLanguage(lang);
 
     }
 
@@ -255,8 +260,8 @@ public class UserHomeFragment extends Fragment {
     }
     public void ChangeLanguage(String language){
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+       // SharedPreferences sharedPreferences = getContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
+       // SharedPreferences.Editor editor = sharedPreferences.edit();
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
