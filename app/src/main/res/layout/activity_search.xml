@@ -39,6 +39,167 @@
 
 
     </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Quality"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/blue"
+            android:textSize="15sp"/>
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <Button
+            android:id="@+id/superiorChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Superior"/>
+        <Button
+            android:id="@+id/wellChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Well Founded"/>
+        <Button
+            android:id="@+id/cheapChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Cheap"/>
+        <Button
+            android:id="@+id/unwarrantedChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="UnWarranted"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+<!--        <com.google.android.material.chip.ChipGroup-->
+<!--            android:id="@+id/quality"-->
+<!--            app:singleSelection="true"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            >-->
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/superiorChip"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Superior"/>-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/wellChip"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:text="Well Founded"/>-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/cheapChip"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:text="Cheap"/>-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/unwarrantedChip"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:text="UnWarranted"/>-->
+
+<!--        </com.google.android.material.chip.ChipGroup>-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price Range"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/blue"
+        android:textSize="15sp"/>
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/price0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="0-50"/>
+            <Button
+                android:id="@+id/price50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="51-100"/>
+            <Button
+                android:id="@+id/price100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="101-150"/>
+            <Button
+                android:id="@+id/price150"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="150+"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+
+
+
+<!--        <com.google.android.material.chip.ChipGroup-->
+<!--            android:id="@+id/GroupPrice"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            app:singleSelection="true"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            >-->
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/price0"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="0 - 50"/>-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/price51"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:text="51 - 100"/>-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/price101"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:text="101 - 150"/>-->
+
+<!--            <com.google.android.material.chip.Chip-->
+<!--                android:id="@+id/price150"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                style="@style/Widget.MaterialComponents.Chip.Choice"-->
+<!--                android:text="150+"/>-->
+
+<!--        </com.google.android.material.chip.ChipGroup>-->
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
