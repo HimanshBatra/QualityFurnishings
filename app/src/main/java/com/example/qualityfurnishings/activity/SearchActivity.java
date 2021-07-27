@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -56,10 +57,10 @@ public class SearchActivity extends AppCompatActivity {
 //        QualityGroup=findViewById(R.id.quality);
 //        PriceGroup=findViewById(R.id.GroupPrice);
         recyclerView = findViewById(R.id.productsSerachView);
-        superior = findViewById(R.id.superiorChip);
-        wellfounded = findViewById(R.id.wellChip);
-        cheap = findViewById(R.id.cheapChip);
-        unwarranted = findViewById(R.id.unwarrantedChip);
+        superior =(Button) findViewById(R.id.superiorChip);
+        wellfounded = (Button) findViewById(R.id.wellChip);
+        cheap = (Button) findViewById(R.id.cheapChip);
+        unwarranted = (Button) findViewById(R.id.unwarrantedChip);
         Imgsearch=(ImageView)findViewById(R.id.search);
         searchProduct=findViewById(R.id.etSearch);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -69,17 +70,30 @@ public class SearchActivity extends AppCompatActivity {
         Bundle b = i.getExtras();
         Category=b.getString("category");
         loadProducts();
+        superior.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        wellfounded.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        cheap.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        unwarranted.setBackgroundColor(Color.parseColor("#B8B8B8"));
         superior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Quality= "Superior";
-              
+                superior.setBackgroundColor(Color.parseColor("#1F2633"));
+                wellfounded.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                cheap.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                unwarranted.setBackgroundColor(Color.parseColor("#B8B8B8"));
+
+
             }
         });
         wellfounded.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Quality= "Well FoUnded";
+                superior.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                wellfounded.setBackgroundColor(Color.parseColor("#1F2633"));
+                cheap.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                unwarranted.setBackgroundColor(Color.parseColor("#B8B8B8"));
 
             }
         });
@@ -87,6 +101,10 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Quality= "Cheap";
+                superior.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                wellfounded.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                cheap.setBackgroundColor(Color.parseColor("#1F2633"));
+                unwarranted.setBackgroundColor(Color.parseColor("#B8B8B8"));
 
             }
         });
@@ -94,6 +112,11 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Quality= "UnWarranted";
+                superior.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                wellfounded.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                cheap.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                unwarranted.setBackgroundColor(Color.parseColor("#1F2633"));
+
 
             }
         });
@@ -173,11 +196,22 @@ public class SearchActivity extends AppCompatActivity {
         priceFifty = (Button)findViewById(R.id.price50);
         priceHundred = (Button)findViewById(R.id.price100);
         priceOneFifty = (Button)findViewById(R.id.price150);
+
+        priceZero.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        priceFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        priceHundred.setBackgroundColor(Color.parseColor("#B8B8B8"));
+        priceOneFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+
         priceZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 priceMin=0;
                 priceMax=50;
+                priceZero.setBackgroundColor(Color.parseColor("#1F2633"));
+                priceFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceHundred.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceOneFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+
 
             }
         });
@@ -186,6 +220,10 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 priceMin=51;
                 priceMax=100;
+                priceZero.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceFifty.setBackgroundColor(Color.parseColor("#1F2633"));
+                priceHundred.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceOneFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
 
             }
         });
@@ -194,6 +232,10 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 priceMin=101;
                 priceMax=150;
+                priceZero.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceHundred.setBackgroundColor(Color.parseColor("#1F2633"));
+                priceOneFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
 
             }
         });
@@ -202,6 +244,10 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 priceMin=151;
                 priceMax=10000;
+                priceZero.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceHundred.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceOneFifty.setBackgroundColor(Color.parseColor("#1F2633"));
 
             }
         });
