@@ -66,7 +66,13 @@ public class UserLoginFragment extends Fragment {
         sharedPreferences = getContext().getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         String lang = sharedPreferences.getString("code","en");
-        ChangeLanguage(lang);
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        //ChangeLanguage(lang);
+
     }
 
     @Override
@@ -85,7 +91,7 @@ public class UserLoginFragment extends Fragment {
 
         language = view.findViewById(R.id.textViewLanguage);
 
-
+// For text change on login screen
         String lang = sharedPreferences.getString("code","en");
         if(lang.equals("en")){
             language.setText(french);
@@ -93,8 +99,8 @@ public class UserLoginFragment extends Fragment {
             language.setText(english);
         }
 
-
-        language.setOnClickListener(new View.OnClickListener() {
+// For on Click function language change
+        language.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
@@ -194,7 +200,7 @@ public class UserLoginFragment extends Fragment {
 
     }
 
-    public void ChangeLanguage(String language){
+    /*public void ChangeLanguage(String language){
 
         sharedPreferences = getContext().getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -203,7 +209,7 @@ public class UserLoginFragment extends Fragment {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
-    }
+    }*/
 
     public void restartActivity(Activity act){
 

@@ -19,4 +19,14 @@
     <string name="findThe">Trouvez le</string>
     <string name="bestFurniture">Meilleurs meubles</string>
     <string name="productsOnSale">Produits en vente</string>
+    <string name="email"> E-mail</string>
+    <string name="fullname">Nom complet</string>
+    <string name="userProfile"> Profil de l\'utilisateur</string>
+    <string name="phoneNumber"> Numéro de téléphone</string>
+    <string name="password"> Mot de passe</string>
+    <string name="address"> Adresse</string>
+    <string name="postalcode"> code postal</string>
+    <string name="province"> Province</string>
+    <string name="changePassword"> Changer le mot de passe</string>
+    <string name="editProfile"> Editer le profil</string>
 </resources>

@@ -17,6 +17,16 @@
     <string name="findThe">Find The</string>
     <string name="bestFurniture">Best Furniture</string>
     <string name="productsOnSale">Products On Sale</string>
+    <string name="email"> E-mail</string>
+    <string name="fullname"> Full Name</string>
+    <string name="userProfile"> User Profile</string>
+    <string name="phoneNumber"> Phone Number</string>
+    <string name="password"> Password</string>
+    <string name="address"> Address</string>
+    <string name="postalcode"> Postal Code</string>
+    <string name="province"> Province</string>
+    <string name="changePassword"> Change Password</string>
+    <string name="editProfile"> Edit Profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

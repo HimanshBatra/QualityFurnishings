@@ -1,7 +1,9 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 import static android.content.Context.MODE_PRIVATE;
 
 
@@ -33,12 +37,14 @@ public class UserProfileFragment extends Fragment {
     String stname,stemail,stpassword,stpostalcode,staddress,stprovince,stphonenumber;
     TextView updatePassword;
 
-
+    String english = "English";
+    String french = "French";
 
 
 
     public UserProfileFragment() {
         // Required empty public constructor
+
     }
 
 
@@ -47,6 +53,11 @@ public class UserProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String lang = sharedPreferences.getString("code","en");
+        ChangeLanguage(lang);
+
 
     }
 
@@ -130,5 +141,15 @@ public class UserProfileFragment extends Fragment {
             }
         });
         return view;
+    }
+    public void ChangeLanguage(String language){
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
     }
 }
