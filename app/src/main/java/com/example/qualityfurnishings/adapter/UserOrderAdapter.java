@@ -21,6 +21,7 @@ import java.util.List;
 
 public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.ViewHolder>{
     private List<OrderModal> userOrderList;
+    private List<Cart> cartList;
 
     Context context;
 
@@ -43,12 +44,12 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.View
         TextView id = holder.orderId;
         TextView status = holder.orderStatus;
         TextView totalamount = holder.Amount;
-//
-//        userproductList=userOrderList.get(position).getCartList();
-//        Glide.with(context).load(userproductList.get(position).image).into(img_resource);
+
+        cartList=userOrderList.get(position).getCartList();
+        Glide.with(context).load(cartList.get(position).image).into(img_resource);
         id.setText(userOrderList.get(position).getOrderId()+"");
         status.setText(userOrderList.get(position).getOrderStatus());
-//        totalamount.setText(userproductList.get(position).getFinalPrice());
+        totalamount.setText(cartList.get(position).getFinalPrice()+"");
 
 
 

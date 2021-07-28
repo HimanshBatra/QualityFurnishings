@@ -33,7 +33,7 @@ public class UserMyOrders extends AppCompatActivity {
         setContentView(R.layout.activity_user_my_orders);
         orderView=(RecyclerView)findViewById(R.id.userOrderView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         orderView.setLayoutManager(layoutManager);
         orderlist = new ArrayList<>();
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);

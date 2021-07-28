@@ -27,34 +27,71 @@
                 />
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="170dp"
+                android:layout_width="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tvorderId"
-                    android:textSize="25dp"
-                    android:text="OrderId"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/tvorderStatus"
-                    android:textSize="20dp"
-                    android:text="Order Status"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <TextView
-                        android:id="@+id/tvTotalAmount"
-                        android:textSize="25dp"
-                        android:text="TOTAL"
+                        android:textSize="20sp"
+                        android:text="OrderId :"
                         android:textColor="#FFFFFF"
-                        android:textStyle="normal"
-                        android:layout_marginLeft="5dp"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tvorderId"
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="normal"
+                        android:layout_marginLeft="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+                   <TextView
+                       android:textSize="20sp"
+                       android:text="Order Status:"
+                       android:textColor="#FFFFFF"
+                       android:textStyle="bold"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+                   <TextView
+                       android:id="@+id/tvorderStatus"
+                       android:textSize="20dp"
+                       android:textColor="#FFFFFF"
+                       android:textStyle="normal"
+                       android:layout_marginLeft="8dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+               </LinearLayout>
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+                   <TextView
+                       android:textSize="20sp"
+                       android:text="Amount :"
+                       android:textColor="#FFFFFF"
+                       android:textStyle="bold"
+                       android:layout_marginLeft="5dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+                   <TextView
+                       android:id="@+id/tvTotalAmount"
+                       android:textSize="20sp"
+                       android:textColor="#FFFFFF"
+                       android:textStyle="normal"
+                       android:layout_marginLeft="8dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"/>
+               </LinearLayout>
+
 
 
 
