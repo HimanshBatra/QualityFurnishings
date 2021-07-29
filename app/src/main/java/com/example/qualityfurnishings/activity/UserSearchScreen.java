@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.adapter.UserSearchAdapter;
@@ -32,8 +33,8 @@ import java.util.Locale;
 public class UserSearchScreen extends AppCompatActivity {
     private RecyclerView recyclerView;
     String Category;
-    ImageView Imgsearch;
-    EditText searchProduct;
+    ImageView Imgsearch,Filter;
+    TextView searchProduct;
     String flag="false";
     List<ProductModal> productList;
     ArrayList<ProductModal> searchProductList;
@@ -58,9 +59,26 @@ public class UserSearchScreen extends AppCompatActivity {
         context = getApplicationContext();
         recyclerView = findViewById(R.id.productsView);
         Imgsearch=(ImageView)findViewById(R.id.search);
+        Filter=(ImageView)findViewById(R.id.imgFilter);
+        Filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
+                intent.putExtra("category",Category);
+                startActivity(intent);
+            }
+        });
         searchProduct=findViewById(R.id.etSearch);
+        searchProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
+                intent.putExtra("category",Category);
+                startActivity(intent);
+            }
+        });
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setHasFixedSize(true);
+//        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         Intent i = getIntent();
         Bundle b = i.getExtras();

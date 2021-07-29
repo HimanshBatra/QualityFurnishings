@@ -1,6 +1,7 @@
 package com.example.qualityfurnishings.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.User;
+import com.example.qualityfurnishings.activity.DetailActivity;
 import com.example.qualityfurnishings.activity.UserSearchScreen;
 import com.example.qualityfurnishings.model.ProductModal;
 
@@ -39,11 +41,19 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.Vi
         ImageView img_Value= holder.productimageView;
         TextView ProductName = holder.productName;
         TextView ProductSubCategory = holder.productCategory;
-//        LinearLayout View=holder.searchproductLayout;
+        LinearLayout gridView=holder.searchproductLayout;
 
         Glide.with(UserSearchScreen.context).load(productList.get(position).image).into(img_Value);
         ProductName.setText(productList.get(position).getName()+"");
         ProductSubCategory.setText(productList.get(position).getSubCategory()+"");
+        gridView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                Intent intent= new Intent(v.getContext(), DetailActivity.class);
+                intent.putExtra("productdata",  productList.get(position));
+                v.getContext().startActivity(intent);
+            }
+        });
 
 
 
@@ -59,13 +69,13 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.Vi
         private ImageView productimageView;
         private TextView productName;
         private TextView productCategory;
-//        private LinearLayout searchproductLayout;
+        private LinearLayout searchproductLayout;
         public ViewHolder( View itemView) {
             super(itemView);
             productimageView=itemView.findViewById(R.id.proImage);
             productName=itemView.findViewById(R.id.tvitemName);
             productCategory=itemView.findViewById(R.id.tvsubCategory);
-//            searchproductLayout=itemView.findViewById(R.id.searchProduct);
+            searchproductLayout=itemView.findViewById(R.id.searchProduct);
         }
     }
 }

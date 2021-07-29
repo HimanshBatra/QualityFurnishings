@@ -155,8 +155,9 @@ public class UserConfirmOrder extends AppCompatActivity {
         database.child("FurnitureCategory").child("Cart").child(FirebaseUserID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                cartList = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    cartList = new ArrayList<>();
+
                     Cart cartmodel = dataSnapshot.getValue(Cart.class);
                     cartList.add(new Cart(cartmodel.getProductName(), cartmodel.getImage(), cartmodel.getCategory(), cartmodel.getSubcategory(), cartmodel.getQuantity(), cartmodel.getFinalPrice(), cartmodel.getId(), cartmodel.getUserid(), cartmodel.getProductPrice(),cartmodel.getItemCount()));
 
