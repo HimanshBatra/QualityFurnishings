@@ -182,7 +182,7 @@
             android:id="@+id/salecategory"
             android:layout_width="wrap_content"
             android:textStyle="bold"
-            android:text="@string/productsOnSale"
+            android:text="Products On Sale"
             android:textColor="#000"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"

@@ -2,6 +2,8 @@
     <string name="app_name">QualityFurnishings</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
+    <string name="cart">Cart</string>
+    <string name="logout">LogOut</string>
     <string name="enter_your_email">Enter Your Email</string>
     <string name="enter_your_password">Enter Your Password</string>
     <string name="forgot_password">Forget Password?</string>
@@ -16,7 +18,7 @@
     <string name="office">Office</string>
     <string name="findThe">Find The</string>
     <string name="bestFurniture">Best Furniture</string>
-    <string name="productsOnSale">Products On Sale</string>
+    <string name="productsOnSale" translatable="false">Products On Sale</string>
     <string name="email"> E-mail</string>
     <string name="fullname"> Full Name</string>
     <string name="userProfile"> User Profile</string>
@@ -27,6 +29,19 @@
     <string name="province"> Province</string>
     <string name="changePassword"> Change Password</string>
     <string name="editProfile"> Edit Profile</string>
+    <string name="total">Total: $ -</string>
+    <string name="checkout"> CHECKOUT</string>
+    <string name="myOrders"> My Orders</string>
+    <string name="languageChange"> Change Language</string>
+    <string name="bedroomFurniture">BEDROOM FURNITURE</string>
+    <string name="kitchenFurniture">KITCHEN FURNITURE</string>
+    <string name="livingroomFurniture">LIVINGROOM FURNITURE</string>
+    <string name="bathroomFurniture">BATHROOM FURNITURE</string>
+    <string name="officeFurniture">OFFICE FURNITURE</string>
+    <string name="psc">Please Select a Category for which\n you want to Search the product
+</string>
+    <string name="fyb"> Find Your Best furniture </string>
+    <string name="search"> Search </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

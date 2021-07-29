@@ -16,7 +16,7 @@ tools:context=".activity.UserEditProfile">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="80dp"
-    android:text="User Profile"
+    android:text="@string/userProfile"
     android:textSize="40sp"
     android:textColor="#000"
     android:layout_marginTop="30dp"/>
@@ -31,7 +31,7 @@ tools:context=".activity.UserEditProfile">
             android:textSize="15sp"
             android:gravity="center_vertical"
             android:layout_marginTop="15dp"
-            android:hint="E-mail"/>
+            android:hint="@string/email"/>
 
 
 
@@ -40,7 +40,7 @@ tools:context=".activity.UserEditProfile">
     android:layout_width="300dp"
     android:layout_height="60dp"
     android:layout_marginTop="15dp"
-    android:hint="FullName">
+    android:hint="@string/fullname">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etuserName"
@@ -56,7 +56,7 @@ tools:context=".activity.UserEditProfile">
     android:layout_width="300dp"
     android:layout_height="60dp"
     android:layout_marginTop="15dp"
-    android:hint="PhoneNumber">
+    android:hint="@string/phoneNumber">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etuserPhoneNumber"
@@ -100,7 +100,7 @@ tools:context=".activity.UserEditProfile">
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="15dp"
-        android:hint="Address">
+        android:hint="@string/address">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etuserAddress"
@@ -114,7 +114,7 @@ tools:context=".activity.UserEditProfile">
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
-            android:hint="Postal Code">
+            android:hint="@string/postalcode">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etuserPostalCode"
@@ -129,7 +129,7 @@ tools:context=".activity.UserEditProfile">
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginTop="15dp"
-        android:hint="Province">
+        android:hint="@string/province">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etuserProvince"

@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My Orders"
+            android:text="@string/myOrders"
             android:textSize="30sp"
             android:layout_marginLeft="25dp"
             android:textColor="#FFFFFF"/>
@@ -36,7 +36,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Log Out"
+            android:text="@string/logout"
+            android:textSize="30sp"
+            android:layout_marginLeft="25dp"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/changeLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/categorybg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/languageChange"
             android:textSize="30sp"
             android:layout_marginLeft="25dp"
             android:textColor="#FFFFFF"/>
