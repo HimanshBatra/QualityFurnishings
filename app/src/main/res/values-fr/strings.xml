@@ -3,6 +3,7 @@
     <string name="app_name">QualityFurnishings</string>
     <string name="home">Domicile</string>
     <string name="profile">Profil</string>
+    <string name="cart">Chariot</string>
     <string name="enter_your_email">Entrer votre Email</string>
     <string name="enter_your_password">Tapez votre mot de passe</string>
     <string name="forgot_password">Mot de passe oublié?</string>
@@ -29,4 +30,19 @@
     <string name="province"> Province</string>
     <string name="changePassword"> Changer le mot de passe</string>
     <string name="editProfile"> Editer le profil</string>
+    <string name="total"> Total : $ -</string>
+    <string name="checkout"> VÉRIFIER</string>
+    <string name="myOrders"> Mes commandes</string>
+    <string name="logout"> Se déconnecter</string>
+    <string name="languageChange"> Changement de langue</string>
+
+<string name="bedroomFurniture">meubles de chambre</string>
+<string name="kitchenFurniture">meuble de cuisine</string>
+<string name="livingroomFurniture">meubles de salon</string>
+<string name="bathroomFurniture">Meubles de salle de bains</string>
+<string name="officeFurniture">mobilier de bureau</string>
+    <string name="psc">Veuillez sélectionner une catégorie pour laquelle\n vous souhaitez rechercher le produit
+</string>
+    <string name="fyb"> Trouvez vos meilleurs meubles</string>
+    <string name="search"> chercher </string>
 </resources>

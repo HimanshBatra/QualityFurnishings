@@ -258,7 +258,7 @@ public class UserHomeFragment extends Fragment {
         });
 
     }
-    public void ChangeLanguage(String language){
+    /*public void ChangeLanguage(String language){
 
        // SharedPreferences sharedPreferences = getContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
        // SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -267,5 +267,5 @@ public class UserHomeFragment extends Fragment {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
-    }
+    }*/
 }

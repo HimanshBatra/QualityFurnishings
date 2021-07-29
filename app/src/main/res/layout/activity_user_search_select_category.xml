@@ -13,42 +13,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
-        android:text="Please Select a Category for which\n you want to Serach the product"/>
+        android:text="@string/psc"/>
 
 
     <Button
         android:id="@+id/btBedroom"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:text="BedRoom\nFurniture"
+        android:text="@string/bedroomFurniture"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
     <Button
         android:id="@+id/btKitchen"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:text="Kitchen\nFurniture"
+        android:text="@string/kitchenFurniture"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
     <Button
         android:id="@+id/btLivingRoom"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:text="LivingRoom\nFurniture"
+        android:text="@string/livingroomFurniture"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
     <Button
         android:id="@+id/btBathroom"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:text="BathRoom\nFurniture"
+        android:text="@string/bathroomFurniture"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
     <Button
         android:id="@+id/btOffice"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:text="Office\nFurniture"
+        android:text="@string/officeFurniture"
         android:layout_marginTop="10dp"
         android:textSize="20sp"/>
 

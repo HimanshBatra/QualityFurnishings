@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.ContactsContract;
@@ -23,6 +24,10 @@ import com.example.qualityfurnishings.model.UserTestModal;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Locale;
+
+import static android.content.ContentValues.TAG;
+
 public class UserEditProfile extends AppCompatActivity {
     String name,email,phonenumber,password,confirmpassword,address,postalcode,province;
     EditText fullname,PhoneNumber,Password,ConfirmPassword,Address,PostalCode,Province;
@@ -30,9 +35,34 @@ public class UserEditProfile extends AppCompatActivity {
     TextView Email;
     String userID;
     UserTestModal userTestModal;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedPreferences = getApplicationContext().getSharedPreferences("LANGUAGE",getApplicationContext().MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        String lang = sharedPreferences.getString("code","en");
+        ChangeLanguage(lang);
+        /*if(lang.equals("fr")){
+
+            //language.setText(english);
+            Log.d(TAG, "onClick:lang");
+            editor.putString("code","en");
+            editor.commit();
+            editor.apply();
+            //restartActivity(getActivity());
+
+
+        }
+        if(lang.equals("en")){
+            // language.setText(french);
+            editor.putString("code","fr");
+            editor.commit();
+            editor.apply();
+            //restartActivity(getActivity());
+
+        }*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_edit_profile);
         Intent intent = getIntent();
@@ -129,5 +159,16 @@ public class UserEditProfile extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),UserHome.class);
         startActivity(intent);
 
+    }
+
+    public void ChangeLanguage(String language){
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("LANGUAGE",getApplicationContext().MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
     }
 }
