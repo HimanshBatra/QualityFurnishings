@@ -30,7 +30,7 @@
     <string name="province"> Province</string>
     <string name="changePassword"> Changer le mot de passe</string>
     <string name="editProfile"> Editer le profil</string>
-    <string name="total"> Total : $ -</string>
+    <string name="total"> Total : $ </string>
     <string name="checkout"> VÉRIFIER</string>
     <string name="myOrders"> Mes commandes</string>
     <string name="logout"> Se déconnecter</string>

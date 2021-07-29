@@ -29,7 +29,7 @@
     <string name="province"> Province</string>
     <string name="changePassword"> Change Password</string>
     <string name="editProfile"> Edit Profile</string>
-    <string name="total">Total: $ -</string>
+    <string name="total">Total: $ </string>
     <string name="checkout"> CHECKOUT</string>
     <string name="myOrders"> My Orders</string>
     <string name="languageChange"> Change Language</string>
