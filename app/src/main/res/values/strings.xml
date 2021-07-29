@@ -18,7 +18,7 @@
     <string name="office">Office</string>
     <string name="findThe">Find The</string>
     <string name="bestFurniture">Best Furniture</string>
-    <string name="productsOnSale" translatable="false">Products On Sale</string>
+    <string name="productsOnSale">Products On Sale</string>
     <string name="email"> E-mail</string>
     <string name="fullname"> Full Name</string>
     <string name="userProfile"> User Profile</string>
