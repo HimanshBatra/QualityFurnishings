@@ -34,7 +34,7 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     String Category;
-    ImageView Imgsearch;
+    ImageView Imgsearch, ImgRefresh;
     TextView searchProduct;
     ChipGroup QualityGroup,PriceGroup;
     String flag="false";
@@ -62,6 +62,7 @@ public class SearchActivity extends AppCompatActivity {
         cheap = (Button) findViewById(R.id.cheapChip);
         unwarranted = (Button) findViewById(R.id.unwarrantedChip);
         Imgsearch=(ImageView)findViewById(R.id.search);
+        ImgRefresh=(ImageView)findViewById(R.id.refresh);
         searchProduct=findViewById(R.id.etSearch);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 //        recyclerView.setHasFixedSize(true);
@@ -69,6 +70,26 @@ public class SearchActivity extends AppCompatActivity {
         Intent i = getIntent();
         Bundle b = i.getExtras();
         Category=b.getString("category");
+        ImgRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //QUALITY COLOR CHANGE
+                superior.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                wellfounded.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                cheap.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                unwarranted.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                //PRICE RANGE COLOR CHANGE
+                priceZero.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceHundred.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                priceOneFifty.setBackgroundColor(Color.parseColor("#B8B8B8"));
+                Quality="";
+                priceMin=0;
+                priceMax=1;
+                searchProduct.setText(null);
+                loadProducts();
+            }
+        });
         loadProducts();
         superior.setBackgroundColor(Color.parseColor("#B8B8B8"));
         wellfounded.setBackgroundColor(Color.parseColor("#B8B8B8"));
