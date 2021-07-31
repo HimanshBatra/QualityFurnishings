@@ -45,4 +45,10 @@
 </string>
     <string name="fyb"> Trouvez vos meilleurs meubles</string>
     <string name="search"> chercher </string>
+    <string name="manage"> gérer </string>
+    <string name="products"> des produits </string>
+    <string name="add">ajouter </string>
+    <string name="update"> mettre à jour/ </string>
+    <string name="delete"> effacer </string>
+    <string name="listOfOrders"> Liste des commandes </string>
 </resources>
