@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         app:startIconDrawable="@drawable/ic_baseline_email_24"
-        android:hint="Enter Your Email"
+        android:hint="@string/enter_your_email"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         app:passwordToggleEnabled="true"
-        android:hint="Enter Your Password">
+        android:hint="@string/enter_your_password">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPssword"
@@ -100,10 +100,18 @@
         android:id="@+id/btAdminLogin"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="@string/login"
         android:layout_marginTop="30dp"
         />
-
+    <TextView
+        android:id="@+id/textViewLang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:text="French" />
 
 
 

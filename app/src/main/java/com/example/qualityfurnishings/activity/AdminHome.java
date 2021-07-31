@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -12,12 +14,26 @@ import com.example.qualityfurnishings.fragment.AdminHomeFragment;
 import com.example.qualityfurnishings.fragment.AdminLogout;
 import com.example.qualityfurnishings.fragment.AdminProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Locale;
 
 public class AdminHome extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    SharedPreferences sharedpreferences;
+    FirebaseAuth firebaseAuth;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharedpreferences = getApplicationContext().getSharedPreferences("LANGUAGE",getApplicationContext().MODE_PRIVATE);
+        editor = sharedpreferences.edit();
+        String lang = sharedpreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 

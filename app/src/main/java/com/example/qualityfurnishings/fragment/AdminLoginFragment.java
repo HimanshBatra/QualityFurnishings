@@ -1,8 +1,10 @@
 package com.example.qualityfurnishings.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -10,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +36,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
+import static android.content.ContentValues.TAG;
+
 
 public class AdminLoginFragment extends Fragment {
+    TextView adminlanguage;
     EditText email,password;
     Button login;
     TextView user,admin;
@@ -42,6 +50,12 @@ public class AdminLoginFragment extends Fragment {
     public static final String MyPREFERENCES = "LoginPref" ;
     public static final String UserType = "usertype";
     SharedPreferences sharedpreferences;
+    SharedPreferences sharedPreferences;
+
+    SharedPreferences.Editor editor;
+
+    String english = "English";
+    String french = "French";
 
 
     public AdminLoginFragment() {
@@ -54,6 +68,14 @@ public class AdminLoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getContext().getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        String lang = sharedPreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
 
     }
 
@@ -68,6 +90,45 @@ public class AdminLoginFragment extends Fragment {
         login.setBackgroundColor(Color.parseColor("#1F2633"));
         user = view.findViewById(R.id.tvUser);
         admin = view.findViewById(R.id.tvAdmin);
+
+        adminlanguage = view.findViewById(R.id.textViewLang);
+
+// For text change on login screen
+        String lang = sharedPreferences.getString("code","en");
+        if(lang.equals("en")){
+            adminlanguage.setText(french);
+        }else if(lang.equals("fr")){
+            adminlanguage.setText(english);
+        }
+
+// For on Click function language change
+        adminlanguage.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                String screenLanguage = adminlanguage.getText().toString();
+                if(screenLanguage.equals("French")){
+
+                    adminlanguage.setText(english);
+                    Log.d(TAG, "onClick:lang");
+                    editor.putString("code","fr");
+                    editor.commit();
+                    editor.apply();
+                    restartActivity(getActivity());
+
+
+                }
+                if(screenLanguage.equals("English")){
+                    adminlanguage.setText(french);
+                    editor.putString("code","en");
+                    editor.commit();
+                    editor.apply();
+                    restartActivity(getActivity());
+
+                }
+            }
+        });
+
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,5 +207,12 @@ public class AdminLoginFragment extends Fragment {
         return view;
     }
 
+    public void restartActivity(Activity act){
 
+        Intent intent=new Intent();
+        intent.setClass(act, act.getClass());
+        act.startActivity(intent);
+        act.finish();
+
+    }
 }
