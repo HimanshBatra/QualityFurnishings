@@ -18,12 +18,12 @@
             android:layout_height="60dp"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginRight="50dp">
+            android:layout_marginRight="10dp">
             <TextView
                 android:id="@+id/tvUser"
                 android:layout_width="75dp"
                 android:layout_height="40dp"
-                android:text="USER"
+                android:text="@string/user"
                 android:textSize="30sp"
                 android:textColor="#1F2633"
                 />
@@ -48,7 +48,7 @@
             android:id="@+id/tvAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ADMIN"
+            android:text="@string/admin"
             android:textSize="30sp"
             android:layout_marginLeft="50dp"/>
     </LinearLayout>
