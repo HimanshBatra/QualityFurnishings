@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="ProductName">
+            android:hint="@string/productName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ProductName"
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="ProductPrice">
+            android:hint="@string/productPrice">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ProductPrice"
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="ProductDescription">
+            android:hint="@string/productDescription">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ProductDescription"
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:hint="ProductQuantity">
+            android:hint="@string/productQuantity">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ProducQuantity"
@@ -121,6 +121,7 @@
                 android:inputType="numberDecimal" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <CheckBox
             android:id="@+id/sale"
             android:layout_width="wrap_content"
@@ -128,7 +129,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"
             android:buttonTint="#000000"
-            android:text="Add Product on Sale" />
+            android:text="@string/addProductOnSale" />
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -149,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Update Product"
+            android:text="@string/addProduct"
             android:layout_marginBottom="10dp"
             app:icon="@drawable/ic_baseline_add_24" />
 

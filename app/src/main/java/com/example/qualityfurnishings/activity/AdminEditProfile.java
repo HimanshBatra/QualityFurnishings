@@ -3,7 +3,10 @@ package com.example.qualityfurnishings.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -19,6 +22,8 @@ import com.example.qualityfurnishings.fragment.AdminProfileFragment;
 import com.example.qualityfurnishings.model.AdminModal;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Locale;
 
 public class AdminEditProfile extends AppCompatActivity {
     EditText name,email,password,cpassword;
@@ -47,7 +52,15 @@ public class AdminEditProfile extends AppCompatActivity {
         password.setText(stPassword);
         cpassword.setText(stPassword);
 
-
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String lang = sharedPreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        
         updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

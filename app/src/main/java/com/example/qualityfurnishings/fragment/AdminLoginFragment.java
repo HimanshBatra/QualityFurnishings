@@ -91,8 +91,8 @@ public class AdminLoginFragment extends Fragment {
         user = view.findViewById(R.id.tvUser);
         admin = view.findViewById(R.id.tvAdmin);
 
-        adminlanguage = view.findViewById(R.id.textViewLang);
-
+      //  adminlanguage = view.findViewById(R.id.textViewLang);
+/*
 // For text change on login screen
         String lang = sharedPreferences.getString("code","en");
         if(lang.equals("en")){
@@ -127,7 +127,7 @@ public class AdminLoginFragment extends Fragment {
 
                 }
             }
-        });
+        });*/
 
         user.setOnClickListener(new View.OnClickListener() {
             @Override
