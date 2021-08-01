@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="80dp"
-            android:text="Admin Profile"
+            android:text="@string/adminProfile"
             android:textSize="40sp"
             android:textColor="#000"
             android:layout_marginTop="15dp"/>
@@ -23,7 +23,7 @@
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
-            android:hint="Name">
+            android:hint="@string/name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etName"
@@ -38,7 +38,7 @@
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
-            android:hint="E-mail">
+            android:hint="@string/email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
@@ -54,7 +54,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
             app:passwordToggleEnabled="true"
-            android:hint="Password">
+            android:hint="@string/password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
@@ -69,7 +69,7 @@
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
             app:passwordToggleEnabled="true"
-            android:hint="Confirm Password">
+            android:hint="">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCPassword"
@@ -84,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Update Profile"
+            android:text="@string/uodateProfile"
             android:layout_marginTop="50dp"
             />
 

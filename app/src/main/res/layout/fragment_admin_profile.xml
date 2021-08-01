@@ -13,7 +13,7 @@
    <TextView
      android:layout_width="wrap_content"
      android:layout_height="80dp"
-     android:text="Admin Profile"
+     android:text="@string/adminProfile"
      android:textSize="40sp"
      android:textColor="#000"
      android:layout_marginTop="50dp"/>
@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="@string/name"
             android:layout_marginLeft="60dp"
             android:textColor="#000"
             android:textSize="20sp" />
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="E-mail"
+            android:text="@string/email"
             android:layout_marginLeft="60dp"
             android:textColor="#000"
             android:textSize="20sp" />
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Password"
+            android:text="@string/password"
             android:layout_marginLeft="60dp"
             android:textColor="#000"
             android:textSize="20sp" />
@@ -100,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Edit Profile"
+        android:text="@string/editProfile"
         android:layout_marginTop="30dp"
         app:icon="@drawable/ic_baseline_edit_24" />
 </LinearLayout>

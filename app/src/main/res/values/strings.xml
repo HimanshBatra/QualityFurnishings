@@ -48,6 +48,18 @@
     <string name="update"> Update/ </string>
     <string name="delete"> Delete </string>
     <string name="listOfOrders"> List Of Orders </string>
+    <string name="name"> Name </string>
+    <string name="adminProfile"> Admin Profile </string>
+    <string name="uodateProfile"> Update Profile </string>
+    <string name="productName"> Product Name</string>
+    <string name="productPrice"> Product Price </string>
+    <string name="productDescription"> Product Description </string>
+    <string name="productQuantity"> Product Quantity </string>
+    <string name="addProductOnSale"> Add Product On Sale </string>
+    <string name="addProduct"> Add Product </string>
+    <string name="user"> USER </string>
+    <string name="admin"> ADMIN </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

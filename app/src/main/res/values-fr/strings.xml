@@ -51,4 +51,16 @@
     <string name="update"> mettre à jour/ </string>
     <string name="delete"> effacer </string>
     <string name="listOfOrders"> Liste des commandes </string>
+    <string name="name"> Nom </string>
+    <string name="adminProfile">Profil administrateur </string>
+    <string name="uodateProfile"> Mettre à jour le profil </string>
+    <string name="productName"> Product Name</string>
+    <string name="productPrice"> Product Price </string>
+    <string name="productDescription"> Product Description </string>
+    <string name="productQuantity"> Product Quantity </string>
+    <string name="addProductOnSale"> Add Product On Sale </string>
+    <string name="addProduct"> Add Product </string>
+    <string name="user"> UTILISATEUR </string>
+    <string name="admin"> ADMINISTRER</string>
+
 </resources>
