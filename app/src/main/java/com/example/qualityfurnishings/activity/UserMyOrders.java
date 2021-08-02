@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class UserMyOrders extends AppCompatActivity {
-     RecyclerView orderView;
+    RecyclerView orderView;
     ArrayList<OrderModal> orderlist;
     ArrayList<Cart> cartlist;
     UserOrderAdapter userOrderAdapter;
@@ -46,7 +46,7 @@ public class UserMyOrders extends AppCompatActivity {
 
 
                     OrderModal listData = dataSnapshot.getValue(OrderModal.class);
-                    orderlist.add(new OrderModal(listData.getOrderId(),listData.getOrderStatus(),listData.getPaymentMethod(),listData.getCartList()));
+                    orderlist.add(new OrderModal(listData.getOrderId(),listData.getOrderStatus(),listData.getPaymentMethod(),listData.getCartList(),listData.getKey()));
 
 
                 }

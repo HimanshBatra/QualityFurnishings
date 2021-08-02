@@ -58,6 +58,8 @@ public class UserConfirmOrder extends AppCompatActivity {
     String OrderStatus, paymentMethod;
     String FirebaseUserID;
     int count,OrderId;
+    String stOrderId;
+    String orderKey;
 
 
 
@@ -242,6 +244,7 @@ public class UserConfirmOrder extends AppCompatActivity {
 //                        Log.d("size", String.valueOf(count));
                         count = count+1;
                         OrderId=count;
+                        stOrderId = String.valueOf(OrderId);
 //                        Log.d("size2", String.valueOf(OrderId));
                         placeOrder();
 
@@ -264,10 +267,13 @@ public class UserConfirmOrder extends AppCompatActivity {
 
     private void placeOrder() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference db_ref = databaseReference.child("FurnitureCategory").child("Orders").child(FirebaseUserID).push();
+        DatabaseReference db_refOrders = databaseReference.child("FurnitureCategory").child("Orders").child(FirebaseUserID).push();
 
-        OrderModal order = new OrderModal(OrderId, OrderStatus, paymentMethod, cartList);
-        db_ref.setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+        orderKey = db_refOrders.getKey();
+        OrderModal order = new OrderModal(stOrderId, OrderStatus, paymentMethod, cartList,orderKey);
+
+        db_refOrders.setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(Task<Void> task) {
                 Toast.makeText(UserConfirmOrder.this, "Order Completed Successfully", Toast.LENGTH_LONG).show();
@@ -278,6 +284,7 @@ public class UserConfirmOrder extends AppCompatActivity {
             }
 
         });
+
     }
 
 

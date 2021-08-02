@@ -6,13 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6C7689"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".activity.AdminOrderList">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This screen will show the list of all the orders"
-        android:textSize="30sp"
-        android:textColor="#000"/>
+        android:text="Order List"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productsOrderView"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
 </LinearLayout>
