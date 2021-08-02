@@ -3,21 +3,26 @@ package com.example.qualityfurnishings.model;
 import java.util.List;
 
 public class OrderModal {
-    public OrderModal(int orderId, String orderStatus, String paymentMethod, List<Cart> cartList) {
+
+
+    public OrderModal(){
+
+    }
+    public OrderModal(String orderId, String orderStatus, String paymentMethod,List<Cart> cartList, String key ) {
         OrderId = orderId;
         OrderStatus = orderStatus;
         PaymentMethod = paymentMethod;
         this.cartList = cartList;
-    }
-    public OrderModal(){
+        this.key = key;
 
     }
+    String OrderId;
 
-    public int getOrderId() {
+    public String getOrderId() {
         return OrderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(String orderId) {
         OrderId = orderId;
     }
 
@@ -37,6 +42,14 @@ public class OrderModal {
         PaymentMethod = paymentMethod;
     }
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     public List<Cart> getCartList() {
         return cartList;
     }
@@ -45,10 +58,12 @@ public class OrderModal {
         this.cartList = cartList;
     }
 
-    int OrderId;
     String OrderStatus;
     String PaymentMethod;
+    String key;
     private List<Cart> cartList;
 
 
+
 }
+

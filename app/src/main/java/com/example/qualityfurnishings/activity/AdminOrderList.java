@@ -1,5 +1,6 @@
 package com.example.qualityfurnishings.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,11 +9,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.adapter.AdminOrderAdapter;
 import com.example.qualityfurnishings.model.Cart;
 import com.example.qualityfurnishings.model.OrderModal;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -57,9 +61,11 @@ public class AdminOrderList extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled( DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
+
+
         });
     }
 }
