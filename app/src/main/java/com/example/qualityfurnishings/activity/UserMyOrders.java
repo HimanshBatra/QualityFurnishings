@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class UserMyOrders extends AppCompatActivity {
-     RecyclerView orderView;
+    RecyclerView orderView;
     ArrayList<OrderModal> orderlist;
     ArrayList<Cart> cartlist;
     UserOrderAdapter userOrderAdapter;
