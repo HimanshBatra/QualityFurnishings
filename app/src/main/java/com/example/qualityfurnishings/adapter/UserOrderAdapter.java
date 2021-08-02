@@ -22,6 +22,7 @@ import java.util.List;
 
 public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.ViewHolder>{
     private List<OrderModal> userOrderList;
+    private RecyclerView.RecycledViewPool recycledViewPool = new RecyclerView.RecycledViewPool();
     private List<Cart> cartList;
 
     Context context;
@@ -43,10 +44,10 @@ public class UserOrderAdapter extends RecyclerView.Adapter<UserOrderAdapter.View
     public void onBindViewHolder( UserOrderAdapter.ViewHolder holder, int position) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(holder.recyclerView.getContext(), LinearLayoutManager.VERTICAL, false);
         linearLayoutManager.setInitialPrefetchItemCount(userOrderList.get(position).getCartList().size());
- //       UserOrderListAdapter userOrderListAdapter = new UserOrderListAdapter(userOrderList.get(position).getCartList(),userOrderList.get(position).getOrderId(),userOrderList.get(position).getOrderStatus(), context);
+       UserOrderListAdapter userOrderListAdapter = new UserOrderListAdapter(userOrderList.get(position).getCartList(),userOrderList.get(position).getOrderId(),userOrderList.get(position).getOrderStatus(), context);
         holder.recyclerView.setLayoutManager(linearLayoutManager);
- //       holder.recyclerView.setAdapter(userOrderListAdapter);
-  //      holder.recyclerView.setRecycledViewPool(recycledViewPool);
+        holder.recyclerView.setAdapter(userOrderListAdapter);
+        holder.recyclerView.setRecycledViewPool(recycledViewPool);
 
 
 

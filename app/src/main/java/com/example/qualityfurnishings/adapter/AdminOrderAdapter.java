@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +23,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
-public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.ViewHolder>{
+public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.ViewHolder> {
+    @NonNull
+
     private List<OrderModal> adminOrderList;
     private List<Cart> cartList;
     private RecyclerView.RecycledViewPool recycledViewPool = new RecyclerView.RecycledViewPool();
@@ -31,40 +34,37 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Vi
 
     String orderKey;
 
-
     public AdminOrderAdapter(List<OrderModal> adminOrderList , Context context){
         this.adminOrderList=adminOrderList;
         this.context=context;
 
     }
-    @Override
-    public AdminOrderAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdminOrderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adminorderlayout,parent,false);
 
         return new AdminOrderAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder( AdminOrderAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdminOrderAdapter.ViewHolder holder, int position) {
         Button btAcceptOrder = holder.accept;
         Button btDeclineOrder = holder.decline;
         TextView paymentMethod = holder.paymentType;
         paymentMethod.setText(adminOrderList.get(position).getPaymentMethod());
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(holder.orderlistRecyclerView.getContext(),LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(holder.orderlistRecyclerView.getContext(), LinearLayoutManager.VERTICAL, false);
         linearLayoutManager.setInitialPrefetchItemCount(adminOrderList.get(position).getCartList().size());
- //       AdminOrderListAdapter adminOrderListAdapter = new AdminOrderListAdapter(adminOrderList.get(position).getCartList(),context);
+        AdminOrderListAdapter adminOrderListAdapter = new AdminOrderListAdapter(adminOrderList.get(position).getCartList(), context);
         holder.orderlistRecyclerView.setLayoutManager(linearLayoutManager);
-  //      holder.orderlistRecyclerView.setAdapter(adminOrderListAdapter);
+        holder.orderlistRecyclerView.setAdapter(adminOrderListAdapter);
         holder.orderlistRecyclerView.setRecycledViewPool(recycledViewPool);
 
         btAcceptOrder.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 cartList = adminOrderList.get(position).getCartList();
                 userid = cartList.get(0).getUserid();
-  //              orderKey = adminOrderList.get(position).getKey();
-
+                orderKey = adminOrderList.get(position).getKey();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FurnitureCategory")
                         .child("Orders").child(userid).child(orderKey).child("orderStatus");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -90,15 +90,13 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Vi
 
 
             }
-
         });
         btDeclineOrder.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 cartList = adminOrderList.get(position).getCartList();
                 userid = cartList.get(0).getUserid();
-      //          orderKey = adminOrderList.get(position).getKey();
-
+                orderKey = adminOrderList.get(position).getKey();
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FurnitureCategory")
                         .child("Orders").child(userid).child(orderKey).child("orderStatus");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -118,12 +116,10 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Vi
 
                     }
                 });
-
             }
         });
-
-
     }
+
 
     @Override
     public int getItemCount() {
@@ -134,13 +130,12 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Vi
         RecyclerView orderlistRecyclerView;
         Button accept,decline;
         TextView paymentType;
-        public ViewHolder( View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
             accept=itemView.findViewById(R.id.btAcceptOrder);
             decline=itemView.findViewById(R.id.btDeclineOrder);
             orderlistRecyclerView=itemView.findViewById(R.id.ordersList);
             paymentType=itemView.findViewById(R.id.tvPaymentType);
-
         }
     }
 }
