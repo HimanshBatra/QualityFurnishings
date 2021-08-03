@@ -42,7 +42,8 @@ public class FavouriteProducts extends AppCompatActivity {
                 favouritiesList = new ArrayList<>();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Favouties listData = dataSnapshot.getValue(Favouties.class);
-                    favouritiesList.add(new Favouties(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice(),dataSnapshot.getKey(),listData.getUserid(),listData.getProductPrice(),listData.getItemCount(),listData.isFavourity()));
+                    favouritiesList.add(new Favouties(listData.getImage(),listData.getName(),listData.getDescription(), listData.getQuality(), listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),listData.getId(),listData.getCategory(),listData.getSubCategory(),listData.getUserid(),listData.isFavourity()));
+
 
                 }
                 favouriteProductsAdapter = new FavouriteProductsAdapter(favouritiesList,getApplicationContext());

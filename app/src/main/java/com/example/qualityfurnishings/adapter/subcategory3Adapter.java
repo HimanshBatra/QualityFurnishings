@@ -47,6 +47,7 @@ public class subcategory3Adapter extends RecyclerView.Adapter<subcategory3Adapte
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(context, DetailActivity.class);
+                intent.putExtra("main","main");
                 intent.putExtra("productdata",  modellist3.get(position));
                 context.startActivity(intent);
             }

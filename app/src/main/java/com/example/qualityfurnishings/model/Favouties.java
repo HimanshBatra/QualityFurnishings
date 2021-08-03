@@ -1,33 +1,61 @@
 package com.example.qualityfurnishings.model;
 
-public class Favouties {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Favouties implements Parcelable {
 
 public Favouties(){
 
 }
-    public Favouties(String productName, String image, String category, String subcategory, int quantity, int finalPrice, String id, String userid, int productPrice, int itemCount, boolean favourity) {
-        this.productName = productName;
+
+    public Favouties(String image, String name, String description, String quality, int quantity, int price, boolean sale, Integer discount, String id, String category, String subCategory, String userid, boolean favourity) {
         this.image = image;
-        this.category = category;
-        this.subcategory = subcategory;
+        this.name = name;
+        this.description = description;
+        this.quality = quality;
         this.quantity = quantity;
-        this.finalPrice = finalPrice;
+        this.price = price;
+        this.sale = sale;
+        this.discount = discount;
         this.id = id;
+        this.category = category;
+        this.subCategory = subCategory;
         this.userid = userid;
-        this.productPrice = productPrice;
-        this.itemCount = itemCount;
         this.favourity = favourity;
     }
 
-    String productName;
-
-    public String getProductName() {
-        return productName;
+    protected Favouties(Parcel in) {
+        image = in.readString();
+        name = in.readString();
+        description = in.readString();
+        quality = in.readString();
+        quantity = in.readInt();
+        price = in.readInt();
+        sale = in.readByte() != 0;
+        if (in.readByte() == 0) {
+            discount = null;
+        } else {
+            discount = in.readInt();
+        }
+        id = in.readString();
+        category = in.readString();
+        subCategory = in.readString();
+        userid = in.readString();
+        favourity = in.readByte() != 0;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
+    public static final Creator<Favouties> CREATOR = new Creator<Favouties>() {
+        @Override
+        public Favouties createFromParcel(Parcel in) {
+            return new Favouties(in);
+        }
+
+        @Override
+        public Favouties[] newArray(int size) {
+            return new Favouties[size];
+        }
+    };
 
     public String getImage() {
         return image;
@@ -37,20 +65,28 @@ public Favouties(){
         this.image = image;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSubcategory() {
-        return subcategory;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSubcategory(String subcategory) {
-        this.subcategory = subcategory;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
     }
 
     public int getQuantity() {
@@ -61,12 +97,28 @@ public Favouties(){
         this.quantity = quantity;
     }
 
-    public int getFinalPrice() {
-        return finalPrice;
+    public int getPrice() {
+        return price;
     }
 
-    public void setFinalPrice(int finalPrice) {
-        this.finalPrice = finalPrice;
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public boolean isSale() {
+        return sale;
+    }
+
+    public void setSale(boolean sale) {
+        this.sale = sale;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
     }
 
     public String getId() {
@@ -77,28 +129,28 @@ public Favouties(){
         this.id = id;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
+
     public String getUserid() {
         return userid;
     }
 
     public void setUserid(String userid) {
         this.userid = userid;
-    }
-
-    public int getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(int productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public int getItemCount() {
-        return itemCount;
-    }
-
-    public void setItemCount(int itemCount) {
-        this.itemCount = itemCount;
     }
 
     public boolean isFavourity() {
@@ -110,14 +162,43 @@ public Favouties(){
     }
 
     String image;
-    String category;
-    String subcategory;
+    String name;
+    String description;
+    String quality;
     int quantity;
-    int finalPrice;
+    int price;
+    boolean sale;
+    Integer discount;
     String id;
+    String category;
+    String subCategory;
     String userid;
-    int productPrice;
-    int itemCount;
     boolean favourity;
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(image);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(quality);
+        dest.writeInt(quantity);
+        dest.writeInt(price);
+        dest.writeByte((byte) (sale ? 1 : 0));
+        if (discount == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(discount);
+        }
+        dest.writeString(id);
+        dest.writeString(category);
+        dest.writeString(subCategory);
+        dest.writeString(userid);
+        dest.writeByte((byte) (favourity ? 1 : 0));
+    }
 }

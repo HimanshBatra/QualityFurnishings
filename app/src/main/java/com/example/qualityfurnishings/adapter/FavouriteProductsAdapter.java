@@ -1,6 +1,7 @@
 package com.example.qualityfurnishings.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.DetailActivity;
 import com.example.qualityfurnishings.model.Favouties;
 import com.example.qualityfurnishings.model.OrderModal;
 import com.google.firebase.database.DatabaseReference;
@@ -43,9 +45,10 @@ public class FavouriteProductsAdapter extends RecyclerView.Adapter<FavouriteProd
         ImageView likeProduct = holder.likeProduct;
         TextView tvProductName = holder.productName;
         Glide.with(context).load(favouritiesList.get(position).getImage()).into(imgProduct);
-        tvProductName.setText(favouritiesList.get(position).getProductName()+"");
+        tvProductName.setText(favouritiesList.get(position).getName()+"");
         likeProduct.setBackgroundResource(R.drawable.like);
         userid = favouritiesList.get(position).getUserid();
+
         likeProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +57,15 @@ public class FavouriteProductsAdapter extends RecyclerView.Adapter<FavouriteProd
                 favouritiesList.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position,favouritiesList.size());
+            }
+        });
+        imgProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(context, DetailActivity.class);
+                intent.putExtra("main","fav");
+                intent.putExtra("productdata",  favouritiesList.get(position));
+                v.getContext().startActivity(intent);
             }
         });
 
