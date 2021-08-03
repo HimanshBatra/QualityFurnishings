@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.model.Cart;
+import com.example.qualityfurnishings.model.Favouties;
 import com.example.qualityfurnishings.model.ProductModal;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +36,11 @@ public class DetailActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     String user;
     String s1;
+    String ProductName;
+    String image;
+    int itemcount;
+    boolean favourity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,7 @@ public class DetailActivity extends AppCompatActivity {
         SaveProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                addfavourity();
             }
         });
 
@@ -75,8 +81,8 @@ public class DetailActivity extends AppCompatActivity {
                 .into(productimage);
         productname.setText(modal.getName());
 
-        String ProductName=modal.getName();
-        String image=modal.getImage();
+        ProductName=modal.getName();
+        image=modal.getImage();
         category=modal.getCategory();
         subcategory=modal.getSubCategory();
         quality.setText(modal.getQuality());
@@ -86,7 +92,7 @@ public class DetailActivity extends AppCompatActivity {
         price.setText(stPrice);
         description.setText(modal.getDescription());
 
-        int itemcount = modal.getQuantity();
+        itemcount = modal.getQuantity();
         if(itemcount==0){
             quantity.setText("Out of Stock");
             cart.setVisibility(View.GONE);
@@ -128,6 +134,17 @@ public class DetailActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void addfavourity() {
+        favourity = true;
+        DatabaseReference database1 = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference databaseReference = database1.child("FurnitureCategory").child("Favourities").child(s1).push();
+        Favouties favouties =new Favouties(ProductName,image,category,subcategory,Cartquantity,finalPrice,databaseReference.getKey(),s1,finalPrice,itemcount,favourity);
+        databaseReference.setValue(favouties);
+        SaveProduct.setBackgroundResource(R.drawable.like);
+        Toast.makeText(getApplicationContext(), "Product Successfully Added to Favourities", Toast.LENGTH_SHORT).show();
 
     }
 
