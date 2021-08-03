@@ -131,6 +131,8 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         Cartquantity= 1;
+        favourity = false;
+        SaveProduct.setBackgroundResource(R.drawable.whiteheart);
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("FurnitureCategory").child("Favourities").child(s1).addValueEventListener(new ValueEventListener() {
             @Override
@@ -141,15 +143,20 @@ public class DetailActivity extends AppCompatActivity {
                     Favouties listData = dataSnapshot.getValue(Favouties.class);
                     if(listData.getProductName().equals(modal.getName())){
                         if(listData.isFavourity()==true){
+                            favourity= true;
+                            dbKey=listData.getId();
                             SaveProduct.setBackgroundResource(R.drawable.like);
                         }
+                        else {
+                            favourity = false;
+                            SaveProduct.setBackgroundResource(R.drawable.whiteheart);
+                        }
                     }
-                    else{
-                        SaveProduct.setBackgroundResource(R.drawable.whiteheart);
-                    }
+
 
 
                 }
+
             }
 
             @Override
@@ -175,6 +182,11 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void removefavourity() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("FurnitureCategory").child("Favourities").child(s1).child(dbKey).removeValue();
+        favourity = false;
+        SaveProduct.setBackgroundResource(R.drawable.whiteheart);
+        Toast.makeText(getApplicationContext(), "Product Successfully Removed from Favourities", Toast.LENGTH_SHORT).show();
 
     }
 
