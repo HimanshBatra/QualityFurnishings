@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class DetailActivity extends AppCompatActivity {
 //    BottomNavigationView usernavigation;
-    ImageView productimage;
+    ImageView productimage,SaveProduct;
     TextView productname,price,description,quantity,discount,dollar,originalDollar,quality;
     Button cart;
     ProductModal modal;
@@ -56,9 +56,17 @@ public class DetailActivity extends AppCompatActivity {
         quality=(TextView)findViewById(R.id.tvQuality);
         OriginalPriceview=(LinearLayout)findViewById(R.id.originalpriceview);
         DiscountPriceview=(LinearLayout)findViewById(R.id.discountview);
+        SaveProduct=(ImageView) findViewById(R.id.btLike);
 
         cart=(Button)findViewById(R.id.btAddtocart);
         DiscountPriceview.setVisibility(View.GONE);
+        SaveProduct.setBackgroundResource(R.drawable.whiteheart);
+        SaveProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);
         s1 = sharedPreferences.getString("userid","");
