@@ -7,16 +7,21 @@ import androidx.fragment.app.Fragment;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.fragment.AdminHomeFragment;
 import com.example.qualityfurnishings.fragment.AdminLogout;
 import com.example.qualityfurnishings.fragment.AdminProfileFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class AdminHome extends AppCompatActivity {
 
@@ -36,6 +41,8 @@ public class AdminHome extends AppCompatActivity {
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.AdminHomeFrame, new AdminHomeFragment()).commit();
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.adminbottomnav);

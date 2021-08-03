@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,6 +47,7 @@ public class UserConfirmOrder extends AppCompatActivity {
     Button ConfirmOrder;
     int amount;
     RadioGroup radioGroup;
+    String fcm;
     RadioButton Rcredit, RCash;
     String stCredit, stMonth, stYear, stCvv;
     boolean boolCredit, boolCash;
@@ -60,8 +62,9 @@ public class UserConfirmOrder extends AppCompatActivity {
     int count,OrderId;
     String stOrderId;
     String orderKey;
-
-
+    String title="Order";
+    String messege="A New order";
+    SharedPreferences sharedPreferencesusertype;
 
 
     @Override
@@ -73,6 +76,15 @@ public class UserConfirmOrder extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);
         FirebaseUserID = sharedPreferences.getString("userid", "");
         OrderStatus = "Pending";
+         sharedPreferencesusertype = getSharedPreferences("LoginPref", MODE_PRIVATE);
+
+
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+            fcm=task.getResult();
+            }
+        });
 
 
         totalAmount = (TextView) findViewById(R.id.tvTotalAmount);
@@ -279,6 +291,12 @@ public class UserConfirmOrder extends AppCompatActivity {
                 Toast.makeText(UserConfirmOrder.this, "Order Completed Successfully", Toast.LENGTH_LONG).show();
                 DatabaseReference df = FirebaseDatabase.getInstance().getReference();
                 df.child("FurnitureCategory").child("Cart").child(FirebaseUserID).removeValue();
+
+                String s1 = sharedPreferencesusertype.getString("usertype", "");
+                if(s1.equals("admin")) {
+                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(fcm, title, messege, getApplicationContext(), UserConfirmOrder.this);
+                    notificationsSender.SendNotifications();
+                }
                 Intent intent = new Intent(getApplicationContext(), UserHome.class);
                 startActivity(intent);
             }
