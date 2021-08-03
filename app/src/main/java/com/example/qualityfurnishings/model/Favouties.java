@@ -2,7 +2,9 @@ package com.example.qualityfurnishings.model;
 
 public class Favouties {
 
+public Favouties(){
 
+}
     public Favouties(String productName, String image, String category, String subcategory, int quantity, int finalPrice, String id, String userid, int productPrice, int itemCount, boolean favourity) {
         this.productName = productName;
         this.image = image;

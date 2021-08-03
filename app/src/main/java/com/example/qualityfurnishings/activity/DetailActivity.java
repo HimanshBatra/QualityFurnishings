@@ -1,5 +1,6 @@
 package com.example.qualityfurnishings.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -19,8 +20,11 @@ import com.example.qualityfurnishings.model.Cart;
 import com.example.qualityfurnishings.model.Favouties;
 import com.example.qualityfurnishings.model.ProductModal;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DetailActivity extends AppCompatActivity {
 //    BottomNavigationView usernavigation;
@@ -40,6 +44,7 @@ public class DetailActivity extends AppCompatActivity {
     String image;
     int itemcount;
     boolean favourity;
+    String dbKey;
 
 
     @Override
@@ -66,11 +71,17 @@ public class DetailActivity extends AppCompatActivity {
 
         cart=(Button)findViewById(R.id.btAddtocart);
         DiscountPriceview.setVisibility(View.GONE);
-        SaveProduct.setBackgroundResource(R.drawable.whiteheart);
+
         SaveProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addfavourity();
+                if (favourity == true){
+                    removefavourity();
+                }
+                else {
+                    addfavourity();
+                }
+
             }
         });
 
@@ -120,6 +131,32 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         Cartquantity= 1;
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("FurnitureCategory").child("Favourities").child(s1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+
+                    Favouties listData = dataSnapshot.getValue(Favouties.class);
+                    if(listData.getProductName().equals(modal.getName())){
+                        if(listData.isFavourity()==true){
+                            SaveProduct.setBackgroundResource(R.drawable.like);
+                        }
+                    }
+                    else{
+                        SaveProduct.setBackgroundResource(R.drawable.whiteheart);
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled( DatabaseError error) {
+
+            }
+        });
 
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,10 +174,15 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    private void removefavourity() {
+
+    }
+
     private void addfavourity() {
         favourity = true;
         DatabaseReference database1 = FirebaseDatabase.getInstance().getReference();
         DatabaseReference databaseReference = database1.child("FurnitureCategory").child("Favourities").child(s1).push();
+        databaseReference.getKey();
         Favouties favouties =new Favouties(ProductName,image,category,subcategory,Cartquantity,finalPrice,databaseReference.getKey(),s1,finalPrice,itemcount,favourity);
         databaseReference.setValue(favouties);
         SaveProduct.setBackgroundResource(R.drawable.like);
