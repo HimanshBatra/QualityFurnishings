@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QualityFurnishings">
-        <activity android:name=".activity.SearchActivity"></activity>
+        <activity android:name=".activity.FavouriteProducts"></activity>
+        <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.UserSearchScreen" />
         <activity android:name=".activity.UserSearchSelectCategory" />
         <activity android:name=".activity.UserMyOrders" />
@@ -41,8 +42,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
         <service
             android:name=".activity.FirebaseMessagingService"
             android:permission="TODO"

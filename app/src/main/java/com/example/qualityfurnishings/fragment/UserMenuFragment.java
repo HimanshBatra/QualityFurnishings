@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.qualityfurnishings.R;
+import com.example.qualityfurnishings.activity.FavouriteProducts;
 import com.example.qualityfurnishings.activity.LoginActivity;
 import com.example.qualityfurnishings.activity.UserMyOrders;
 
@@ -29,7 +30,7 @@ import static com.example.qualityfurnishings.activity.UserHome.Userid;
 
 
 public class UserMenuFragment extends Fragment {
-    LinearLayout MyOrders,LogOut,changeLanguage;
+    LinearLayout MyOrders,LogOut,changeLanguage,FavouriteProducts;
     public static final String MyPREFERENCES = "LoginPref" ;
     public static final String UserType = "usertype";
     SharedPreferences sharedpreferences;
@@ -68,10 +69,18 @@ public class UserMenuFragment extends Fragment {
         MyOrders = (LinearLayout)view.findViewById(R.id.myorders);
         LogOut = (LinearLayout)view.findViewById(R.id.logout);
         changeLanguage=(LinearLayout)view.findViewById(R.id.changeLanguage);
+        FavouriteProducts=(LinearLayout)view.findViewById(R.id.favProducts);
         MyOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), UserMyOrders.class);
+                startActivity(intent);
+            }
+        });
+        FavouriteProducts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FavouriteProducts.class);
                 startActivity(intent);
             }
         });

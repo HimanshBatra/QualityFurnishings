@@ -50,6 +50,7 @@ public class UserSearchAdapter extends RecyclerView.Adapter<UserSearchAdapter.Vi
             @Override
             public void onClick(android.view.View v) {
                 Intent intent= new Intent(v.getContext(), DetailActivity.class);
+                intent.putExtra("main","main");
                 intent.putExtra("productdata",  productList.get(position));
                 v.getContext().startActivity(intent);
             }
