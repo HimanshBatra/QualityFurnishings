@@ -17,6 +17,7 @@ import com.example.qualityfurnishings.fragment.UserMenuFragment;
 import com.example.qualityfurnishings.fragment.UserProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Locale;
 
@@ -42,6 +43,7 @@ public class UserHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
         firebaseAuth= FirebaseAuth.getInstance();
+        FirebaseMessaging.getInstance().subscribeToTopic("all");
         String firebaseuserid = firebaseAuth.getCurrentUser().getUid();
         sharedpreferences = getApplicationContext().getSharedPreferences(UserIdPref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
