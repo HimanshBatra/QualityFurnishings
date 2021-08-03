@@ -52,7 +52,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         Intent intent = getIntent();
-        ProductModal modal = intent.getParcelableExtra("productdata");
+         ProductModal modal = intent.getParcelableExtra("productdata");
 
 
 

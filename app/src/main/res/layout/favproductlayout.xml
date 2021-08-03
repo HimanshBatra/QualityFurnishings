@@ -25,7 +25,9 @@
             android:id="@+id/tvfavProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="000"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:textSize="15sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true" />
         <ImageView
