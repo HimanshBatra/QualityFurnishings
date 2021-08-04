@@ -39,6 +39,8 @@ public class UserProfileFragment extends Fragment {
 
     String english = "English";
     String french = "French";
+    public static final String Screen = "UserScreen" ;
+    public static final String lastScreen = "lastscreen";
 
 
 
@@ -57,6 +59,11 @@ public class UserProfileFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String lang = sharedPreferences.getString("code","en");
         ChangeLanguage(lang);
+        String screen = "Profile";
+        SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sharedpreferences.edit();
+        editor1.putString(lastScreen, screen);
+        editor1.commit();
 
 
     }

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,6 +51,8 @@ public class UserHomeFragment extends Fragment {
     subcategory4Adapter fourrthCategoryAdapter;
     salecategoryAdapter salecategoryAdapter;
     RelativeLayout bottomNavigation;
+    public static final String Screen = "UserScreen" ;
+    public static final String lastScreen = "lastscreen";
 
 
 
@@ -74,6 +77,14 @@ public class UserHomeFragment extends Fragment {
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         //ChangeLanguage(lang);
+        String screen = "HOME";
+        SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(lastScreen, screen);
+        editor.commit();
+
+
+
 
     }
 
@@ -99,6 +110,7 @@ public class UserHomeFragment extends Fragment {
         office = view.findViewById(R.id.office);
          SearchProduct= view.findViewById(R.id.imgSearch);
          bottomNavigation = view.findViewById(R.id.bottomFragment);
+
 
          
          SearchProduct.setOnClickListener(new View.OnClickListener() {
