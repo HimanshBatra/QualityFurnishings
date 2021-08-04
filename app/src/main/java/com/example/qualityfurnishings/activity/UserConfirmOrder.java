@@ -25,8 +25,10 @@ import android.widget.Toast;
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.SignUp;
 import com.example.qualityfurnishings.model.Cart;
+import com.example.qualityfurnishings.model.Favouties;
 import com.example.qualityfurnishings.model.OrderModal;
 import com.example.qualityfurnishings.model.ProductModal;
+import com.example.qualityfurnishings.model.TokenModal;
 import com.example.qualityfurnishings.model.UserTestModal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -64,6 +66,7 @@ public class UserConfirmOrder extends AppCompatActivity {
     String orderKey;
     String title="Order";
     String messege="A New order";
+
     SharedPreferences sharedPreferencesusertype;
 
 
@@ -79,12 +82,7 @@ public class UserConfirmOrder extends AppCompatActivity {
          sharedPreferencesusertype = getSharedPreferences("LoginPref", MODE_PRIVATE);
 
 
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-            @Override
-            public void onComplete(@NonNull Task<String> task) {
-            fcm=task.getResult();
-            }
-        });
+
 
 
         totalAmount = (TextView) findViewById(R.id.tvTotalAmount);
@@ -291,12 +289,39 @@ public class UserConfirmOrder extends AppCompatActivity {
                 Toast.makeText(UserConfirmOrder.this, "Order Completed Successfully", Toast.LENGTH_LONG).show();
                 DatabaseReference df = FirebaseDatabase.getInstance().getReference();
                 df.child("FurnitureCategory").child("Cart").child(FirebaseUserID).removeValue();
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FurnitureCategory")
+                        .child("Token");
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ArrayList<TokenModal> tokenlist;
+                        tokenlist = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            TokenModal listData = snapshot.getValue(TokenModal.class);
+                            tokenlist.add(new TokenModal(listData.getToken()));
+                            fcm=listData.getToken();
+
+                        }
+//                        Log.d("chl", fcm);
+
+//                       fcm = (String) dataSnapshot.getValue();
+
+
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 String s1 = sharedPreferencesusertype.getString("usertype", "");
-                if(s1.equals("admin")) {
                     FcmNotificationsSender notificationsSender = new FcmNotificationsSender(fcm, title, messege, getApplicationContext(), UserConfirmOrder.this);
                     notificationsSender.SendNotifications();
-                }
+
                 Intent intent = new Intent(getApplicationContext(), UserHome.class);
                 startActivity(intent);
             }

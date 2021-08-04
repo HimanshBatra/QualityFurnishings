@@ -14,10 +14,14 @@ import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.fragment.AdminHomeFragment;
 import com.example.qualityfurnishings.fragment.AdminLogout;
 import com.example.qualityfurnishings.fragment.AdminProfileFragment;
+import com.example.qualityfurnishings.model.Favouties;
+import com.example.qualityfurnishings.model.TokenModal;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Locale;
@@ -29,6 +33,7 @@ public class AdminHome extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     FirebaseAuth firebaseAuth;
     SharedPreferences.Editor editor;
+    String fcm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedpreferences = getApplicationContext().getSharedPreferences("LANGUAGE",getApplicationContext().MODE_PRIVATE);
@@ -41,6 +46,17 @@ public class AdminHome extends AppCompatActivity {
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                fcm=task.getResult();
+                Log.d("token", fcm);
+                DatabaseReference database1 = FirebaseDatabase.getInstance().getReference();
+                TokenModal tokenModal =new TokenModal(fcm);
+                DatabaseReference databaseReference = database1.child("FurnitureCategory").child("Token").push();
+                databaseReference.setValue(tokenModal);
+            }
+        });
 
 
 
