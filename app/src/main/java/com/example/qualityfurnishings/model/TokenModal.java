@@ -5,8 +5,10 @@ public class TokenModal {
 
     }
 
-    public TokenModal(String token) {
+
+    public TokenModal(String token, String id) {
         this.token = token;
+        this.id = id;
     }
 
     public String getToken() {
@@ -17,5 +19,14 @@ public class TokenModal {
         this.token = token;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     String token;
+    String id;
 }

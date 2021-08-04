@@ -298,11 +298,11 @@ public class UserConfirmOrder extends AppCompatActivity {
                         tokenlist = new ArrayList<>();
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                             TokenModal listData = snapshot.getValue(TokenModal.class);
-                            tokenlist.add(new TokenModal(listData.getToken()));
+                            tokenlist.add(new TokenModal(listData.getToken(),listData.getId()));
                             fcm=listData.getToken();
 
                         }
-//                        Log.d("chl", fcm);
+                        Log.d("chl", fcm);
 
 //                       fcm = (String) dataSnapshot.getValue();
 
