@@ -303,6 +303,8 @@ public class UserConfirmOrder extends AppCompatActivity {
 
                         }
                         Log.d("chl", fcm);
+                        FcmNotificationsSender notificationsSender = new FcmNotificationsSender(fcm, title, messege, getApplicationContext(), UserConfirmOrder.this);
+                        notificationsSender.SendNotifications();
 
 //                       fcm = (String) dataSnapshot.getValue();
 
@@ -319,8 +321,7 @@ public class UserConfirmOrder extends AppCompatActivity {
                 });
 
                 String s1 = sharedPreferencesusertype.getString("usertype", "");
-                    FcmNotificationsSender notificationsSender = new FcmNotificationsSender(fcm, title, messege, getApplicationContext(), UserConfirmOrder.this);
-                    notificationsSender.SendNotifications();
+
 
                 Intent intent = new Intent(getApplicationContext(), UserHome.class);
                 startActivity(intent);

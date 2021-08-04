@@ -51,43 +51,48 @@ public class AdminHome extends AppCompatActivity {
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FurnitureCategory")
-                .child("Token");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<TokenModal> tokenlist;
-                tokenlist = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    TokenModal listData = snapshot.getValue(TokenModal.class);
-                    tokenlist.add(new TokenModal(listData.getToken(),listData.getId()));
-                    id =listData.getId();
-
-                }
-                Log.d("chl", id);
-
-//                       fcm = (String) dataSnapshot.getValue();
-
-
-
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FurnitureCategory")
+//                .child("Token");
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                ArrayList<TokenModal> tokenlist;
+//                tokenlist = new ArrayList<>();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                    TokenModal listData = snapshot.getValue(TokenModal.class);
+//                    tokenlist.add(new TokenModal(listData.getToken(),listData.getId()));
+//                    id =listData.getId();
+//
+//                }
+//                Log.d("chl", id);
+//
+////                       fcm = (String) dataSnapshot.getValue();
+//
+//
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(@NonNull Task<String> task) {
                 fcm=task.getResult();
                 Log.d("token", fcm);
-
                 DatabaseReference database1 = FirebaseDatabase.getInstance().getReference();
-                TokenModal tokenModal =new TokenModal(fcm,id);
-                database1.child("FurnitureCategory").child("Token").child(id).setValue(tokenModal);
+                DatabaseReference databaseReference = database1.child("FurnitureCategory").child("Token").push();
+                databaseReference.getKey();
+                TokenModal tokenModal =new TokenModal(fcm,databaseReference.getKey());
+                databaseReference.setValue(tokenModal);
+
+//                DatabaseReference database1 = FirebaseDatabase.getInstance().getReference();
+//                TokenModal tokenModal =new TokenModal(fcm,id);
+//                database1.child("FurnitureCategory").child("Token").child(id).setValue(tokenModal);
 
             }
         });
