@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,8 @@ public class UserCartFragment extends Fragment  {
     Button checkout;
     String stpostalcode,staddress,stprovince;
     int totalPrice;
+    public static final String Screen = "UserScreen" ;
+    public static final String lastScreen = "lastscreen";
 
 
 
@@ -72,6 +75,12 @@ public class UserCartFragment extends Fragment  {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        String screen = "Cart";
+        SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sharedpreferences.edit();
+        editor1.putString(lastScreen, screen);
+        editor1.commit();
+
 
     }
 

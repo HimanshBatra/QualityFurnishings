@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.qualityfurnishings.R;
@@ -29,6 +33,43 @@ public class UserHome extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
+    public void onBackPressed(){
+        SharedPreferences sharedPreferences = getSharedPreferences("UserScreen", MODE_PRIVATE);
+        String s1 = sharedPreferences.getString("lastscreen", "");
+        if(s1.equals("HOME")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(UserHome.this);
+            builder.setTitle("Quit");
+            builder.setMessage("Do You want to close the application.");
+
+            // add a button
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finishAffinity();
+
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    return;
+
+                }
+
+            });
+            builder.show();
+        }
+        else {
+            showHomeScreen();
+        }
+
+
+    }
+
+    private void showHomeScreen() {
+        usernavigation.setSelectedItemId(R.id.userHome);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

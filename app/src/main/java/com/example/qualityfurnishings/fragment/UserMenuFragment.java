@@ -35,7 +35,8 @@ public class UserMenuFragment extends Fragment {
     public static final String UserType = "usertype";
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
-
+    public static final String Screen = "UserScreen" ;
+    public static final String lastScreen = "lastscreen";
 
 
     public UserMenuFragment() {
@@ -59,6 +60,11 @@ public class UserMenuFragment extends Fragment {
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         //ChangeLanguage(lang);
+        String screen = "Menu";
+        SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putString(lastScreen, screen);
+        editor.commit();
     }
 
     @Override
