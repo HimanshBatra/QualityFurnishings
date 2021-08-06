@@ -24,7 +24,8 @@ public class AdminLogout extends Fragment {
     public static final String MyPREFERENCES = "LoginPref" ;
     public static final String UserType = "usertype";
     SharedPreferences sharedpreferences;
-
+    public static final String Screen = "UserScreen" ;
+    public static final String lastScreen = "lastscreen";
 
 
     public AdminLogout() {
@@ -37,7 +38,11 @@ public class AdminLogout extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        String screen = "Menu";
+        SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sharedpreferences.edit();
+        editor1.putString(lastScreen, screen);
+        editor1.commit();
     }
 
     @Override
