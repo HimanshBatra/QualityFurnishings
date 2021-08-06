@@ -62,5 +62,10 @@
     <string name="addProduct"> Add Product </string>
     <string name="user"> UTILISATEUR </string>
     <string name="admin"> ADMINISTRER</string>
+    <string name="eyeid"> Entrez votre EmailId </string>
+    <string name="sendLink"> ENVOYER UN LIEN </string>
+    <string name="forgotPassword">Mot de passe oublié</string>
+    <string name="resetPassword">réinitialiser le mot de passe</string>
+    <string name="uploadProfilePicture">Télécharger une photo de profil</string>
 
 </resources>

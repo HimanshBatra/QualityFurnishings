@@ -1,8 +1,11 @@
 package com.example.qualityfurnishings.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +25,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
 
+import java.util.Locale;
 import java.util.zip.Inflater;
 
 /**
@@ -41,6 +45,8 @@ public class ForgotPasswordFragment extends Fragment {
     EditText email;
     Button buttonsend;
     String Semail;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
    FirebaseAuth mAuth;
 
@@ -54,6 +60,14 @@ public class ForgotPasswordFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        String lang = sharedPreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
 
     }
 
