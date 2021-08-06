@@ -6,7 +6,7 @@
     <string name="logout">LogOut</string>
     <string name="enter_your_email">Enter Your Email</string>
     <string name="enter_your_password">Enter Your Password</string>
-    <string name="forgot_password">Forget Password?</string>
+    <string name="forgot_password">Forgot Password?</string>
     <string name="login">Login</string>
     <string name="dont_have_an_account">Do not have an Account?</string>
     <string name="sign_up">Sign Up</string>
@@ -59,6 +59,11 @@
     <string name="addProduct"> Add Product </string>
     <string name="user"> USER </string>
     <string name="admin"> ADMIN </string>
+    <string name="eyeid"> Enter Your EmailId </string>
+    <string name="sendLink"> SENDLINK </string>
+    <string name="forgotPassword">Forgot Password</string>
+    <string name="resetPassword">Reset Password</string>
+    <string name="uploadProfilePicture">Upload Profile Picture</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
