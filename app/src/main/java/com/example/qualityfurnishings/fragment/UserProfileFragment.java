@@ -33,9 +33,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class UserProfileFragment extends Fragment {
     TextView username,useremail,userphonenumber,userpassword,useraddress,userpostalcode,userprovince;
-    Button Editprofile;
+    Button Editprofile,ChangePassword;
     String stname,stemail,stpassword,stpostalcode,staddress,stprovince,stphonenumber;
-    TextView updatePassword;
+
 
     String english = "English";
     String french = "French";
@@ -84,7 +84,7 @@ public class UserProfileFragment extends Fragment {
         useraddress=(TextView)view.findViewById(R.id.tvuserAddress);
         userpostalcode=(TextView)view.findViewById(R.id.tvuserPostalCode);
         userprovince=(TextView)view.findViewById(R.id.tvuserProvince);
-        updatePassword=(TextView)view.findViewById(R.id.tvUpdatePassword);
+        ChangePassword=(Button) view.findViewById(R.id.tvUpdatePassword);
         Editprofile=(Button)view.findViewById(R.id.btuserEditProfile);
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -140,7 +140,7 @@ public class UserProfileFragment extends Fragment {
 
             }
         });
-        updatePassword.setOnClickListener(new View.OnClickListener() {
+        ChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), UserUpdatePassword.class);

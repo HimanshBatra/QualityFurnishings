@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="10dp"
+    android:layout_margin="15dp"
     >
     <LinearLayout
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:gravity="center"
-            android:background="@drawable/imagebg">
+            android:background="@drawable/usersearch">
             <ImageView
                 android:id="@+id/proImage"
                 android:layout_width="140dp"

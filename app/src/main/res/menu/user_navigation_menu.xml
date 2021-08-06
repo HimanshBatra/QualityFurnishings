@@ -19,7 +19,7 @@
     <item
         android:id="@+id/userLogout"
         android:icon="@drawable/ic_baseline_menu_24"
-        android:title="@string/logout"
+        android:title="Menu"
         />
 
 
