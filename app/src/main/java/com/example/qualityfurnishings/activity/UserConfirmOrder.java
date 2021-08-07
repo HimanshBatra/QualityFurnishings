@@ -64,7 +64,7 @@ public class UserConfirmOrder extends AppCompatActivity {
     int count,OrderId;
     String stOrderId;
     String orderKey;
-    String title="Order";
+    String title="QualityFurnishings";
     String messege="A New order";
 
     SharedPreferences sharedPreferencesusertype;
