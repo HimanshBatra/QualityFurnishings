@@ -26,7 +26,8 @@ public class AdminHomeFragment extends Fragment {
     LinearLayout addProducts,updateProduct,orderList;
     String english = "English";
     String french = "French";
-
+    public static final String Screen = "UserScreen" ;
+    public static final String lastScreen = "lastscreen";
 
 
 
@@ -49,7 +50,11 @@ public class AdminHomeFragment extends Fragment {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
-
+        String screen = "Home";
+        SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sharedpreferences.edit();
+        editor1.putString(lastScreen, screen);
+        editor1.commit();
 
 
     }

@@ -33,7 +33,8 @@ public class AdminProfileFragment extends Fragment {
     TextView name,email,password;
     Button editProfile;
     String stName,stEmail,stPassword;
-
+    public static final String Screen = "UserScreen" ;
+    public static final String lastScreen = "lastscreen";
     String english = "English";
     String french = "French";
 
@@ -57,7 +58,11 @@ public class AdminProfileFragment extends Fragment {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
-
+        String screen = "Profile";
+        SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sharedpreferences.edit();
+        editor1.putString(lastScreen, screen);
+        editor1.commit();
     }
 
     @Override

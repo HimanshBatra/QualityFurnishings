@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -39,6 +41,44 @@ public class AdminHome extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     SharedPreferences.Editor editor;
     String fcm,id;
+
+    public void onBackPressed(){
+        SharedPreferences sharedPreferences = getSharedPreferences("UserScreen", MODE_PRIVATE);
+        String s1 = sharedPreferences.getString("lastscreen", "");
+        if(s1.equals("Home")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(AdminHome.this);
+            builder.setTitle("Quit");
+            builder.setMessage("Do You want to close the application.");
+
+            // add a button
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finishAffinity();
+
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    return;
+
+                }
+
+            });
+            builder.show();
+        }
+        else {
+            showHomeScreen();
+        }
+
+
+    }
+
+    private void showHomeScreen() {
+        bottomNavigationView.setSelectedItemId(R.id.adminHome);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedpreferences = getApplicationContext().getSharedPreferences("LANGUAGE",getApplicationContext().MODE_PRIVATE);
@@ -101,6 +141,8 @@ public class AdminHome extends AppCompatActivity {
 
             }
         });
+
+
         // get the id from the database
 
 
