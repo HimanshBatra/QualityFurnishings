@@ -51,8 +51,6 @@
     <string name="name"> Name </string>
     <string name="adminProfile"> Admin Profile </string>
     <string name="uodateProfile"> Update Profile </string>
-    <string name="productName"> Product Name</string>
-    <string name="productPrice"> Product Price </string>
     <string name="productDescription"> Product Description </string>
     <string name="productQuantity"> Product Quantity </string>
     <string name="addProductOnSale"> Add Product On Sale </string>
@@ -81,6 +79,13 @@
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="alert">Alert !</string>
+    <string name="productName">Product Name :</string>
+    <string name="productPrice">Product Price :</string>
+    <string name="paymentType">Payment Type</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="orderList">Order list </string>
+    <string name="quantity">Quantity :</string>
 
 
 

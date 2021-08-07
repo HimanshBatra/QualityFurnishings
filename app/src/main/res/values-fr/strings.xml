@@ -54,8 +54,6 @@
     <string name="name"> Nom </string>
     <string name="adminProfile">Profil administrateur </string>
     <string name="uodateProfile"> Mettre à jour le profil </string>
-    <string name="productName"> Product Name</string>
-    <string name="productPrice"> Product Price </string>
     <string name="productDescription"> Product Description </string>
     <string name="productQuantity"> Product Quantity </string>
     <string name="addProductOnSale"> Add Product On Sale </string>
@@ -84,6 +82,13 @@
     <string name="yes">Oui</string>
     <string name="alert">Alerte !</string>
     <string name="alertLanguagebox">Voulez-vous vraiment changer de langue ?</string>
+    <string name="productName">Nom du produit :</string>
+    <string name="productPrice">Prix du produit :</string>
+    <string name="paymentType">Type de paiement</string>
+    <string name="accept">Jaccepte</string>
+    <string name="decline">Déclin</string>
+    <string name="orderList">Liste de commande</string>
+    <string name="quantity">Quantité :</string>
 
 
 </resources>
