@@ -5,49 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6C7689"
-    android:gravity="center"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".fragment.AdminLogout">
-    <LinearLayout
-        android:layout_width="250dp"
-        android:layout_height="150dp"
-        android:background="@drawable/categorybg"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Do You Want to LogOut?"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="50dp"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tvCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cancel"
-                android:textColor="#FFFFFF"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="25dp"/>
-            <TextView
-                android:id="@+id/tvYes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yes"
-                android:textColor="#FFFFFF"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"/>
-        </LinearLayout>
 
-    </LinearLayout>
     <LinearLayout
         android:id="@+id/adminLanguage"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_vertical"
         android:background="@drawable/categorybg">
         <TextView
@@ -62,7 +28,7 @@
         android:id="@+id/adminLogOut"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:background="@drawable/categorybg">
         <TextView
