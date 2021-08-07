@@ -1,6 +1,8 @@
 package com.example.qualityfurnishings.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +16,13 @@ import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.model.Cart;
 
 import java.util.List;
+import java.util.Locale;
 
 public class UserOrderListAdapter extends RecyclerView.Adapter<UserOrderListAdapter.ViewHolder>{
     private List<Cart> cartList;
     Context context;
     String storderId, storderStatus;
+    SharedPreferences sharedPreferences;
 
     public UserOrderListAdapter(List<Cart> cartList, String orderId, String orderStatus, Context context){
         this.cartList=cartList;
@@ -33,10 +37,21 @@ public class UserOrderListAdapter extends RecyclerView.Adapter<UserOrderListAdap
     }
     @Override
     public UserOrderListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+       Localization();
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.userorderlist,parent,false);
         return new UserOrderListAdapter.ViewHolder(view);
     }
 
+    private void Localization() {
+        sharedPreferences = context.getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        context.getResources().updateConfiguration(configuration,context.getResources().getDisplayMetrics());
+    }
 
 
     @Override

@@ -37,6 +37,13 @@ public class UserMenuFragment extends Fragment {
     SharedPreferences.Editor editor;
     public static final String Screen = "UserScreen" ;
     public static final String lastScreen = "lastscreen";
+    String data;
+    String c;
+    String y;
+    String a;
+    String alertLanguage;
+
+
 
 
     public UserMenuFragment() {
@@ -61,6 +68,11 @@ public class UserMenuFragment extends Fragment {
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
         //ChangeLanguage(lang);
         String screen = "Menu";
+        data = getResources().getString(R.string.alertDialogbox);
+        c=getResources().getString(R.string.cancel);
+        y=getResources().getString(R.string.yes);
+        a=getResources().getString(R.string.alert);
+        alertLanguage=getResources().getString(R.string.alertLanguagebox);
         SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putString(lastScreen, screen);
@@ -96,11 +108,11 @@ public class UserMenuFragment extends Fragment {
                 AlertDialog.Builder builder
                         = new AlertDialog
                         .Builder(getContext());
-                builder.setMessage("Are you sure you want to Change Language?");
+                builder.setMessage(alertLanguage);
 
                 // Set Alert Title
-                builder.setTitle("Alert !");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setTitle(a);
+                builder.setPositiveButton(y, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sharedpreferences = getContext().getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
@@ -129,7 +141,7 @@ public class UserMenuFragment extends Fragment {
 
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(c, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         return;
@@ -145,11 +157,11 @@ public class UserMenuFragment extends Fragment {
                 AlertDialog.Builder builder
                         = new AlertDialog
                         .Builder(getContext());
-                builder.setMessage("Are you sure you want to LogOut?");
+                builder.setMessage(data);
 
                 // Set Alert Title
-                builder.setTitle("Alert !");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setTitle(a);
+                builder.setPositiveButton(y, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -166,7 +178,7 @@ public class UserMenuFragment extends Fragment {
 
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(c, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         return;

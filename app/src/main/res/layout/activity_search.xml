@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Quality"
+            android:text="@string/selectQuality"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/blue"
@@ -68,25 +68,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Superior"/>
+            android:text="@string/superior"/>
         <Button
             android:id="@+id/wellChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Well Founded"/>
+            android:text="@string/wellFounded"/>
         <Button
             android:id="@+id/cheapChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Cheap"/>
+            android:text="@string/cheap"/>
         <Button
             android:id="@+id/unwarrantedChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="UnWarranted"/>
+            android:text="@string/unwarranted"/>
         </LinearLayout>
     </HorizontalScrollView>
 
@@ -129,7 +129,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price Range"
+        android:text="@string/priceRange"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/blue"

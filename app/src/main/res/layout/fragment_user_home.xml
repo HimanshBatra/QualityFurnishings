@@ -97,7 +97,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Furniture"
+                    android:text="@string/furniture"
                     android:textColor="#FFFFFF"/>
 
             </LinearLayout>
@@ -119,7 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Furniture"
+                    android:text="@string/furniture"
                     android:textColor="#FFFFFF"/>
 
             </LinearLayout>
@@ -141,7 +141,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Furniture"
+                    android:text="@string/furniture"
                     android:textColor="#FFFFFF"/>
 
             </LinearLayout>
@@ -164,7 +164,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Furniture"
+                    android:text="@string/furniture"
                     android:textColor="#FFFFFF"/>
 
             </LinearLayout>

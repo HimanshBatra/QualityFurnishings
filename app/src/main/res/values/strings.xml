@@ -64,6 +64,24 @@
     <string name="forgotPassword">Forgot Password</string>
     <string name="resetPassword">Reset Password</string>
     <string name="uploadProfilePicture">Upload Profile Picture</string>
+    <string name="selectQuality">Select Quality</string>
+    <string name="superior">Superior</string>
+    <string name="wellFounded">WELL FOUNDED</string>
+    <string name="cheap">CHEAP</string>
+    <string name="unwarranted">UNWARRANTED</string>
+    <string name="priceRange">Price Range</string>
+    <string name="addToCart">Add To Cart</string>
+    <string name="menu">Menu</string>
+    <string name="favouriteProducts">Favourite Products</string>
+    <string name="orderid">OrderId :</string>
+    <string name="orderStatus">Order Status :</string>
+    <string name="amount">Amount :</string>
+    <string name="alertDialogbox">Are You Sure want to LogOut ?</string>
+    <string name="alertLanguagebox">Are You Sure want to change Language ?</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="alert">Alert !</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->
