@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
+    android:background="@drawable/userorderbg"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp"
+    android:layout_margin="15dp"
     >
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userorderList"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
