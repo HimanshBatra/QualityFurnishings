@@ -3,8 +3,10 @@ package com.example.qualityfurnishings.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Locale;
 
 public class DetailActivity extends AppCompatActivity {
 //    BottomNavigationView usernavigation;
@@ -51,12 +55,21 @@ public class DetailActivity extends AppCompatActivity {
     int iPrice;
     boolean blSale;
     int saleprice;
+    SharedPreferences sharedPreferences;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getApplicationContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_detail);
         productimage=(ImageView)findViewById(R.id.ProductImage);
         productname =(TextView)findViewById(R.id.tvProductName);

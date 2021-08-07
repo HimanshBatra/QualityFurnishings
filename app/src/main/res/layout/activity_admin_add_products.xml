@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:textColor="#000000"
             android:textStyle="italic"
-            android:text="@string/uploadProfilePicture"/>
+            android:text="Upload Profile Picture"/>
 
 
           <Spinner

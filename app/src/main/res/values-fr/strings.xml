@@ -67,5 +67,23 @@
     <string name="forgotPassword">Mot de passe oublié</string>
     <string name="resetPassword">réinitialiser le mot de passe</string>
     <string name="uploadProfilePicture">Télécharger une photo de profil</string>
+    <string name="selectQuality">Sélectionnez la qualité</string>
+    <string name="superior">Supérieur</string>
+    <string name="wellFounded">BIEN FONDÉ</string>
+    <string name="cheap">PEU COÛTEUX</string>
+    <string name="unwarranted">INJUSTIFIÉ</string>
+    <string name="priceRange">Échelle des prix</string>
+    <string name="addToCart">Ajouter au panier</string>
+    <string name="menu">Menu</string>
+    <string name="favouriteProducts">Produits préférés</string>
+    <string name="orderid">Numéro de commande :</string>
+    <string name="orderStatus">Statut de la commande :</string>
+    <string name="amount">Montant :</string>
+    <string name="alertDialogbox">Voulez-vous vraiment vous déconnecter ?</string>
+    <string name="cancel">Annuler</string>
+    <string name="yes">Oui</string>
+    <string name="alert">Alerte !</string>
+    <string name="alertLanguagebox">Voulez-vous vraiment changer de langue ?</string>
+
 
 </resources>

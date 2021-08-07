@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -48,10 +51,20 @@ public class SearchActivity extends AppCompatActivity {
     Button priceZero, priceFifty,priceHundred,priceOneFifty;
     int priceMin=0,priceMax=1;
     public static Context context;
+    SharedPreferences sharedpreferences;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getApplicationContext().getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_search);
         context = getApplicationContext();
 //        QualityGroup=findViewById(R.id.quality);
