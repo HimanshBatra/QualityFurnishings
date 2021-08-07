@@ -37,21 +37,18 @@ public class UserOrderListAdapter extends RecyclerView.Adapter<UserOrderListAdap
     }
     @Override
     public UserOrderListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-       Localization();
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.userorderlist,parent,false);
-        return new UserOrderListAdapter.ViewHolder(view);
-    }
-
-    private void Localization() {
-        sharedPreferences = context.getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
+       /* sharedPreferences = context.getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
         String lang = sharedPreferences.getString("code","en");
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.locale = locale;
-        context.getResources().updateConfiguration(configuration,context.getResources().getDisplayMetrics());
+        context.getResources().updateConfiguration(configuration,context.getResources().getDisplayMetrics());*/
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.userorderlist,parent,false);
+        return new UserOrderListAdapter.ViewHolder(view);
     }
+
 
 
     @Override

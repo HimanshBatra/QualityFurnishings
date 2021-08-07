@@ -19,7 +19,7 @@
         android:orientation="horizontal">
         <TextView
             android:textSize="20sp"
-            android:text="Payment Type :"
+            android:text="@string/paymentType"
             android:textColor="#000"
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
@@ -44,13 +44,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Accept"/>
+            android:text="@string/accept"/>
         <Button
             android:id="@+id/btDeclineOrder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="Decline"/>
+            android:text="@string/decline"/>
     </LinearLayout>
 
 </LinearLayout>
