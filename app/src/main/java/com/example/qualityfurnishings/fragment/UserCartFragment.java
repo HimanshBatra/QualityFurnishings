@@ -56,6 +56,15 @@ public class UserCartFragment extends Fragment  {
     int totalPrice;
     public static final String Screen = "UserScreen" ;
     public static final String lastScreen = "lastscreen";
+    String addressbox ;
+    String houseNumber;
+    String postalcode;
+    String province;
+    String c;
+    String y;
+    String a;
+    String addressNotAvailiable;
+    String alertForCheckout;
 
 
 
@@ -75,6 +84,16 @@ public class UserCartFragment extends Fragment  {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        addressbox =getResources().getString(R.string.cya);
+        houseNumber=getResources().getString(R.string.hn);
+        postalcode=getResources().getString(R.string.postalcode);
+        province=getResources().getString(R.string.province);
+        c=getResources().getString(R.string.cancel);
+        y=getResources().getString(R.string.yes);
+        a=getResources().getString(R.string.alert);
+        addressNotAvailiable=getResources().getString(R.string.ana);
+        alertForCheckout=getResources().getString(R.string.checkoutAlert);
+
         String screen = "Cart";
         SharedPreferences sharedpreferences = getContext().getSharedPreferences(Screen, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor1 = sharedpreferences.edit();
@@ -142,7 +161,7 @@ public class UserCartFragment extends Fragment  {
                         stprovince = usermodel.getProvince();
                         if (totalPrice == 0) {
 
-                            Toast.makeText(getContext(), "Please add some products before checkout", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), alertForCheckout, Toast.LENGTH_LONG).show();
 
                         }
 
@@ -153,11 +172,11 @@ public class UserCartFragment extends Fragment  {
 
                             // setup the alert builder
                             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                            builder.setTitle("ALERT");
-                            builder.setMessage("Please Add your address in your Profile before Checkout");
+                            builder.setTitle(a);
+                            builder.setMessage(addressNotAvailiable);
 
                             // add a button
-                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            builder.setPositiveButton(y, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     Activity activity = getActivity();
@@ -167,7 +186,7 @@ public class UserCartFragment extends Fragment  {
 
                                 }
                             });
-                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            builder.setNegativeButton(c, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             return;
@@ -183,9 +202,9 @@ public class UserCartFragment extends Fragment  {
                         }
                         else {
                             AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext());
-                            builder2.setMessage("House Number: " + staddress + "\n"+"Postal Code: " +stpostalcode +"\n"+ "Province: " +stprovince);
-                            builder2.setTitle("Confirm Your Address");
-                            builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            builder2.setMessage(houseNumber + staddress + "\n"+postalcode +stpostalcode +"\n"+ province +stprovince);
+                            builder2.setTitle(addressbox);
+                            builder2.setPositiveButton(y, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
 
@@ -199,7 +218,7 @@ public class UserCartFragment extends Fragment  {
 
 
                                 });
-                            builder2.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            builder2.setNegativeButton(c, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             return;

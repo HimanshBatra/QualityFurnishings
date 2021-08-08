@@ -33,6 +33,11 @@ public class UserUpdatePassword extends AppCompatActivity {
     FirebaseAuth mAuth;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String checkingValidityEmail;
+    String mailLink;
+    String c,y,a;
+    String userNotexists;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,7 @@ public class UserUpdatePassword extends AppCompatActivity {
                 else
                 {
                     email.requestFocus();
-                    email.setError("Enter a valid email"); }
+                    email.setError(checkingValidityEmail); }
             }
         });
         sharedPreferences = getApplicationContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
@@ -65,6 +70,14 @@ public class UserUpdatePassword extends AppCompatActivity {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        checkingValidityEmail=getResources().getString(R.string.eve);
+        c=getResources().getString(R.string.cancel);
+        y=getResources().getString(R.string.yes);
+        a=getResources().getString(R.string.alert);
+        userNotexists=getResources().getString(R.string.une);
+        mailLink=getResources().getString(R.string.mailLink);
+
+
 
     }
 
@@ -76,17 +89,17 @@ public class UserUpdatePassword extends AppCompatActivity {
                             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                                 boolean validation = !task.getResult().getSignInMethods().isEmpty();
                                 if (!validation) {
-                                    Toast.makeText(getApplicationContext(), "User not exists", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), userNotexists, Toast.LENGTH_SHORT).show();
                                 }
                                 else {
                                     AlertDialog.Builder builder
                                             = new AlertDialog
                                             .Builder(UserUpdatePassword.this);
-                                    builder.setMessage("Do you want to send link to your email?");
+                                    builder.setMessage(mailLink);
 
                                     // Set Alert Title
-                                    builder.setTitle("Alert !");
-                                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                    builder.setTitle(a);
+                                    builder.setPositiveButton(y, new DialogInterface.OnClickListener() {
 
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -102,7 +115,7 @@ public class UserUpdatePassword extends AppCompatActivity {
                                                     });
                                         }
                                     });
-                                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                    builder.setNegativeButton(c, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent = new Intent(getApplicationContext(),UserHome.class);

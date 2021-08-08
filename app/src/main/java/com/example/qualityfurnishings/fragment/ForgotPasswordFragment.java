@@ -47,6 +47,10 @@ public class ForgotPasswordFragment extends Fragment {
     String Semail;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String checkingValidityEmail;
+    String mailLink;
+    String c,y,a;
+    String userNotexists;
 
    FirebaseAuth mAuth;
 
@@ -68,6 +72,12 @@ public class ForgotPasswordFragment extends Fragment {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        checkingValidityEmail=getResources().getString(R.string.eve);
+        c=getResources().getString(R.string.cancel);
+        y=getResources().getString(R.string.yes);
+        a=getResources().getString(R.string.alert);
+        userNotexists=getResources().getString(R.string.une);
+        mailLink=getResources().getString(R.string.mailLink);
 
     }
 
@@ -99,7 +109,7 @@ public class ForgotPasswordFragment extends Fragment {
                 else
                 {
                     email.requestFocus();
-                    email.setError("Enter a valid email"); }
+                    email.setError(checkingValidityEmail); }
 
             }
         });
@@ -118,7 +128,7 @@ return view;
                             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                                 boolean validation = !task.getResult().getSignInMethods().isEmpty();
                                 if (!validation) {
-                                    Toast.makeText(getContext(), "User not exists", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(getContext(),userNotexists, Toast.LENGTH_SHORT).show()
 
                                     ;
                                 } else {
@@ -127,11 +137,11 @@ return view;
                                     AlertDialog.Builder builder
                                             = new AlertDialog
                                             .Builder(getContext());
-                                    builder.setMessage("Do you want to send link to your email?");
+                                    builder.setMessage(mailLink);
 
                                     // Set Alert Title
-                                    builder.setTitle("Alert !");
-                                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                    builder.setTitle(a);
+                                    builder.setPositiveButton(y, new DialogInterface.OnClickListener() {
 
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -146,7 +156,7 @@ return view;
                                                     });
                                         }
                                     });
-                                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                    builder.setNegativeButton(c, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             getFragmentManager().beginTransaction().replace(R.id.mainContainer,new UserLoginFragment()).commit();
