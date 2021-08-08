@@ -13,7 +13,7 @@
     <LinearLayout
         android:id="@+id/myorders"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginTop="30dp"
         android:gravity="center_vertical"
         android:background="@drawable/categorybg">
@@ -28,7 +28,7 @@
     <LinearLayout
         android:id="@+id/favProducts"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:background="@drawable/categorybg">
@@ -43,7 +43,7 @@
     <LinearLayout
         android:id="@+id/changeLanguage"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:background="@drawable/categorybg">
@@ -59,7 +59,7 @@
     <LinearLayout
         android:id="@+id/logout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:background="@drawable/categorybg">
