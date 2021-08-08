@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".fragment.UserCartFragment">
 
+    <TextView
+        android:id="@+id/tvNull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_margin="20dp"
+        android:text="Sorry! No products in the cart"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/usercartView"
         android:layout_width="wrap_content"

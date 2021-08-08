@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.qualityfurnishings.R;
 import com.example.qualityfurnishings.adapter.CartAdapter;
@@ -24,6 +26,7 @@ import java.util.List;
 public class FavouriteProducts extends AppCompatActivity {
     private RecyclerView recyclerView;
     String firebaseUserId;
+    TextView NoFavourities;
     private ArrayList<Favouties> favouritiesList;
     FavouriteProductsAdapter favouriteProductsAdapter;
     @Override
@@ -31,6 +34,7 @@ public class FavouriteProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R .layout.activity_favourite_products);
         recyclerView = findViewById(R.id.favproductsView);
+        NoFavourities = findViewById(R.id.tvNoFav);
         SharedPreferences sharedPreferences = getSharedPreferences("UserPref", MODE_PRIVATE);
         firebaseUserId = sharedPreferences.getString("userid","");
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -45,6 +49,12 @@ public class FavouriteProducts extends AppCompatActivity {
                     favouritiesList.add(new Favouties(listData.getImage(),listData.getName(),listData.getDescription(), listData.getQuality(), listData.getQuantity(),listData.getPrice(),listData.isSale(),listData.getDiscount(),listData.getId(),listData.getCategory(),listData.getSubCategory(),listData.getUserid(),listData.isFavourity()));
 
 
+                }
+                if (favouritiesList.isEmpty()){
+                    NoFavourities.setVisibility(View.VISIBLE);
+                }
+                else {
+                    NoFavourities.setVisibility(View.GONE);
                 }
                 favouriteProductsAdapter = new FavouriteProductsAdapter(favouritiesList,getApplicationContext());
                 recyclerView.setAdapter(favouriteProductsAdapter);
