@@ -30,6 +30,7 @@ public class AdminEditProfile extends AppCompatActivity {
     Button updateProfile;
     String stName,stEmail,stPassword;
     String uName,uEmail,uPassword,uCpassword;
+    String updateAlert;
 
 
     @Override
@@ -60,6 +61,7 @@ public class AdminEditProfile extends AppCompatActivity {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        updateAlert=getResources().getString(R.string.upu);
         
         updateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +116,7 @@ public class AdminEditProfile extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         AdminModal admin = new AdminModal(uName, uPassword,uEmail);
         databaseReference.child("FurnitureCategory").child("Admin").setValue(admin);
-        Toast.makeText(getApplicationContext(), "Admin Profile Updated", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), updateAlert, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),AdminHome.class);
         startActivity(intent);
 
