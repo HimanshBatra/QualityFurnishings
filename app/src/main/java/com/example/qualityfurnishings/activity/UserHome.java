@@ -33,24 +33,26 @@ public class UserHome extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String q,c,y;
+    String alertBox;
 
     public void onBackPressed(){
         SharedPreferences sharedPreferences = getSharedPreferences("UserScreen", MODE_PRIVATE);
         String s1 = sharedPreferences.getString("lastscreen", "");
         if(s1.equals("HOME")){
             AlertDialog.Builder builder = new AlertDialog.Builder(UserHome.this);
-            builder.setTitle("Quit");
-            builder.setMessage("Do You want to close the application.");
+            builder.setTitle(q);
+            builder.setMessage(alertBox);
 
             // add a button
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(y, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     finishAffinity();
 
                 }
             });
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(c, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     return;
@@ -81,6 +83,12 @@ public class UserHome extends AppCompatActivity {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+
+        q=getResources().getString(R.string.quit);
+        alertBox=getResources().getString(R.string.alertDialogForQuit);
+        c=getResources().getString(R.string.cancel);
+        y=getResources().getString(R.string.yes);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
         firebaseAuth= FirebaseAuth.getInstance();

@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,6 +44,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class UserConfirmOrder extends AppCompatActivity {
     TextView totalAmount, month, year;
@@ -68,11 +71,20 @@ public class UserConfirmOrder extends AppCompatActivity {
     String messege="A New order";
 
     SharedPreferences sharedPreferencesusertype;
+    SharedPreferences sharedPreferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getApplicationContext().getSharedPreferences("LANGUAGE", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("code","en");
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_user_confirm_order);
         Bundle extras = getIntent().getExtras();
         amount = extras.getInt("amountValue");

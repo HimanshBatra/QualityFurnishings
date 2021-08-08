@@ -56,6 +56,9 @@ public class DetailActivity extends AppCompatActivity {
     boolean blSale;
     int saleprice;
     SharedPreferences sharedPreferences;
+    String pcCart;
+    String pcaddedFav;
+    String pcRemovedFav;
 
 
 
@@ -69,6 +72,9 @@ public class DetailActivity extends AppCompatActivity {
         Configuration configuration = new Configuration();
         configuration.locale = locale;
         getResources().updateConfiguration(configuration,getResources().getDisplayMetrics());
+        pcCart= getResources().getString(R.string.pac);
+        pcaddedFav= getResources().getString(R.string.prf);
+        pcRemovedFav=getResources().getString(R.string.psf);
 
         setContentView(R.layout.activity_detail);
         productimage=(ImageView)findViewById(R.id.ProductImage);
@@ -264,7 +270,7 @@ public class DetailActivity extends AppCompatActivity {
                 DatabaseReference db_ref = database.child("FurnitureCategory").child("Cart").child(s1).push();
                 Cart cart =new Cart(ProductName,image,category,subcategory,Cartquantity,finalPrice,db_ref.getKey(),s1,finalPrice,itemcount);
                 db_ref.setValue(cart);
-                Toast.makeText(getApplicationContext(), "Product Successfully Added to Cart", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), pcCart, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -278,7 +284,7 @@ public class DetailActivity extends AppCompatActivity {
         databaseReference.child("FurnitureCategory").child("Favourities").child(s1).child(dbKey).removeValue();
         favourity = false;
         SaveProduct.setBackgroundResource(R.drawable.whiteheart);
-        Toast.makeText(getApplicationContext(), "Product Successfully Removed from Favourities", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), pcRemovedFav, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -290,7 +296,7 @@ public class DetailActivity extends AppCompatActivity {
         Favouties favouties =new Favouties(image,ProductName,stDescription,stQuality,itemcount,iPrice,blSale,saleprice,databaseReference.getKey(),category,subcategory,s1,favourity);
         databaseReference.setValue(favouties);
         SaveProduct.setBackgroundResource(R.drawable.like);
-        Toast.makeText(getApplicationContext(), "Product Successfully Added to Favourities", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),pcaddedFav, Toast.LENGTH_SHORT).show();
 
     }
 

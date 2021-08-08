@@ -37,6 +37,7 @@ public class UserEditProfile extends AppCompatActivity {
     UserTestModal userTestModal;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String updateAlert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class UserEditProfile extends AppCompatActivity {
         editor = sharedPreferences.edit();
         String lang = sharedPreferences.getString("code","en");
         ChangeLanguage(lang);
+        updateAlert=getResources().getString(R.string.upu);
         /*if(lang.equals("fr")){
 
             //language.setText(english);
@@ -155,7 +157,7 @@ public class UserEditProfile extends AppCompatActivity {
         UserTestModal userModal = new UserTestModal(name, email,phonenumber,password,address,postalcode,province);
         databaseReference.child("users").child(userID).setValue(userModal);
 
-        Toast.makeText(getApplicationContext(), "User Profile Updated", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), updateAlert, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(),UserHome.class);
         startActivity(intent);
 

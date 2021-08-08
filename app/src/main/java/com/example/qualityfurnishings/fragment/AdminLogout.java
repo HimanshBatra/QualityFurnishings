@@ -56,7 +56,9 @@ public class AdminLogout extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedpreferences = getContext().getSharedPreferences("LANGUAGE",Context.MODE_PRIVATE);
-        editor = sharedpreferences.edit();
+
+        //editor = sharedpreferences.edit();
+
         String lang = sharedpreferences.getString("code","en");
 
         Locale locale = new Locale(lang);

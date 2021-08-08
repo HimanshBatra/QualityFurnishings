@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Amount: $"
+            android:text="@string/totalAmount"
             android:textSize="40sp"
             android:textColor="#000"/>
         <TextView
@@ -44,7 +44,7 @@
             android:id="@+id/radioCredit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Credit Card"
+            android:text="@string/creditCard"
             android:buttonTint="@color/blue"
             />
         <RadioButton
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/blue"
-            android:text="Cash on Delivery" />
+            android:text="@string/cashOnDelivery" />
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -146,7 +146,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:textColor="#FFFFFF"
-        android:text="Confirm Order"
+        android:text="@string/confirmOrder"
         />
 
 </LinearLayout>

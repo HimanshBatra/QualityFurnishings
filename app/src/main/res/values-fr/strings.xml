@@ -89,6 +89,30 @@
     <string name="decline">Déclin</string>
     <string name="orderList">Liste de commande</string>
     <string name="quantity">Quantité :</string>
+    <string name="totalAmount">Montant total: $</string>
+    <string name="creditCard">Carte de crédit</string>
+    <string name="cashOnDelivery">
+Paiement à la livraison</string>
+    <string name="confirmOrder">Confirmer la commande</string>
+    <string name="quit">Quitter</string>
+    <string name="alertDialogForQuit">Voulez-vous fermer lapplication ?</string>
+    <string name="cya">
+Confirmez votre adresse :</string>
+    <string name="hn">Numéro de maison :</string>
+    <string name="pc">
+code postal :</string>
+    <string name="ana">Veuillez ajouter votre adresse dans votre profil avant de passer à la caisse</string>
+    <string name="pac">
+Produit ajouté au panier avec succès</string>
+    <string name="prf">
+Produit supprimé avec succès des favoris</string>
+    <string name="psf">Produit ajouté avec succès aux favoris</string>
+    <string name="eve">Entrer une adresse email valide</string>
+    <string name="mailLink">Voulez-vous envoyer un lien vers votre e-mail?</string>
+    <string name="une">L utilisateur n existe pas</string>
+    <string name="upu">
+Profil d utilisateur mis à jour</string>
+    <string name="checkoutAlert">S il vous plaît ajouter des produits avant la caisse</string>
 
 
 </resources>
