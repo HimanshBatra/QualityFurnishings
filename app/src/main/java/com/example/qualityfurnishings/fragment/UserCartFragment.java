@@ -50,7 +50,7 @@ public class UserCartFragment extends Fragment  {
     private RecyclerView recyclerView;
     ArrayList<Cart> cartlist;
     CartAdapter cartAdapter;
-    TextView total;
+    TextView total,TvNull;
     Button checkout;
     String stpostalcode,staddress,stprovince;
     int totalPrice;
@@ -91,6 +91,7 @@ public class UserCartFragment extends Fragment  {
         View view= inflater.inflate(R.layout.fragment_user_cart, container, false);
         recyclerView = view.findViewById(R.id.usercartView);
         total = view.findViewById(R.id.total);
+        TvNull = view.findViewById(R.id.tvNull);
         checkout=view.findViewById(R.id.btCheckout);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -115,6 +116,12 @@ public class UserCartFragment extends Fragment  {
                     cartlist.add(new Cart(listData.getProductName(),listData.getImage(),listData.getCategory(),listData.getSubcategory(),listData.getQuantity(),listData.getFinalPrice(),dataSnapshot.getKey(),listData.getUserid(),listData.getProductPrice(),listData.getItemCount()));
                     totalPrice=totalPrice+listData.getFinalPrice();
 
+                }
+                if (cartlist.isEmpty()){
+                    TvNull.setVisibility(View.VISIBLE);
+                }
+                else {
+                    TvNull.setVisibility(View.GONE);
                 }
                 total.setText(totalPrice+"");
                 cartAdapter = new CartAdapter(getActivity(), cartlist);

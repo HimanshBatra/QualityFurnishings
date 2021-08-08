@@ -38,7 +38,7 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     String Category;
     ImageView Imgsearch, ImgRefresh;
-    TextView searchProduct;
+    TextView searchProduct,TvNoSearch;
     ChipGroup QualityGroup,PriceGroup;
     String flag="false";
     ArrayList<ProductModal> productList;
@@ -76,6 +76,8 @@ public class SearchActivity extends AppCompatActivity {
         unwarranted = (Button) findViewById(R.id.unwarrantedChip);
         Imgsearch=(ImageView)findViewById(R.id.search);
         ImgRefresh=(ImageView)findViewById(R.id.refresh);
+        TvNoSearch=(TextView) findViewById(R.id.tvNoSearch);
+        TvNoSearch.setVisibility(View.GONE);
         searchProduct=findViewById(R.id.etSearch);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 //        recyclerView.setHasFixedSize(true);
@@ -154,78 +156,7 @@ public class SearchActivity extends AppCompatActivity {
 
             }
         });
-//                Chip superior= QualityGroup.findViewById(R.id.superiorChip);
-//                Chip wellfounded= QualityGroup.findViewById(R.id.wellChip);
-//                Chip cheap= QualityGroup.findViewById(R.id.cheapChip);
-//                Chip unWarranted= QualityGroup.findViewById(R.id.unwarrantedChip);
-//               superior.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                   @Override
-//                   public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                       Quality= "Superior";
-//
-//                   }
-//               });
-//                wellfounded.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                        Quality= "Well Founded";
-//
-//                    }
-//                });
-//                cheap.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                        Quality= "Cheap";
-//
-//                    }
-//                });
-//                unWarranted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                        Quality= "UnWarranted";
-//
-//                    }
-//                });
 
-
-
-
-
-//
-//                Chip priceZero= PriceGroup.findViewById(R.id.price0);
-//                Chip pricefifty= PriceGroup.findViewById(R.id.price51);
-//                Chip priceHundred= PriceGroup.findViewById(R.id.price101);
-//                Chip priceOnefifty= PriceGroup.findViewById(R.id.price150);
-//                priceZero.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                        priceMin=1;
-//                        priceMax=50;
-//
-//                    }
-//                });
-//                pricefifty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                        priceMin= 51;
-//                        priceMax= 100;
-//                    }
-//                });
-//                priceHundred.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                        priceMin= 101;
-//                        priceMax= 151;
-//                    }
-//                });
-//                priceOnefifty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                    @Override
-//                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                        priceMin= 151;
-//                        priceMax= 10000;
-//
-//                    }
-//                });
         priceZero = (Button)findViewById(R.id.price0);
         priceFifty = (Button)findViewById(R.id.price50);
         priceHundred = (Button)findViewById(R.id.price100);
@@ -289,164 +220,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ValueSearch();
-//                Log.d("pp", String.valueOf(priceMax));
-//                String searchvalue=searchProduct.getText().toString();
-//                flag="false";
-//                if(!TextUtils.isEmpty(searchvalue) && Quality=="" && priceMax==1){
-//                    searchProductList=new ArrayList<>();
-//                    for(int i=0;i<productList.size();i++){
-//                        if (productList.get(i).getName().toLowerCase().contains(searchvalue.trim().toLowerCase())){
-//                            flag="true";
-//                            searchProductList.add(new ProductModal(productList.get(i).getImage(), productList.get(i).getName(),productList.get(i).getDescription(),
-//                                    productList.get(i).getQuality(),productList.get(i).getQuantity(),productList.get(i).getPrice(),productList.get(i).isSale(),
-//                                    productList.get(i).getDiscount(), productList.get(i).getId(),Category,productList.get(i).getSubCategory()));
-//                            userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                            recyclerView.setAdapter(userSearchAdapter);
-//
-//
-//                        }
-//
-//                    }
-//
-//                    if(flag.equals("false")){
-//                        searchProductList.clear();
-//                        userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                        recyclerView.setAdapter(userSearchAdapter);
-//
-//                    }
-//
-//                }
-//                else if(TextUtils.isEmpty(searchvalue) && Quality!="" && priceMax==1) {
-//                    searchProductList = new ArrayList<>();
-//                    flag = "false";
-//                    for (int i = 0; i < productList.size(); i++) {
-//                        if (productList.get(i).getQuality().toLowerCase().contains(Quality.trim().toLowerCase())) {
-//                            flag = "true";
-//                            searchProductList.add(new ProductModal(productList.get(i).getImage(), productList.get(i).getName(), productList.get(i).getDescription(),
-//                                    productList.get(i).getQuality(), productList.get(i).getQuantity(), productList.get(i).getPrice(), productList.get(i).isSale(),
-//                                    productList.get(i).getDiscount(), productList.get(i).getId(), Category, productList.get(i).getSubCategory()));
-//                            userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                            recyclerView.setAdapter(userSearchAdapter);
-//
-//
-//                        }
-//
-//                    }
-//                    if (flag.equals("false")) {
-//                        searchProductList.clear();
-//                        userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                        recyclerView.setAdapter(userSearchAdapter);
-//
-//                    }
-//                }
-//                else if(TextUtils.isEmpty(searchvalue) && Quality=="" && priceMax!=1){
-//                        searchProductList=new ArrayList<>();
-//                        flag="false";
-//                        for(int i=0;i<productList.size();i++){
-//                            int tempPrice = productList.get(i).getPrice();
-//                            if(tempPrice>priceMin && tempPrice <priceMax){
-//                                flag="true";
-//                                searchProductList.add(new ProductModal(productList.get(i).getImage(), productList.get(i).getName(),productList.get(i).getDescription(),
-//                                        productList.get(i).getQuality(),productList.get(i).getQuantity(),productList.get(i).getPrice(),productList.get(i).isSale(),
-//                                        productList.get(i).getDiscount(), productList.get(i).getId(),Category,productList.get(i).getSubCategory()));
-//
-//                                userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                                recyclerView.setAdapter(userSearchAdapter);
-//
-//
-//
-//                            }
-//                        }
-//                        if(flag.equals("false")){
-//                            searchProductList.clear();
-//                            userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                            recyclerView.setAdapter(userSearchAdapter);
-//
-//                        }
-//
-//
-//
-//                }
-//                else if(!TextUtils.isEmpty(searchvalue) && Quality!="" && priceMax!=1){
-//                    searchProductList=new ArrayList<>();
-//                    flag="false";
-//                    for(int i=0;i<productList.size();i++){
-//                        int tempPrice = productList.get(i).getPrice();
-//                        if (productList.get(i).getName().toLowerCase().contains(searchvalue.trim().toLowerCase())
-//                                && productList.get(i).getQuality().toLowerCase().contains(Quality.trim().toLowerCase())
-//                        && tempPrice>priceMin && tempPrice <priceMax){
-//                            flag="true";
-//                            searchProductList.add(new ProductModal(productList.get(i).getImage(), productList.get(i).getName(),productList.get(i).getDescription(),
-//                                    productList.get(i).getQuality(),productList.get(i).getQuantity(),productList.get(i).getPrice(),productList.get(i).isSale(),
-//                                    productList.get(i).getDiscount(), productList.get(i).getId(),Category,productList.get(i).getSubCategory()));
-//
-//                            userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                            recyclerView.setAdapter(userSearchAdapter);
-//
-//
-//                        }
-//
-//                    }
-//                    if(flag.equals("false")){
-//                        searchProductList.clear();
-//                        userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                        recyclerView.setAdapter(userSearchAdapter);
-//
-//                    }
-//                }
-//                else if(Quality!=""){
-//                    searchProductList=new ArrayList<>();
-//                    flag="false";
-//                    for(int i=0;i<productList.size();i++){
-//                        if (productList.get(i).getQuality().toLowerCase().contains(Quality.trim().toLowerCase())){
-//                            flag="true";
-//                            searchProductList.add(new ProductModal(productList.get(i).getImage(), productList.get(i).getName(),productList.get(i).getDescription(),
-//                                    productList.get(i).getQuality(),productList.get(i).getQuantity(),productList.get(i).getPrice(),productList.get(i).isSale(),
-//                                    productList.get(i).getDiscount(), productList.get(i).getId(),Category,productList.get(i).getSubCategory()));
-//                            userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                            recyclerView.setAdapter(userSearchAdapter);
-//
-//
-//                        }
-//
-//                    }
-//                    if(flag.equals("false")){
-//                        searchProductList.clear();
-//                        userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                        recyclerView.setAdapter(userSearchAdapter);
-//
-//                    }
-//                }
-//                else if(priceMax!=1){
-//                    searchProductList=new ArrayList<>();
-//                    flag="false";
-//                    for(int i=0;i<productList.size();i++){
-//                        int tempPrice = productList.get(i).getPrice();
-//                        if(tempPrice>priceMin && tempPrice <priceMax){
-//                            flag="true";
-//                            searchProductList.add(new ProductModal(productList.get(i).getImage(), productList.get(i).getName(),productList.get(i).getDescription(),
-//                                    productList.get(i).getQuality(),productList.get(i).getQuantity(),productList.get(i).getPrice(),productList.get(i).isSale(),
-//                                    productList.get(i).getDiscount(), productList.get(i).getId(),Category,productList.get(i).getSubCategory()));
-//
-//                                userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                                recyclerView.setAdapter(userSearchAdapter);
-//
-//
-//
-//                        }
-//                    }
-//                    if(flag.equals("false")){
-//                        searchProductList.clear();
-//                        userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                        recyclerView.setAdapter(userSearchAdapter);
-//
-//                    }
-//
-//                }
-//
-//                else{
-//                    loadProducts();
-//                }
+
             }
         });
     }
@@ -507,12 +281,6 @@ public class SearchActivity extends AppCompatActivity {
             }
             price(qualitySearchList);
 
-//            if (flag.equals("false")) {
-//                searchProductList.clear();
-//                userSearchAdapter = new UserSearchAdapter(searchProductList, SearchActivity.this);
-//                recyclerView.setAdapter(userSearchAdapter);
-//
-//            }
         }
         else{
             price(searchProductList);
@@ -532,7 +300,12 @@ public class SearchActivity extends AppCompatActivity {
                     priceSearchList.add(new ProductModal(qualitySearchList.get(i).getImage(), qualitySearchList.get(i).getName(), qualitySearchList.get(i).getDescription(),
                             qualitySearchList.get(i).getQuality(), qualitySearchList.get(i).getQuantity(), qualitySearchList.get(i).getPrice(), qualitySearchList.get(i).isSale(),
                             qualitySearchList.get(i).getDiscount(), qualitySearchList.get(i).getId(), Category, qualitySearchList.get(i).getSubCategory()));
-
+                    if (priceSearchList.isEmpty()){
+                        TvNoSearch.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        TvNoSearch.setVisibility(View.GONE);
+                    }
                     userSearchAdapter = new UserSearchAdapter(priceSearchList, SearchActivity.this);
                     recyclerView.setAdapter(userSearchAdapter);
 
@@ -541,12 +314,19 @@ public class SearchActivity extends AppCompatActivity {
             }
             if (flag.equals("false")) {
                 priceSearchList.clear();
+                TvNoSearch.setVisibility(View.VISIBLE);
                 userSearchAdapter = new UserSearchAdapter(priceSearchList, SearchActivity.this);
                 recyclerView.setAdapter(userSearchAdapter);
 
             }
         }
         else{
+            if (qualitySearchList.isEmpty()){
+                TvNoSearch.setVisibility(View.VISIBLE);
+            }
+            else {
+                TvNoSearch.setVisibility(View.GONE);
+            }
             userSearchAdapter = new UserSearchAdapter(qualitySearchList, SearchActivity.this);
             recyclerView.setAdapter(userSearchAdapter);
         }
@@ -568,6 +348,7 @@ public class SearchActivity extends AppCompatActivity {
 
                     }
                 }
+                TvNoSearch.setVisibility(View.GONE);
                 userSearchAdapter = new UserSearchAdapter(productList,getApplicationContext());
                 recyclerView.setAdapter(userSearchAdapter);
             }
